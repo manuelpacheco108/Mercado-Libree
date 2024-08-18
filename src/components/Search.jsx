@@ -25,6 +25,7 @@ const Search = () => {
                     source={require('../img/shopping_cart.png')}
                 />
             </TouchableOpacity>
+            
         </View>
     );
 }
