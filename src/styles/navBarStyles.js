@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
-
+import {colors, typography} from "./globalStyles"
 const Styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#146C94',
+        backgroundColor: colors.text,
         padding: 10
     },
     hamburguerMenu: {
@@ -14,13 +14,13 @@ const Styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#F6F1F1',
+        backgroundColor: colors.background,
         borderRadius: 15,
         paddingHorizontal: 10,
     },
     searchInput: {
         flex: 1,
-        color: '#146C94',
+        color: colors.text,
         height: 40,
         paddingLeft: 35
     },
