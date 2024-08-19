@@ -9,6 +9,7 @@ const ShoppingCard = ({ shopping }) => {
             <View style={styles.textContainer}>
                 <Text style={styles.title}>{shopping.name}</Text>
                 <Text style={styles.description}>{shopping.description}</Text>
+                <Text style={styles.description}>Valor: {shopping.price}</Text>
                 <Text style={styles.status}>Estado: {shopping.status} </Text>
 
             </View>

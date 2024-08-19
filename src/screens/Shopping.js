@@ -9,6 +9,7 @@ const shopping = [
     photo: require('../img/mic.png'),
     name: 'Micrófono',
     description: 'Microfono Sony con supresión de sonido',
+    price: '100000$',
     status: 'En tránsito - 07/07/2024'
   },
   {
@@ -16,13 +17,15 @@ const shopping = [
     photo: require('../img/chair.jpg'),
     name: 'Silla',
     description: 'Silla de madera en color negro',
-    status: 'Cancelado - 01/03/2024 '
+    price: '70000$',
+    status: 'Cancelado - 01/03/2024'
   },
   {
     id: 3,
     photo: require('../img/ball.png'),
     name: 'Pelota para Gatos',
     description: 'Pelota saltarina recargable',
+    price: '40000$',
     status: 'Entregado - 08/18/2023'
   }
 ]
@@ -32,7 +35,7 @@ const Menu = () => {
     <View style={shoppingStyles.menuContainer}>
       <TouchableOpacity style={shoppingStyles.menuButton} onPress={() => console.log('Menu clicked')}>
         <Image
-          source={require('../img/atras.png')}
+          source={require('../img/back.png')}
           style={shoppingStyles.menuIcon}
         />
       </TouchableOpacity>
@@ -41,7 +44,7 @@ const Menu = () => {
   );
 };
 
-const Categories = () => {
+const Shopping = () => {
   return (
     <View>
       <Menu />
@@ -55,4 +58,4 @@ const Categories = () => {
   );
 }
 
-export default Categories;
+export default Shopping;

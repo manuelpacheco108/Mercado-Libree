@@ -43,7 +43,7 @@ const shoppingStyles = StyleSheet.create({
         fontWeight: 'bold',
         backgroundColor: '#cbcbcb',
         borderRadius: 5,
-        marginBottom: 5, // Espacio entre el título y la descripción
+        marginBottom: 5,
     },
     description: {
         fontSize: 14,

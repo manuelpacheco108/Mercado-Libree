@@ -40,9 +40,9 @@ const categories = [
 const Menu = () => {
   return (
     <View style={categoryStyles.menuContainer}>
-      <TouchableOpacity style={styles.menuButton} onPress={() => console.log('Menu clicked')}>
+      <TouchableOpacity style={categoryStyles.menuButton} onPress={() => console.log('Menu clicked')}>
         <Image
-          source={require('../img/atras.png')}
+          source={require('../img/back.png')}
           style={categoryStyles.menuIcon}
         />
       </TouchableOpacity>
@@ -52,7 +52,7 @@ const Menu = () => {
   );
 };
 
-const Categories = () => {
+const Category = () => {
   return (
     <View>
       <Menu />
@@ -60,12 +60,12 @@ const Categories = () => {
         data={categories}
         renderItem={({ item }) => <CategoryCard category={item} />}
         keyExtractor={(item) => item.id.toString()}
-        numColumns={2} // Muestra los elementos en dos columnas
-        columnWrapperStyle={styles.row} // Estilo para el contenedor de columnas
+        numColumns={2}
+        columnWrapperStyle={categoryStyles.row} 
       />
 
     </View>
   );
 }
 
-export default Categories;
+export default Category;
