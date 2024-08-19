@@ -1,12 +1,16 @@
 import React from "react";
-import { View, Image, Text, TextInput, TouchableOpacity, ImageBackground } from "react-native";
-import Styles from "./src/styles/navBarStyles";
-import Search from "./src/components/Search"
 import HomeScreen from "./src/screens/HomeScreen";
+import HamburguerNavigation from "./src/navigation/HamburguerNavigation";
+import { NavigationContainer } from "@react-navigation/native";
 
 
 const App = () => {
-  return (<HomeScreen/>);
+  return (
+    <NavigationContainer>
+      <HamburguerNavigation/>
+    </NavigationContainer>
+  
+);
 }
 
 export default App;

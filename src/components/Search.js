@@ -17,6 +17,7 @@ const Search = () => {
                 />
                 <TextInput style={Styles.searchInput}
                     placeholder="Buscar en Mercado Libree"
+                    placeholderTextColor={Styles.searchInput.color}
 
                 />
             </View>
