@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-const shoppingStyles = StyleSheet.create({
+const favoriteStyles = StyleSheet.create({
 
     container: {
         backgroundColor: '#146C94',
@@ -17,7 +17,7 @@ const shoppingStyles = StyleSheet.create({
         justifyContent: 'center',
         paddingLeft: 10,
     },
-    textShopping: {
+    textFavorites: {
         fontSize: 15,
         fontWeight: 'bold',
         fontFamily: 'System',
@@ -62,7 +62,7 @@ const shoppingStyles = StyleSheet.create({
         height: 100,
         borderRadius: 5,
     },
-    shoppingContainer: {
+    favoriteContainer: {
         flexDirection: 'row',
         backgroundColor: '#AFD3E2',
         marginTop: 15,
@@ -98,4 +98,4 @@ const shoppingStyles = StyleSheet.create({
 
 });
 
-export default shoppingStyles;
+export default favoriteStyles;

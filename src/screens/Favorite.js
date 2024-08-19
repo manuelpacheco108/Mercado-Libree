@@ -39,7 +39,7 @@ const Menu = () => {
           style={favoriteStyles.menuIcon}
         />
       </TouchableOpacity>
-      <Text style={favoriteStyles.textShopping}>Mis Favoritos</Text>
+      <Text style={favoriteStyles.textFavorites}>Mis Favoritos</Text>
     </View>
   );
 };

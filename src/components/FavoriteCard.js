@@ -4,7 +4,7 @@ import favoriteStyles from '../styles/favoriteStyles';
 
 const FavoriteCard = ({ favorite }) => {
     return (
-        <View style={favoriteStyles.shoppingContainer}>
+        <View style={favoriteStyles.favoriteContainer}>
             <Image style={favoriteStyles.image} source={favorite.photo} />
             <View style={favoriteStyles.textContainer}>
                 <Text style={favoriteStyles.title}>{favorite.name}</Text>
