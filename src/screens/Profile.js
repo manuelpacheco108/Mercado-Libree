@@ -7,7 +7,7 @@ const profile = [
     {
         id: 1,
         photo: require('../img/profile.jpg'),
-        name: 'Goku Ronaldo Ramirez Restrepo',
+        name: 'Goku Ronaldo Ocoro Pripra',
         date: '05/12/2004',
         price: '300000$',
         status: 'Sí'
