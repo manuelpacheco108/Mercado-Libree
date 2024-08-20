@@ -1,19 +1,15 @@
 import React from "react";
 import { TouchableOpacity, View, Text, StyleSheet, Button } from "react-native"
 
-import Search from "../components/Search";
+import NavBar from "../components/NavBar";
 
 const HomeScreen = ({ navigation }) => {
     return (
         <View>
             <View>
-                <Search />
+                <NavBar />
             </View>
-            <Button
-                title="Login"
-                onPress={()=> navigation.navigate('LoginUser')
-                }
-            />
+            
         </View>
     );
 }

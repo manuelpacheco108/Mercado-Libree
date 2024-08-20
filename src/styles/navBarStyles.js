@@ -36,6 +36,16 @@ const Styles = StyleSheet.create({
     },
     cart: {
         marginLeft: 10
+    },
+    containerUbication:{
+        alignItems: "flex-start",
+        backgroundColor: colors.text,
+        paddingTop:5,
+        paddingBottom: 20,
+    },
+    ubicationText:{
+        marginLeft: 20,
+
     }
 });
 
