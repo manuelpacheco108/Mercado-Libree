@@ -60,25 +60,27 @@ const offers = [
   }
 ]
  
-const Menu = () => {
+const Menu = ({navigation}) => {
   return (
     <View style={offerStyles.menuContainer}>
-      <TouchableOpacity style={offerStyles.menuButton} onPress={() => console.log('Menu clicked')}>
+      <TouchableOpacity 
+        style={offerStyles.menuButton} 
+        onPress={() => navigation.navigate('Home')}
+      >
         <Image
           source={require('../img/back.png')}
           style={offerStyles.menuIcon}
         />
       </TouchableOpacity>
       <Text style={offerStyles.textOffers}>Ofertas</Text>
-
     </View>
   );
 };
 
-const Offer = () => {
+const Offer = ({navigation}) => {
   return (
     <View>
-      <Menu />
+      <Menu navigation={navigation}/>
       <FlatList
         data={offers}
         renderItem={({ item }) => <OfferCard offer={item} />}
