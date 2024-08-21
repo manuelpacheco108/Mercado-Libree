@@ -66,11 +66,14 @@ const DrawerNav = () => {
 
     );
 }
-const HamburguerNavigation = () => {
+const HamburguerNavigation = ({navigation}) => {
     return (
-        <NavigationContainer>
-            <DrawerNav />
-        </NavigationContainer>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>Home Screen</Text>
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                <Icon name="menu" size={30} color="black" />
+            </TouchableOpacity>
+        </View>
     );
 }
 
