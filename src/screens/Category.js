@@ -8,31 +8,37 @@ const categories = [
     id: 1,
     photo: require('../img/tecno.png'),
     name: 'Tecnologia',
+    category:'Technology'
   },
   {
     id: 2,
     photo: require('../img/home.png'), 
     name: 'Hogar',
+    category:'HomeCategory'
   },
   {
     id: 3,
     photo: require('../img/pet.png'),
     name: 'Macotas',
+    category:'Pet'
   },
   {
     id: 4,
     photo: require('../img/makeup.png'),
     name: 'Belleza',
+    category:'Makeup'
   },
   {
     id: 5,
     photo: require('../img/fashion.png'),
     name: 'Moda',
+    category:'Fashion'
   },
   {
     id: 6,
     photo: require('../img/soon.jpg'),
     name: 'Más Próximamente',
+    category:'Category'
   }
 ]
  

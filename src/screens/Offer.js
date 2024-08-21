@@ -34,7 +34,7 @@ const offers = [
   {
     id: 4,
     photo: require('../img/battery.jpg'),
-    name: 'Bateria',
+    name: 'Batería',
     description: 'Batería portátil con linterna',
     price: '200000$',
     discount: '130000$',

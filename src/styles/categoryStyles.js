@@ -7,7 +7,7 @@ const categoryStyles = StyleSheet.create({
     margin: 5,
     flex: 1,
     borderRadius: 5,
-    height: 175,
+    height: 185,
     paddingTop: 10,
   },
   textCategories: {
