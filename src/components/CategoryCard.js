@@ -1,14 +1,19 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
-import styles from '../styles/categoryStyles';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import categoryStyles from '../styles/categoryStyles';
 
-const CategoryCard = ({ category }) => {
-    return (
-        <View style={styles.container}>
-           <Image style={styles.image} source={category.photo} />
-            <Text style={styles.title}>{category.name}</Text>
-        </View>
-    );
+const CategoryCard = ({ category, navigation }) => {
+  return (
+    <View style={categoryStyles.container}>
+      <TouchableOpacity
+        style={categoryStyles.touchable}
+        onPress={() => navigation.navigate(category.name)}
+      >
+        <Image style={categoryStyles.image} source={category.photo} />
+        <Text style={categoryStyles.title}>{category.name}</Text>
+      </TouchableOpacity>
+    </View>
+  );
 };
- 
-export default CategoryCard
+
+export default CategoryCard;

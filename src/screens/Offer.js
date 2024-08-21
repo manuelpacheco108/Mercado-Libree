@@ -10,7 +10,7 @@ const offers = [
     name: 'Audífonos',
     description: 'Audífonos inalámbricos grises',
     price: '100000$',
-    discount: '95000$',
+    discount: '95000$', 
     offerValue: '5%OFF'
   },
   {

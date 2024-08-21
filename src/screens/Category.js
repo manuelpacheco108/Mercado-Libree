@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import CategoryCard from '../components/CategoryCard';
 import categoryStyles from '../styles/categoryStyles';
-import styles from '../styles/globalStyles';
 
 const categories = [
   {
@@ -12,7 +11,7 @@ const categories = [
   },
   {
     id: 2,
-    photo: require('../img/home.png'),
+    photo: require('../img/home.png'), 
     name: 'Hogar',
   },
   {
@@ -37,28 +36,32 @@ const categories = [
   }
 ]
  
-const Menu = () => {
+const Menu = ({navigation}) => {
   return (
     <View style={categoryStyles.menuContainer}>
-      <TouchableOpacity style={categoryStyles.menuButton} onPress={() => console.log('Menu clicked')}>
+      <TouchableOpacity 
+        style={categoryStyles.menuButton} 
+        onPress={() => navigation.navigate('Home')}
+      >
         <Image
           source={require('../img/back.png')}
           style={categoryStyles.menuIcon}
         />
       </TouchableOpacity>
       <Text style={categoryStyles.textCategories}>Categorias</Text>
-
     </View>
   );
 };
 
-const Category = () => {
+
+
+const Category = ({navigation}) => {
   return (
     <View>
-      <Menu />
+      <Menu navigation={navigation} />
       <FlatList
         data={categories}
-        renderItem={({ item }) => <CategoryCard category={item} />}
+        renderItem={({ item }) => <CategoryCard category={item} navigation={navigation}/>}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         columnWrapperStyle={categoryStyles.row} 
