@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import {colors, typography} from "./globalStyles"
+import {colors} from "./globalStyles"
 const Styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
@@ -46,7 +46,13 @@ const Styles = StyleSheet.create({
     ubicationText:{
         marginLeft: 20,
 
-    }
+    },
+    drawerHeader: {
+        padding: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: colors.text,
+    },
 });
 
 export default Styles;
