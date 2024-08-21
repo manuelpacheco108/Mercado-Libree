@@ -1,11 +1,15 @@
 import React from "react";
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from "./src/screens/HomeScreen";
-import HamburguerNavigation from "./src/navigation/HamburguerNavigation";
+
 
 const App = () => {
-  return (
-    <HamburguerNavigation/>
-  );
-}
-
+    return (
+        <NavigationContainer>
+            <HomeScreen />
+        </NavigationContainer>
+    );
+};
 export default App;
