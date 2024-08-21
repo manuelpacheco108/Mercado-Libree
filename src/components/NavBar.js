@@ -1,47 +1,45 @@
-import React from "react";
-import { Button, Image, ImageBackground, TextInput, Touchable, TouchableOpacity, View, Text, } from "react-native";
-import Styles from "../styles/navBarStyles"
+import React from 'react';
+import { View, TextInput, TouchableOpacity, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Styles from "../styles/navBarStyles";  // Ignorar si no lo necesitas
 import { useNavigation } from '@react-navigation/native';
-
-
 
 
 const NavBar = () => {
     const navigation = useNavigation();
+
     return (
         <View>
             <View style={Styles.container}>
-                <TouchableOpacity style={Styles.hamburguerMenu} >
-                    <Image style={Styles.iconImg}
-                        source={require('../img/menu_hamburguer.png')}
-                    />
-                </TouchableOpacity>
-                <View style={Styles.searchContainer}>
-                    <Image
-                        style={Styles.searchIcon}
-                        source={require('../img/search_icon.png')}
-                    />
-                    <TextInput style={Styles.searchInput}
-                        placeholder="Buscar en Mercado Libree"
-                        placeholderTextColor={Styles.searchInput.color}
-
-                    />
-                </View>
                 <TouchableOpacity
-                    style={Styles.cart}
+                    style={Styles.hamburguerMenu}
                     onPress={() => navigation.openDrawer()}
                 >
-                    <Image style={Styles.iconImg}
-                        source={require('../img/shopping_cart.png')}
+                    <Icon name="menu" size={30} color="black" />
+                </TouchableOpacity>
+
+                <View style={Styles.searchContainer}>
+                    <Icon name="search" size={20} color="gray" style={Styles.searchIcon} />
+                    <TextInput
+                        style={Styles.searchInput}
+                        placeholder="Buscar en Mercado Libree"
+                        placeholderTextColor="gray"
+                        onFocus={() => navigation.navigate('Buscar')}
                     />
+                </View>
+
+                <TouchableOpacity
+                    style={Styles.cart}
+                    onPress={() => navigation.navigate('Carrito')}
+                >
+                    <Icon name="cart" size={30} color="black" />
                 </TouchableOpacity>
             </View>
             <View style={Styles.containerUbication}>
-                    <Text style={Styles.ubicationText}>Ingresa tu ubicación</Text>
-                </View>
+                <Text style={Styles.ubicationText}>Ingresa tu ubicación</Text>
+            </View>
         </View>
-
     );
-}
+};
 
 export default NavBar;
