@@ -68,7 +68,7 @@ const Menu = ({navigation}) => {
           style={productStyles.menuIcon}
         />
       </TouchableOpacity>
-      <Text style={productStyles.textProduct}>Hogar </Text>
+      <Text style={productStyles.textProduct}>Hogar</Text>
     </View>
   );
 };

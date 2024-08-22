@@ -59,13 +59,18 @@ const offers = [
     offerValue: '5%OFF'
   }
 ]
- 
+  
 const Menu = ({navigation}) => {
   return (
     <View style={offerStyles.menuContainer}>
       <TouchableOpacity 
         style={offerStyles.menuButton} 
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Home' }],
+          });
+        }}
       >
         <Image
           source={require('../img/back.png')}

@@ -30,10 +30,18 @@ const favorite = [
   }
 ]
 
-const Menu = () => {
+const Menu = ({navigation}) => {
   return (
     <View style={favoriteStyles.menuContainer}>
-      <TouchableOpacity style={favoriteStyles.menuButton} onPress={() => console.log('Menu clicked')}>
+      <TouchableOpacity 
+        style={favoriteStyles.menuButton} 
+        onPress={() => {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Home' }],
+          });
+        }}
+      >
         <Image
           source={require('../img/back.png')}
           style={favoriteStyles.menuIcon}
@@ -44,10 +52,10 @@ const Menu = () => {
   );
 };
 
-const Favorite = () => {
+const Favorite = ({navigation}) => {
   return (
     <View>
-      <Menu />
+      <Menu navigation={navigation}/>
       <FlatList
         data={favorite}
         renderItem={({ item }) => <FavoriteCard favorite={item} />}

@@ -14,24 +14,32 @@ const profile = [
     }
 ]
 
-const Menu = () => {
-    return (
-        <View style={profileStyles.menuContainer}>
-            <TouchableOpacity style={profileStyles.menuButton} onPress={() => console.log('Menu clicked')}>
-                <Image
-                    source={require('../img/back.png')}
-                    style={profileStyles.menuIcon}
-                />
-            </TouchableOpacity>
-            <Text style={profileStyles.textProfile}>Mi Perfil</Text>
-        </View>
-    );
+const Menu = ({navigation}) => {
+  return (
+    <View style={profileStyles.menuContainer}>
+      <TouchableOpacity 
+        style={profileStyles.menuButton} 
+        onPress={() => {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Home' }],
+          });
+        }}
+      >
+        <Image
+          source={require('../img/back.png')}
+          style={profileStyles.menuIcon}
+        />
+      </TouchableOpacity>
+      <Text style={profileStyles.textProfile}>Mi perfil</Text>
+    </View>
+  );
 };
 
-const Profile = () => {
+const Profile = ({navigation}) => {
     return (
         <View>
-            <Menu />
+            <Menu navigation={navigation}/>
             <FlatList
                 data={profile}
                 renderItem={({ item }) => <ProfileCard profile={item} />}

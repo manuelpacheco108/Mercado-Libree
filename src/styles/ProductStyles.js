@@ -81,6 +81,10 @@ const productStyles = StyleSheet.create({
         marginRight: 5,
         textDecorationLine: 'underline',
     },
+    menuIconSearch: {
+        width: 15,
+        height: 15,
+    }
 });
 
 export default productStyles;

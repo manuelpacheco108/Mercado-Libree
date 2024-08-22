@@ -47,7 +47,12 @@ const Menu = ({navigation}) => {
     <View style={categoryStyles.menuContainer}>
       <TouchableOpacity 
         style={categoryStyles.menuButton} 
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Home' }],
+          });
+        }}
       >
         <Image
           source={require('../img/back.png')}

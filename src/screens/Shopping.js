@@ -30,10 +30,18 @@ const shopping = [
   }
 ]
 
-const Menu = () => {
+const Menu = ({navigation}) => {
   return (
     <View style={shoppingStyles.menuContainer}>
-      <TouchableOpacity style={shoppingStyles.menuButton} onPress={() => console.log('Menu clicked')}>
+      <TouchableOpacity 
+        style={shoppingStyles.menuButton} 
+        onPress={() => {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Home' }],
+          });
+        }}
+      >
         <Image
           source={require('../img/back.png')}
           style={shoppingStyles.menuIcon}
@@ -44,10 +52,11 @@ const Menu = () => {
   );
 };
 
-const Shopping = () => {
+
+const Shopping = ({navigation}) => {
   return (
     <View>
-      <Menu />
+      <Menu navigation={navigation} />
       <FlatList
         data={shopping}
         renderItem={({ item }) => <CategoryCard shopping={item} />}

@@ -63,7 +63,7 @@ const Menu = ({navigation}) => {
         style={productStyles.menuButton} 
         onPress={() => navigation.navigate('Category')} 
       >
-        <Image
+        <Image 
           source={require('../../img/back.png')}
           style={productStyles.menuIcon}
         />

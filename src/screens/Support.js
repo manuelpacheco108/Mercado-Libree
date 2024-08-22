@@ -4,26 +4,35 @@ import suportStyle from '../styles/suportStyle';
 
 
 
-const Menu = () => {
-    return (
-        <View style={suportStyle.menuContainer}>
-            <TouchableOpacity style={suportStyle.menuButton} onPress={() => console.log('Menu clicked')}>
-                <Image
-                    source={require('../img/back.png')}
-                    style={suportStyle.menuIcon}
-                />
-            </TouchableOpacity>
-            <Text style={suportStyle.textSupport}>Ayuda</Text>
-        </View>
-    );
+const Menu = ({navigation}) => {
+  return (
+    <View style={suportStyle.menuContainer}>
+      <TouchableOpacity 
+        style={suportStyle.menuButton} 
+        onPress={() => {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Home' }],
+          });
+        }}
+      >
+        <Image
+          source={require('../img/back.png')}
+          style={suportStyle.menuIcon}
+        />
+      </TouchableOpacity>
+      <Text style={suportStyle.textSupport}>Ayuda y Soporte</Text>
+    </View>
+  );
 };
 
 
 
-const Support = () => {
+
+const Support = ({navigation}) => {
     return (
         <View>
-            <Menu />
+            <Menu navigation={navigation} />
             <Text style={suportStyle.title}>¿Con qué te podemos ayudar?</Text>
             <View style={suportStyle.infoSupport}>
                 <Text style={suportStyle.listItemText}>Queja</Text>

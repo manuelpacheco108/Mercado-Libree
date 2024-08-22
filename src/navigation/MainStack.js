@@ -9,6 +9,10 @@ import HomeCategory from "../screens/categoryHome/HomeCategory";
 import Pet from "../screens/categoryPet/Pet";
 import Makeup from "../screens/categoryMakeup/Makeup";
 import Fashion from "../screens/categoryFashion/Fashion";
+import Favorite from "../screens/Favorite";
+import Profile from "../screens/Profile";
+import Support from "../screens/Support";
+import Shopping from "../screens/Shopping";
 
 const Stack = createStackNavigator();
 
@@ -16,6 +20,19 @@ const MainStack = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
+
+                <Stack.Screen
+                    name='Home'
+                    component={HomeScreen}
+                    options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
+                    name='Favorite'
+                    component={Favorite}
+                    options={{ headerShown: false }}
+                />
+
 
                 <Stack.Screen
                     name='Technology'
@@ -53,15 +70,28 @@ const MainStack = () => {
                     component={Offer}
                     options={{ headerShown: false }}
                 />
-                <Stack.Screen
-                    name='Home'
-                    component={HomeScreen}
-                    options={{ headerShown: false }}
-                />
 
                 <Stack.Screen
                     name='Fashion'
                     component={Fashion}
+                    options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
+                    name='Profile'
+                    component={Profile}
+                    options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
+                    name='Support'
+                    component={Support}
+                    options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
+                    name='Shopping'
+                    component={Shopping}
                     options={{ headerShown: false }}
                 />
             </Stack.Navigator>
