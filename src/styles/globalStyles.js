@@ -14,3 +14,15 @@ export const typography = {
         fontSize: 16,
     },
 };
+
+export const imgs = {
+    rowBack:{
+        width: 24, 
+        height: 24,
+    },
+    iconLoginUser:{
+        width: 80,
+        height: 80,
+    }
+    
+}

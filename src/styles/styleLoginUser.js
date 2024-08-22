@@ -59,9 +59,9 @@ const Styles = StyleSheet.create({
     buttonSignin:{
         padding:20,
         borderRadius:10,
+        backgroundColor: colors.background,
     },
     textButtonSignIn:{
-        alignSelf:  "center",
         color: colors.highlight,
         fontSize: typography.body.fontSize,
     },
@@ -69,13 +69,25 @@ const Styles = StyleSheet.create({
         justifyContent: "center",
         height:60,
     },
+    label: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 5,
+    },
     footerText:{
         alignSelf: "center",
         color: colors.highlight,
     },
     onPressInput:{
         borderColor: "blue",
-    }
+    },
+    inputError: {
+        borderColor: 'red',
+    },
+    errorText: {
+        color: 'red',
+        marginBottom: 10,
+    },
 })
 
 export default Styles;
