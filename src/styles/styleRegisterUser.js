@@ -1,12 +1,14 @@
 import { StyleSheet } from "react-native";
+import { colors,typography } from "./globalStyles";
 const StylesRegisterUser = StyleSheet.create({
     container: {
       padding: 20,
     },
     label: {
-      fontSize: 16,
+      fontSize: typography.body.fontSize,
       fontWeight: 'bold',
       marginBottom: 5,
+      color: "black"
     },
     input: {
       borderWidth: 1,

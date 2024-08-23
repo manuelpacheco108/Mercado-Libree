@@ -48,18 +48,7 @@ const StylesPayment = StyleSheet.create({
     textAlign: 'right',
     marginBottom: 16,
   },
-  picker: {
-    height: 50,
-    color: colors.text,
-    fontSize: typography.body.fontSize,
-    marginBottom: 8,
-  },
-  pickerItem: {
-    paddingVertical: 8,
-    color: colors.highlight,
-    fontSize: typography.body.fontSize,
-    textDecorationLine: 'underline',
-  },
+  
 });
 
 export default StylesPayment;

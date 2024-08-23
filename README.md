@@ -67,29 +67,3 @@ NAVEGACIÓN
             
 *
               Y se terminaria con el proceso
-3.(PROBABLEMENTE SE ELIMINE) Para el tema de los iconos, se debe descargar el paquete de node:
-
-            npm i react-native-paper
-*
-            Posterior a ello se procede con la instalacion de vectores:
-            
-            npm install react-native-vector-icons           
-*
-            El ultimo paso es modificar el index.js, agregando lo siguiente (Copiado y pegado de mi maquina):
-            
-            import './gesture-handler';
-            import {AppRegistry} from 'react-native';
-            import { PaperProvider } from 'react-native-paper'; //Este
-            import App from './App';
-            import {name as appName} from './app.json';
-
-            export default function Main() {
-                return (
-                <PaperProvider>
-                    <App />
-                </PaperProvider>
-                );
-            }// Esta funcion
-            
-            AppRegistry.registerComponent(appName, () => Main); //Modificar la funcion que se pasa
-            Y se termina con le proceso
