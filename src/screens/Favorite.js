@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
+import { View, Text, FlatList, Image, Pressable } from 'react-native';
 import FavoriteCard from '../components/FavoriteCard';
 import favoriteStyles from '../styles/favoriteStyles';
 
@@ -33,7 +33,7 @@ const favorite = [
 const Menu = ({navigation}) => {
   return (
     <View style={favoriteStyles.menuContainer}>
-      <TouchableOpacity 
+      <Pressable 
         style={favoriteStyles.menuButton} 
         onPress={() => {
           navigation.reset({
@@ -46,7 +46,7 @@ const Menu = ({navigation}) => {
           source={require('../img/back.png')}
           style={favoriteStyles.menuIcon}
         />
-      </TouchableOpacity>
+      </Pressable>
       <Text style={favoriteStyles.textFavorites}>Mis Favoritos</Text>
     </View>
   );

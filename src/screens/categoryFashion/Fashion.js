@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
+import { View, Text, FlatList, Pressable, Image } from 'react-native';
 import productStyles from '../../styles/ProductStyles';
 import ProductCard from '../../components/ProductCard';
 
@@ -59,7 +59,7 @@ const product = [
 const Menu = ({navigation}) => {
   return (
     <View style={productStyles.menuContainer}>
-      <TouchableOpacity 
+      <Pressable 
         style={productStyles.menuButton} 
         onPress={() => navigation.navigate('Category')} 
       >
@@ -67,7 +67,7 @@ const Menu = ({navigation}) => {
           source={require('../../img/back.png')}
           style={productStyles.menuIcon}
         />
-      </TouchableOpacity>
+      </Pressable>
       <Text style={productStyles.textProduct}>Moda</Text>
     </View>
   );

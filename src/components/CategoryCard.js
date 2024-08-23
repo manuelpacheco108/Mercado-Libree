@@ -1,20 +1,22 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, Pressable } from 'react-native';
 import categoryStyles from '../styles/categoryStyles';
-
-
+import { Card } from 'react-native-paper';
 
 const CategoryCard = ({ category, navigation }) => {
-  
+
   return (
     <View style={categoryStyles.container}>
-      <TouchableOpacity
+
+      <Pressable
         style={categoryStyles.touchable}
         onPress={() => navigation.navigate(category.category)}
       >
-        <Image style={categoryStyles.image} source={category.photo} />
-        <Text style={categoryStyles.title}>{category.name}</Text>
-      </TouchableOpacity>
+        <Card style={categoryStyles.card}>
+          <Image style={categoryStyles.image} source={category.photo} />
+          <Text style={categoryStyles.title}>{category.name}</Text>
+        </Card>
+      </Pressable>
     </View>
   );
 };

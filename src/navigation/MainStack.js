@@ -13,6 +13,7 @@ import Favorite from "../screens/Favorite";
 import Profile from "../screens/Profile";
 import Support from "../screens/Support";
 import Shopping from "../screens/Shopping";
+import Privacy from "../screens/Privacy";
 
 const Stack = createStackNavigator();
 
@@ -92,6 +93,12 @@ const MainStack = () => {
                 <Stack.Screen
                     name='Shopping'
                     component={Shopping}
+                    options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
+                    name='Privacy'
+                    component={Privacy}
                     options={{ headerShown: false }}
                 />
             </Stack.Navigator>

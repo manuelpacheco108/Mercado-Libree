@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
+import { View, Text, FlatList, Image, Pressable } from 'react-native';
 import offerStyles from '../styles/offersStyles';
 import OfferCard from '../components/OfferCard';
 
@@ -63,7 +63,7 @@ const offers = [
 const Menu = ({navigation}) => {
   return (
     <View style={offerStyles.menuContainer}>
-      <TouchableOpacity 
+      <Pressable 
         style={offerStyles.menuButton} 
         onPress={() => {
           navigation.reset({
@@ -76,7 +76,7 @@ const Menu = ({navigation}) => {
           source={require('../img/back.png')}
           style={offerStyles.menuIcon}
         />
-      </TouchableOpacity>
+      </Pressable>
       <Text style={offerStyles.textOffers}>Ofertas</Text>
     </View>
   );

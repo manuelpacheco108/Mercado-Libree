@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
+import { View, Text, FlatList, Pressable, Image } from 'react-native';
 import CategoryCard from '../components/CategoryCard';
 import categoryStyles from '../styles/categoryStyles';
 
@@ -45,7 +45,7 @@ const categories = [
 const Menu = ({navigation}) => {
   return (
     <View style={categoryStyles.menuContainer}>
-      <TouchableOpacity 
+      <Pressable 
         style={categoryStyles.menuButton} 
         onPress={() => {
           navigation.reset({
@@ -58,7 +58,7 @@ const Menu = ({navigation}) => {
           source={require('../img/back.png')}
           style={categoryStyles.menuIcon}
         />
-      </TouchableOpacity>
+      </Pressable>
       <Text style={categoryStyles.textCategories}>Categorias</Text>
     </View>
   );

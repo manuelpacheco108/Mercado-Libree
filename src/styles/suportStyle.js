@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 const suportStyle = StyleSheet.create({
 
     container: {
@@ -117,17 +117,22 @@ const suportStyle = StyleSheet.create({
     },
     infoSupport: {
         marginTop: 15,
-        backgroundColor: '#cbcbcb',
+        backgroundColor: '',
+        borderColor: '#d1d1d1',
         margin: 5,
         padding: 5,
         borderRadius: 5
 
     },
-    inputSupport:{
+    inputSupport: {
         backgroundColor: '#AFD3E2',
         margin: 4,
         borderRadius: 5,
         marginBottom: 10
+    },
+    card: {
+        backgroundColor: '#cbcbcb',
+        padding: 5
     }
 
 });

@@ -1,24 +1,27 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
+import { View, Text, FlatList, Image, Pressable } from 'react-native';
 import ProfileCard from '../components/ProfileCard';
 import profileStyles from '../styles/profileStyles';
 
 const profile = [
-    {
-        id: 1,
-        photo: require('../img/profile.jpg'),
-        name: 'Goku Ronaldo Ocoro Pripra',
-        date: '05/12/2004',
-        price: '300000$',
-        status: 'Sí'
-    }
+  {
+    id: 1,
+    photo: require('../img/profile.jpg'),
+    name: 'Goku Ronaldo Ocoro Pripra',
+    date: '05/12/2004',
+    age: '20',
+    gender: 'Hombre',
+    master: require('../img/mastercard.png'),
+    visa: require('../img/visa.png'),
+    bancolombia: require('../img/bancolombia.png')
+  }
 ]
 
-const Menu = ({navigation}) => {
+const Menu = ({ navigation }) => {
   return (
     <View style={profileStyles.menuContainer}>
-      <TouchableOpacity 
-        style={profileStyles.menuButton} 
+      <Pressable
+        style={profileStyles.menuButton}
         onPress={() => {
           navigation.reset({
             index: 0,
@@ -30,36 +33,36 @@ const Menu = ({navigation}) => {
           source={require('../img/back.png')}
           style={profileStyles.menuIcon}
         />
-      </TouchableOpacity>
+      </Pressable>
       <Text style={profileStyles.textProfile}>Mi perfil</Text>
     </View>
   );
 };
 
-const Profile = ({navigation}) => {
-    return (
-        <View>
-            <Menu navigation={navigation}/>
-            <FlatList
-                data={profile}
-                renderItem={({ item }) => <ProfileCard profile={item} />}
-                keyExtractor={(item) => item.id.toString()}
-            />
-            <View style={profileStyles.infoProfile}>
-                <Text style={profileStyles.listItemText}>Tu información</Text>
-                <Text style={profileStyles.listItemTextInfo}>Aquí veras tus datos dentro de la aplicación</Text>
-                <Text style={profileStyles.listItemText}>Tarjetas</Text>
-                <Text style={profileStyles.listItemTextInfo}>Aquí veras las tarjetas que ingreses</Text>
-                <Text style={profileStyles.listItemText}>Privacidad</Text>
-                <Text style={profileStyles.listItemTextInfo}>Aquí veras los terminos y condiciones</Text>
-            </View>
-            <TouchableOpacity style={profileStyles.logoutButton}>
-                    <Text style={profileStyles.logoutButtonText}>Cerrar Sesión</Text>
-                </TouchableOpacity>
 
-        </View>
+const Profile = ({ navigation }) => {
+  return (
+    <View>
+      <Menu navigation={navigation} />
+      <FlatList
+        data={profile}
+        renderItem={({ item }) => <ProfileCard profile={item} navigation={navigation} />}
+        keyExtractor={(item) => item.id.toString()}
+      />
+      <Pressable style={profileStyles.logoutButton}
+        onPress={() => {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Home' }],
+          });
+        }}
+      >
+        <Text style={profileStyles.logoutButtonText}>Cerrar Sesión</Text>
+      </Pressable>
 
-    );
+    </View>
+
+  );
 }
 
 export default Profile; 

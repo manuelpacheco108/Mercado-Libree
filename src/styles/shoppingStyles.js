@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 const shoppingStyles = StyleSheet.create({
 
     container: {
@@ -11,11 +11,6 @@ const shoppingStyles = StyleSheet.create({
         padding: 10,
         flexDirection: 'row',
         alignItems: 'center',
-    },
-    textContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        paddingLeft: 10,
     },
     textShopping: {
         fontSize: 15,
@@ -76,6 +71,7 @@ const shoppingStyles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         marginLeft: 10,
+        padding: 5
     },
     title: {
         fontSize: 18,

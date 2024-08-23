@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
+import { View, Text, FlatList, Pressable, Image } from 'react-native';
 import CategoryCard from '../components/ShoppingCard';
 import shoppingStyles from '../styles/shoppingStyles';
 
@@ -30,11 +30,11 @@ const shopping = [
   }
 ]
 
-const Menu = ({navigation}) => {
+const Menu = ({ navigation }) => {
   return (
     <View style={shoppingStyles.menuContainer}>
-      <TouchableOpacity 
-        style={shoppingStyles.menuButton} 
+      <Pressable
+        style={shoppingStyles.menuButton}
         onPress={() => {
           navigation.reset({
             index: 0,
@@ -46,14 +46,14 @@ const Menu = ({navigation}) => {
           source={require('../img/back.png')}
           style={shoppingStyles.menuIcon}
         />
-      </TouchableOpacity>
+      </Pressable>
       <Text style={shoppingStyles.textShopping}>Mis Compras</Text>
     </View>
   );
 };
 
 
-const Shopping = ({navigation}) => {
+const Shopping = ({ navigation }) => {
   return (
     <View>
       <Menu navigation={navigation} />
@@ -62,7 +62,6 @@ const Shopping = ({navigation}) => {
         renderItem={({ item }) => <CategoryCard shopping={item} />}
         keyExtractor={(item) => item.id.toString()}
       />
-
     </View>
   );
 }

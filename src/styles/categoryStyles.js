@@ -2,12 +2,9 @@ import { StyleSheet } from 'react-native';
 
 const categoryStyles = StyleSheet.create({
   container: {
-    backgroundColor: '#AFD3E2',
-    marginTop: 15,
     margin: 5,
-    flex: 1,
+    flex: 1, 
     borderRadius: 5,
-    height: 185,
     paddingTop: 10,
   },
   textCategories: {
@@ -58,6 +55,13 @@ const categoryStyles = StyleSheet.create({
   touchable: {
     flex: 1, // Asegura que el TouchableOpacity ocupe todo el espacio del contenedor
   },
+  card: {
+    backgroundColor: '#AFD3E2',
+    borderWidth: 0,
+    paddingTop: 5,
+    height: 180,
+
+  }
 });
 
 export default categoryStyles;

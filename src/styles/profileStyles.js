@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 const profileStyles = StyleSheet.create({
 
     container: {
@@ -41,13 +41,14 @@ const profileStyles = StyleSheet.create({
         fontSize: 18,
         color: '#565656',
         fontWeight: 'bold',
-        backgroundColor: '#cbcbcb',
         borderRadius: 5,
-        marginBottom: 5,
+        color: '#565656',
+        fontWeight: 'bold',
     },
     description: {
         fontSize: 14,
         color: '#565656',
+        margin: 2
     },
     menuContainer: {
         padding: 2,
@@ -76,16 +77,6 @@ const profileStyles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         marginLeft: 10,
-    },
-    title: {
-        fontSize: 18,
-        color: '#565656',
-        fontWeight: 'bold',
-        marginBottom: 5,
-    },
-    description: {
-        fontSize: 14,
-        color: '#565656',
     },
     image: {
         width: 100,
@@ -126,8 +117,38 @@ const profileStyles = StyleSheet.create({
         padding: 5,
         borderRadius: 5
 
+    },
+    buy: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        margin: 5
+    },
+
+    payCard: {
+        width: 40,
+        height: 40,
+    },
+
+    infoCard: {
+
+        backgroundColor: '#AFD3E2',
+        marginTop: 15,
+        margin: 5,
+        borderRadius: 5,
+        padding: 10,
+        flex: 1
+    },
+
+    titlePrivacy: {
+        fontSize: 18,
+        color: '#565656',
+        fontWeight: 'bold',
+        borderRadius: 5,
+        color: '#565656',
+        fontWeight: 'bold',
+        marginTop: 10
     }
-    
+
 
 });
 
