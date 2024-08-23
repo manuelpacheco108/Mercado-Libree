@@ -3,12 +3,10 @@ import { View, Text, Image } from 'react-native';
 import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer';
 import NavBar from "../components/NavBar";
 import MyOwnButton from "../components/MyOwnButton"
-import Styles from "../styles/navBarStyles";
-import { imgs } from "../styles/globalStyles";
+import StylesHomeScreen from "../styles/stylesHomeScreen"
 import Search from "./Search";
 import BuyCart from './BuyCart';
 import LoginUser from './LoginUser';
-import { useNavigation } from '@react-navigation/native';
 import RegisterUser from './RegisterUser';
 import DrawerNavigation from '../components/DrawerNavigation'
 
@@ -16,10 +14,10 @@ const Drawer = createDrawerNavigator();
 
 const HomeContent = () => {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={StylesHomeScreen.container}>
       <NavBar />
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: 'black' }}>Contenido Principal de la Home Screen</Text>
+      <View style={StylesHomeScreen.contentContainer}>
+        <Text style={StylesHomeScreen.text}>Contenido Principal de la Home Screen</Text>
       </View>
     </View>
   );
