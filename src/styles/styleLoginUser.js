@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
 import { colors, typography } from "./globalStyles";
 
-const Styles = StyleSheet.create({
+const StylesLogin = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background,
         marginHorizontal: 20,
+        alignContent:"center"
     },
     header: {
         paddingTop: 15,
@@ -15,7 +16,6 @@ const Styles = StyleSheet.create({
     containerForm: {
         flex: 1,
         alignItems: "center",
-        
         borderBottomWidth: 1,
         borderColor: "lightslategrey",
     },
@@ -66,7 +66,7 @@ const Styles = StyleSheet.create({
         fontSize: typography.body.fontSize,
     },
     containerFooter:{
-        justifyContent: "center",
+        alignContent: "flex-end",
         height:60,
     },
     label: {
@@ -90,4 +90,4 @@ const Styles = StyleSheet.create({
     },
 })
 
-export default Styles;
+export default StylesLogin;

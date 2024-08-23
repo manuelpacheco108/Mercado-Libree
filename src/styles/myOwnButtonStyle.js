@@ -18,16 +18,6 @@ const Style = StyleSheet.create({
     disabledButton: {
         backgroundColor: '#cccccc',
     },
-    /* buttonLogIn:{
-        padding:20,
-        backgroundColor: colors.highlight,
-        borderRadius:10,
-    },
-    textButtonLogIn:{
-        alignSelf:  "center",
-        color: colors.secondaryElements,
-        fontSize: typography.body.fontSize,
-    }, */
 });
 
 export default Style;

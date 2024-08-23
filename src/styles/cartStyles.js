@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { colors, typography } from './globalStyles';
 
-const StylesBuyCard = StyleSheet.create({
+export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background,
@@ -25,7 +25,7 @@ const StylesBuyCard = StyleSheet.create({
         justifyContent: 'center',
     },
     itemName: {
-        fontSize:typography.header.fontSize,
+        ...typography.header,
         color: colors.text,
     },
     itemDescription: {
@@ -34,7 +34,7 @@ const StylesBuyCard = StyleSheet.create({
         marginVertical: 4,
     },
     itemPrice: {
-        fontSize:typography.body.fontSize,
+        ...typography.body,
         color: colors.highlight,
         fontWeight: 'bold',
     },
@@ -52,8 +52,8 @@ const StylesBuyCard = StyleSheet.create({
         alignItems: 'center',
     },
     totalText: {
-        fontSize:typography.header.fontSize,
+        ...typography.header,
         color: colors.text,
     },
+    
 });
-export default StylesBuyCard;

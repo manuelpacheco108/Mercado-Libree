@@ -17,6 +17,7 @@ export const typography = {
 
 export const imgs = {
     rowBack:{
+        
         width: 24, 
         height: 24,
     },
