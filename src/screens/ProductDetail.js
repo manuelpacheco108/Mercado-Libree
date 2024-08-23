@@ -25,7 +25,7 @@ const Menu = ({ navigation }) => {
     );
 };
 
-
+ 
 
 const ProductDetail = ({ route, navigation }) => {
     const { product } = route.params;

@@ -3,7 +3,7 @@ import { View, Text, Image } from 'react-native';
 import productStyles from '../styles/ProductStyles';
 import profileStyles from '../styles/profileStyles';
 import suportStyle from '../styles/suportStyle';
-
+ 
 
 const DetailCard = ({ product }) => {
 
