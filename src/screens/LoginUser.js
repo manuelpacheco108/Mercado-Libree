@@ -1,26 +1,23 @@
-// LoginSigninUser.js
 import React, { useState } from "react";
-import { View, Text, Pressable, Image, TextInput } from "react-native";
+import { View, Text, TextInput } from "react-native";
 import MyOwnButton from "../components/MyOwnButton";
 import StylesLogin from "../styles/styleLoginUser";
-import { colors, imgs } from "../styles/globalStyles";
-import DrawerNavigation from '../components/DrawerNavigation'
+import { colors } from "../styles/globalStyles";
+import DrawerNavigation from "../components/DrawerNavigation";
 
-
-
-const LoginUser = ({ navigation }) => {
-    const [username, setUsername] = useState('');
-    const [error, setError] = useState({ username: '', password: '' });
+const LoginUser = ({route, navigation}) => {
+    const { setUserEmail } = route.params || {};
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState({ email: '', password: '' });
 
-    const validateUsername = (text) => {
-        setUsername(text);
-        if (text.length > 10) {
-            setError({ ...error, username: 'Máximo 10 caracteres' });
-        } else if (text.length === 0) {
-            setError({ ...error, username: 'Campo vacío' });
+    const validateEmail = (text) => {
+        setEmail(text);
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regex.test(text)) {
+            setError({ ...error, email: 'Usa el formato ejemplo@correo.com' });
         } else {
-            setError({ ...error, username: '' });
+            setError({ ...error, email: '' });
         }
     };
 
@@ -38,11 +35,13 @@ const LoginUser = ({ navigation }) => {
     };
 
     const handleLogin = () => {
-        if (!error.username && !error.password && username && password) {
-            navigation.navigate('Inicio');
+        if (!error.email && !error.password && email && password) {
+          if (setUserEmail) {
+            setUserEmail(email);  // Se actualiza el email en el DrawerNavigation
+          }
+          navigation.navigate('Inicio'); // Navega a la pantalla principal
         }
-    };
-
+      };
     return (
         <View style={StylesLogin.container}>
             <DrawerNavigation.DrawerHeader/>
@@ -51,14 +50,14 @@ const LoginUser = ({ navigation }) => {
             </Text>
             <Text style={StylesLogin.textTopInput}>E-mail</Text>
             <TextInput
-                style={[StylesLogin.input, error.username && StylesLogin.inputError]}
-                value={username}
-                onChangeText={validateUsername}
+                style={[StylesLogin.input, error.email && StylesLogin.inputError]}
+                value={email}
+                onChangeText={validateEmail}
                 placeholder="Usuario"
                 placeholderTextColor={colors.secondaryElements}
                 color="black"
             />
-            {error.username ? <Text style={StylesLogin.errorText}>{error.username}</Text> : null}
+            {error.email ? <Text style={StylesLogin.errorText}>{error.email}</Text> : null}
 
             <Text style={StylesLogin.textTopInput}>Contraseña</Text>
             <TextInput
@@ -74,20 +73,21 @@ const LoginUser = ({ navigation }) => {
 
             <MyOwnButton
                 title="Iniciar sesión"
-                disabled={!!error.username || !!error.password}
+                disabled={!!error.email || !!error.password}
                 onPress={handleLogin}
+                style={[StylesLogin.buttonLogIn, StylesLogin.textButtonLogIn]}
             />
             <MyOwnButton
                 title="Registrarse"
-                onPress={() =>  {navigation.navigate('RegisterUser'); } }
+                onPress={() => { navigation.navigate('RegisterUser'); }}
                 style={[StylesLogin.buttonSignin, StylesLogin.textButtonSignIn]}
             />
             <View style={StylesLogin.containerFooter}>
-                <Text style={StylesLogin.footerText}>Como cuidamos tu privacidad</Text>
+                <Text style={StylesLogin.footerText}>Cómo cuidamos tu privacidad</Text>
             </View>
         </View>
+        
     );
 };
 
-
-export default  LoginUser;
+export default LoginUser;

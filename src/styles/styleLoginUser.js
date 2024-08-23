@@ -3,10 +3,9 @@ import { colors, typography } from "./globalStyles";
 
 const StylesLogin = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: colors.background,
-        marginHorizontal: 20,
-        alignContent:"center"
+        padding: 20,
+        alignContent: "center"
     },
     header: {
         paddingTop: 15,
@@ -31,7 +30,7 @@ const StylesLogin = StyleSheet.create({
         color: "black",
         fontSize: typography.body.fontSize,
         marginLeft: 10,
-        marginBottom:5,
+        marginBottom: 5,
     },
     input: {
         alignSelf: "center",
@@ -46,39 +45,39 @@ const StylesLogin = StyleSheet.create({
         flexDirection: "column",
         width: 345,
     },
-    buttonLogIn:{
-        padding:20,
+    buttonLogIn: {
+        padding: 20,
         backgroundColor: colors.highlight,
-        borderRadius:10,
+        borderRadius: 10,
     },
-    textButtonLogIn:{
-        alignSelf:  "center",
+    textButtonLogIn: {
         color: colors.secondaryElements,
         fontSize: typography.body.fontSize,
     },
-    buttonSignin:{
-        padding:20,
-        borderRadius:10,
-        backgroundColor: colors.background,
+    buttonSignin: {
+        padding: 15,
+        borderRadius: 10,
+        backgroundColor: colors.text,
     },
-    textButtonSignIn:{
-        color: colors.highlight,
+    textButtonSignIn: {
+        padding: 20,
         fontSize: typography.body.fontSize,
     },
-    containerFooter:{
+    containerFooter: {
         alignContent: "flex-end",
-        height:60,
+        height: 60,
     },
     label: {
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 5,
     },
-    footerText:{
+    footerText: {
+        marginTop: 20,
         alignSelf: "center",
         color: colors.highlight,
     },
-    onPressInput:{
+    onPressInput: {
         borderColor: "blue",
     },
     inputError: {

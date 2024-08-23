@@ -9,22 +9,37 @@ import {imgs } from "../styles/globalStyles";
 
 
 const CustomDrawerContent = (props) => {
-    const navigation = useNavigation();
-    return (
-      <View>
-        <View style={Styles.drawerHeader}>
-          <Image source={require('../img/icon_user.png')} style={imgs.iconLoginUser} />
-          <MyOwnButton
-            title="Iniciar Sesión"
-            onPress={() => navigation.navigate('LoginUser')}
-          />
-        </View>
-  
-  
-        <DrawerItemList {...props} />
-      </View>
-    );
+  const navigation = useNavigation();
+  const [userEmail, setUserEmail] = useState('');
+
+  const handleLogout = () => {
+      setUserEmail('');
+      navigation.navigate('Inicio');
   };
+
+  return (
+      <View>
+          <View style={Styles.drawerHeader}>
+              <Image source={require('../img/icon_user.png')} style={imgs.iconLoginUser} />
+              {userEmail ? (
+                  <View>
+                      <Text>{userEmail}</Text>
+                      <MyOwnButton
+                          title="Cerrar Sesión"
+                          onPress={handleLogout}
+                      />
+                  </View>
+              ) : (
+                  <MyOwnButton
+                      title="Iniciar Sesión"
+                      onPress={() => navigation.navigate('Mi cuenta', { setUserEmail })}
+                  />
+              )}
+          </View>
+          <DrawerItemList {...props} />
+      </View>
+  );
+};
 
 const DrawerHeader = ({title}) => {
   
@@ -38,5 +53,4 @@ const DrawerHeader = ({title}) => {
     </View>
     );
   }
-
   export default {DrawerHeader, CustomDrawerContent}

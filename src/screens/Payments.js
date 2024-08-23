@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Image, Pressable } from 'react-native';
 import StylesPayment from '../styles/stylePayment';
 import MyOwnButton from '../components/MyOwnButton';
+import DrawerNavigation from '../components/DrawerNavigation';
 
 const PaymentScreen = () => {
   const cartItems = [
@@ -72,6 +73,7 @@ const PaymentScreen = () => {
 
   return (
     <View style={StylesPayment.container}>
+      <DrawerNavigation/>
       <Text style={StylesPayment.headerText}>Sucursal de Pago</Text>
       {items.map((item) => (
         <View key={item.id} style={StylesPayment.itemContainer}>
