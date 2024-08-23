@@ -94,6 +94,12 @@ const favoriteStyles = StyleSheet.create({
     }, 
     status: {
         fontWeight: 'bold'
+    },
+
+    card: {
+        flex: 1,
+        padding: 2,
+        marginLeft: 5
     }
 
 });

@@ -11,7 +11,12 @@ const product = [
     description: 'Correa dinamica para mascotas',
     price: '100000$',
     discount: '95000$',
-    offerValue: '5%OFF'
+    offerValue: '5%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
+    
   },
   {
     id: 2,
@@ -20,6 +25,10 @@ const product = [
     description: 'Pelota saltarina para mascotas',
 
     discount: '95000$',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
 
   },
   {
@@ -28,6 +37,10 @@ const product = [
     name: 'Bebedero',
     description: 'Bebedero para mascotas inoxidable',
     discount: '700000$',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   },
   {
     id: 4,
@@ -36,7 +49,11 @@ const product = [
     description: 'Comedero para mascotas de varios colores',
     price: '200000$',
     discount: '130000$',
-    offerValue: '35%OFF'
+    offerValue: '35%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   },
   {
     id: 5,
@@ -44,6 +61,10 @@ const product = [
     name: 'Camisa',
     description: 'Camisa comodas para mascotas',
     discount: '95000$',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   },
   {
     id: 6,
@@ -52,7 +73,11 @@ const product = [
     description: 'Hueso para mascotas comestible',
     price: '100000$',
     discount: '95000$',
-    offerValue: '5%OFF'
+    offerValue: '5%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   }
 ]
  
@@ -79,13 +104,13 @@ const Pet = ({navigation}) => {
       <Menu navigation={navigation}/>
       <FlatList
         data={product}
-        renderItem={({ item }) => <ProductCard product={item} />}
+        renderItem={({ item }) => <ProductCard product={item} navigation={navigation}/>}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         columnWrapperStyle={productStyles.row} 
       />
 
-    </View>
+    </View> 
   );
 }
 

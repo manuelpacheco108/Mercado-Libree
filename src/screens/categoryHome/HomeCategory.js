@@ -11,7 +11,11 @@ const product = [
     description: 'Escoba pequeña muy suave',
     price: '100000$',
     discount: '95000$',
-    offerValue: '5%OFF'
+    offerValue: '5%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   },
   {
     id: 2,
@@ -20,6 +24,10 @@ const product = [
     description: 'Trapeadora de defensa personal',
 
     discount: '95000$',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
 
   },
   {
@@ -28,6 +36,10 @@ const product = [
     name: 'Silla',
     description: 'Silla de madera en color negro',
     discount: '700000$',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   },
   {
     id: 4,
@@ -36,7 +48,11 @@ const product = [
     description: 'Jabón para tocador de menta',
     price: '200000$',
     discount: '130000$',
-    offerValue: '35%OFF'
+    offerValue: '35%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   },
   {
     id: 5,
@@ -44,6 +60,10 @@ const product = [
     name: 'Fabuloso',
     description: 'Jabón limpia pisos con olor a rosas',
     discount: '95000$',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   },
   {
     id: 6,
@@ -52,7 +72,11 @@ const product = [
     description: 'Juego de sartenes de acero inoxidable',
     price: '100000$',
     discount: '95000$',
-    offerValue: '5%OFF'
+    offerValue: '5%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   }
 ]
  
@@ -79,7 +103,7 @@ const HomeScreen = ({navigation}) => {
       <Menu navigation={navigation}/>
       <FlatList
         data={product}
-        renderItem={({ item }) => <ProductCard product={item} />}
+        renderItem={({ item }) => <ProductCard product={item} navigation={navigation}/>}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         columnWrapperStyle={productStyles.row} 

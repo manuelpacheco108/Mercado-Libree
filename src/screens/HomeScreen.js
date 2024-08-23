@@ -17,12 +17,12 @@ import Favorite from './Favorite';
 
 const Drawer = createDrawerNavigator();
 
-const HomeContent = () => {
+const HomeContent = ({navigation}) => {
   return (
     <View>
       <NavBar />
       <View>
-       <Product />
+       <Product navigation={navigation}/>
       </View>
     </View>
   );

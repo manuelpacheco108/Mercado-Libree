@@ -1,18 +1,19 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
-import offerStyles from '../styles/offersStyles';
+import { View, Text, Image, Pressable } from 'react-native';
+import offersStyles from '../styles/offersStyles';
 
-const OfferCard = ({ offer }) => {
+const ProductCard = ({ product, navigation }) => {
     return (
-        <View style={offerStyles.container}>
-           <Image style={offerStyles.image} source={offer.photo} />
-            <Text style={offerStyles.title}>{offer.name}</Text>
-            <Text style={offerStyles.text}>{offer.description}</Text>
-            <Text style={offerStyles.textPrice}>{offer.price}</Text>
-            <Text style={offerStyles.offerPrice}>{offer.discount} <Text style={offerStyles.offerValue}>{offer.offerValue}</Text></Text>
-
+        <View style={offersStyles.container}>
+             <Pressable onPress={() => navigation.navigate('ProductDetail', { product })}>
+                <Image style={offersStyles.image} source={product.photo} />
+                <Text style={offersStyles.title}>{product.name}</Text>
+                <Text style={offersStyles.text}>{product.description}</Text>
+                <Text style={offersStyles.textPrice}>{product.price}</Text>
+                <Text style={offersStyles.offerPrice}>{product.discount} <Text style={offersStyles.offerValue}>{product.offerValue}</Text></Text>
+            </Pressable>
         </View>
     );
 };
  
-export default OfferCard
+export default ProductCard  

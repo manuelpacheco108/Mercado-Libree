@@ -10,7 +10,7 @@ const productStyles = StyleSheet.create({
         height: 230,
         paddingTop: 10,
     },
-    textProduct: { 
+    textProduct: {
         fontSize: 15,
         fontWeight: 'bold',
         fontFamily: 'System',
@@ -84,7 +84,34 @@ const productStyles = StyleSheet.create({
     menuIconSearch: {
         width: 15,
         height: 15,
-    }
+    },
+    titleProduct: {
+        fontSize: 18,
+        color: '#565656',
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        margin: 5,
+        marginBottom: 10
+    },
+    ratingContainer: {
+        marginTop: 20,
+        alignItems: 'center',
+    },
+    ratingTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    starsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 10,
+    },
+    ratingText: {
+        marginTop: 10,
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
 });
 
 export default productStyles;

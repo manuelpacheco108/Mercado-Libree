@@ -12,6 +12,11 @@ const shoppingStyles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    textContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        paddingLeft: 10,
+    },
     textShopping: {
         fontSize: 15,
         fontWeight: 'bold',
@@ -71,7 +76,6 @@ const shoppingStyles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         marginLeft: 10,
-        padding: 5
     },
     title: {
         fontSize: 18,
@@ -87,11 +91,17 @@ const shoppingStyles = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 5,
-    },
+    }, 
     status: {
         fontWeight: 'bold'
+    },
+
+    card: {
+        flex: 1,
+        padding: 5,
+        marginLeft: 5
     }
 
 });
 
-export default shoppingStyles;
+export default shoppingStyles

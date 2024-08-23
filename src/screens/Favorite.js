@@ -3,14 +3,19 @@ import { View, Text, FlatList, Image, Pressable } from 'react-native';
 import FavoriteCard from '../components/FavoriteCard';
 import favoriteStyles from '../styles/favoriteStyles';
 
-const favorite = [
+const product = [
   {
     id: 1,
     photo: require('../img/mouse.png'),
     name: 'Mouse Gamer',
     description: 'Mouse RedDragon con luces',
     price: '300000$',
-    status: 'Sí'
+    status: 'Sí',
+    discount: '95000$',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../img/mastercard.png'),
+    visa: require('../img/visa.png'),
+    bancolombia: require('../img/bancolombia.png')
   },
   {
     id: 2,
@@ -18,7 +23,12 @@ const favorite = [
     name: 'Vaso Cars',
     description: 'Vaso de la película Cars',
     price: '35000$',
-    status: 'No'
+    status: 'No',
+    discount: '95000$',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../img/mastercard.png'),
+    visa: require('../img/visa.png'),
+    bancolombia: require('../img/bancolombia.png')
   },
   {
     id: 3,
@@ -26,7 +36,12 @@ const favorite = [
     name: 'Correa',
     description: 'Correa de cuero cafe',
     price: '40000$',
-    status: 'No'
+    status: 'No',
+    discount: '95000$',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../img/mastercard.png'),
+    visa: require('../img/visa.png'),
+    bancolombia: require('../img/bancolombia.png')
   }
 ]
 
@@ -57,8 +72,8 @@ const Favorite = ({navigation}) => {
     <View>
       <Menu navigation={navigation}/>
       <FlatList
-        data={favorite}
-        renderItem={({ item }) => <FavoriteCard favorite={item} />}
+        data={product}
+        renderItem={({ item }) => <FavoriteCard product={item} navigation={navigation}/>}
         keyExtractor={(item) => item.id.toString()}
       />
 

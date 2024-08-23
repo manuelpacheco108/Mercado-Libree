@@ -1,18 +1,22 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Pressable } from 'react-native';
 import favoriteStyles from '../styles/favoriteStyles';
+import { Card } from 'react-native-paper';
 
-const FavoriteCard = ({ favorite }) => {
+const FavoriteCard = ({ product, navigation }) => {
     return (
-        <View style={favoriteStyles.favoriteContainer}>
-            <Image style={favoriteStyles.image} source={favorite.photo} />
+        <View>
+            <Pressable style={favoriteStyles.favoriteContainer} onPress={() => navigation.navigate('ProductDetail', { product })}>
+            <Image style={favoriteStyles.image} source={product.photo} />
+            <Card style={favoriteStyles.card}>
             <View style={favoriteStyles.textContainer}>
-                <Text style={favoriteStyles.title}>{favorite.name}</Text>
-                <Text style={favoriteStyles.description}>{favorite.description}</Text>
-                <Text style={favoriteStyles.description}>Valor: {favorite.price}</Text>
-                <Text style={favoriteStyles.status}>Disponible: {favorite.status} </Text>
-
+                <Text style={favoriteStyles.title}>{product.name}</Text>
+                <Text style={favoriteStyles.description}>{product.description}</Text>
+                <Text style={favoriteStyles.description}>Valor: {product.price}</Text>
+                <Text style={favoriteStyles.status}>Disponible: {product.status} </Text>
             </View>
+            </Card>
+            </Pressable>
         </View>
     );
 };

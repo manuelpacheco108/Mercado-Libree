@@ -14,6 +14,8 @@ import Profile from "../screens/Profile";
 import Support from "../screens/Support";
 import Shopping from "../screens/Shopping";
 import Privacy from "../screens/Privacy";
+import DetailCard from "../components/DetailCard";
+import ProductDetail from "../screens/ProductDetail";
 
 const Stack = createStackNavigator();
 
@@ -101,6 +103,14 @@ const MainStack = () => {
                     component={Privacy}
                     options={{ headerShown: false }}
                 />
+
+                <Stack.Screen
+                    name='ProductDetail'
+                    component={ProductDetail}
+                    options={{ headerShown: false }}
+                />
+
+
             </Stack.Navigator>
         </NavigationContainer>
     );

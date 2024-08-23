@@ -11,7 +11,11 @@ const product = [
     description: 'Camisa de spider-man muy masculina',
     price: '100000$',
     discount: '95000$',
-    offerValue: '5%OFF'
+    offerValue: '5%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   },
   {
     id: 2,
@@ -20,6 +24,10 @@ const product = [
     description: 'Pantalones oscuros para trabajar',
 
     discount: '95000$',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
 
   },
   {
@@ -28,6 +36,10 @@ const product = [
     name: 'Zapatos',
     description: 'Tenis Jordan 4 azul con blanco',
     discount: '700000$',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   },
   {
     id: 4,
@@ -36,7 +48,11 @@ const product = [
     description: 'Chaqueta impermeable de color verde',
     price: '200000$',
     discount: '130000$',
-    offerValue: '35%OFF'
+    offerValue: '35%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   },
   {
     id: 5,
@@ -44,6 +60,10 @@ const product = [
     name: 'Saco',
     description: 'Saco medio formal color verde',
     discount: '95000$',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   },
   {
     id: 6,
@@ -52,7 +72,11 @@ const product = [
     description: 'Pantalonea pequeña de color amarillo con negro',
     price: '100000$',
     discount: '95000$',
-    offerValue: '5%OFF'
+    offerValue: '5%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../../img/mastercard.png'),
+    visa: require('../../img/visa.png'),
+    bancolombia: require('../../img/bancolombia.png')
   }
 ]
  
@@ -79,7 +103,7 @@ const Fashion = ({navigation}) => {
       <Menu navigation={navigation}/>
       <FlatList
         data={product}
-        renderItem={({ item }) => <ProductCard product={item} />}
+        renderItem={({ item }) => <ProductCard product={item} navigation={navigation}/>}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         columnWrapperStyle={productStyles.row} 

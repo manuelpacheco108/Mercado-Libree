@@ -1,19 +1,20 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
-import styles from '../styles/shoppingStyles';
-import { Card } from 'react-native-paper';
+import { View, Text, Image, Pressable } from 'react-native';
+import shoppingStyles from '../styles/shoppingStyles';
+import { Card } from 'react-native-paper'; 
 
-const ShoppingCard = ({ shopping }) => {
+const ShoppingCard = ({ product, navigation }) => {
     return (
-        <View style={styles.shoppingContainer}>
-            <Image style={styles.image} source={shopping.photo} />
-            <Card style={styles.textContainer}>
-                <Text style={styles.title}>{shopping.name}</Text>
-                <Text style={styles.description}>{shopping.description}</Text>
-                <Text style={styles.description}>Valor: {shopping.price}</Text>
-                <Text style={styles.status}>Estado: {shopping.status} </Text>
-
+        <View style={shoppingStyles.shoppingContainer}>
+            <Pressable style={shoppingStyles.shoppingContainer} onPress={() => navigation.navigate('ProductDetail', { product })}>
+            <Image style={shoppingStyles.image} source={product.photo} />
+            <Card style={shoppingStyles.card}>
+                <Text style={shoppingStyles.title}>{product.name}</Text>
+                <Text style={shoppingStyles.description}>{product.description}</Text>
+                <Text style={shoppingStyles.description}>Valor: {product.price}</Text>
+                <Text style={shoppingStyles.status}>Estado: {product.status} </Text>
             </Card>
+            </Pressable>
         </View>
     );
 };

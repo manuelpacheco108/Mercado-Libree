@@ -3,7 +3,7 @@ import { View, Text, FlatList, Image, Pressable } from 'react-native';
 import offerStyles from '../styles/offersStyles';
 import OfferCard from '../components/OfferCard';
 
-const offers = [
+const product = [
   {
     id: 1,
     photo: require('../img/headphones.png'),
@@ -11,7 +11,12 @@ const offers = [
     description: 'Audífonos inalámbricos grises',
     price: '100000$',
     discount: '95000$', 
-    offerValue: '5%OFF'
+    offerValue: '5%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../img/mastercard.png'),
+    visa: require('../img/visa.png'),
+    bancolombia: require('../img/bancolombia.png')
+
   },
   {
     id: 2,
@@ -20,7 +25,11 @@ const offers = [
     description: 'Tenis Jordan 4 blanco y azul',
     price: '800000$',
     discount: '640000$',
-    offerValue: '20%OFF'
+    offerValue: '20%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../img/mastercard.png'),
+    visa: require('../img/visa.png'),
+    bancolombia: require('../img/bancolombia.png')
   },
   {
     id: 3,
@@ -29,7 +38,11 @@ const offers = [
     description: 'Funda para Iphone 12 de naturaleza',
     price: '130000$',
     discount: '91000$',
-    offerValue: '30%OFF'
+    offerValue: '30%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../img/mastercard.png'),
+    visa: require('../img/visa.png'),
+    bancolombia: require('../img/bancolombia.png')
   },
   {
     id: 4,
@@ -38,7 +51,11 @@ const offers = [
     description: 'Batería portátil con linterna',
     price: '200000$',
     discount: '130000$',
-    offerValue: '35%OFF'
+    offerValue: '35%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../img/mastercard.png'),
+    visa: require('../img/visa.png'),
+    bancolombia: require('../img/bancolombia.png')
   },
   {
     id: 5,
@@ -47,7 +64,11 @@ const offers = [
     description: 'Colchón titanium de Comodisimos',
     price: '1300000$',
     discount: '520000$',
-    offerValue: '60%OFF'
+    offerValue: '60%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../img/mastercard.png'),
+    visa: require('../img/visa.png'),
+    bancolombia: require('../img/bancolombia.png')
   },
   {
     id: 6,
@@ -56,7 +77,11 @@ const offers = [
     description: 'Lentes de sol negros para ejercicio',
     price: '100000$',
     discount: '95000$',
-    offerValue: '5%OFF'
+    offerValue: '5%OFF',
+    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
+    master: require('../img/mastercard.png'),
+    visa: require('../img/visa.png'),
+    bancolombia: require('../img/bancolombia.png')
   }
 ]
   
@@ -87,13 +112,13 @@ const Offer = ({navigation}) => {
     <View>
       <Menu navigation={navigation}/>
       <FlatList
-        data={offers}
-        renderItem={({ item }) => <OfferCard offer={item} />}
+        data={product}
+        renderItem={({ item }) => <OfferCard product={item} navigation={navigation}/>}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         columnWrapperStyle={offerStyles.row} 
       />
-
+ 
     </View>
   );
 }
