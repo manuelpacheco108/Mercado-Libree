@@ -53,6 +53,13 @@ const Styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: colors.text,
     },
+
+    menuIcon: {
+        width: 30,
+        height: 30,
+        marginBottom: 10
+    }
+    
 });
 
 export default Styles;

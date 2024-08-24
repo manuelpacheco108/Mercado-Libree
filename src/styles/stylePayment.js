@@ -2,7 +2,12 @@ import { StyleSheet } from 'react-native';
 import { colors, typography } from '../styles/globalStyles';
 
 const StylesPayment = StyleSheet.create({
+
   container: {
+    flex: 1
+  },
+
+  containerForm: {
     flex: 1,
     backgroundColor: colors.background,
     padding: 16,
@@ -31,7 +36,7 @@ const StylesPayment = StyleSheet.create({
   },
   itemDescription: {
     fontSize: typography.body.fontSize,
-    color: colors.secondaryElements,
+    color: 'black',
     marginBottom: 8,
   },
   input: {

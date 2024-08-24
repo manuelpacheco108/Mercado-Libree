@@ -2,7 +2,12 @@ import { StyleSheet } from 'react-native';
 import { colors, typography } from './globalStyles';
 
 const StylesBuyCard = StyleSheet.create({
+
     container: {
+        flex: 1
+    },
+
+    containerForm: {
         flex: 1,
         backgroundColor: colors.background,
         padding: 16,

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors,typography } from "./globalStyles";
+import { typography } from "./globalStyles";
 const StylesRegisterUser = StyleSheet.create({
     container: {
       padding: 20,
