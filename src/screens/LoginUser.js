@@ -3,7 +3,6 @@ import { View, Text, TextInput } from "react-native";
 import MyOwnButton from "../components/MyOwnButton";
 import StylesLogin from "../styles/styleLoginUser";
 import { colors } from "../styles/globalStyles";
-import DrawerNavigation from "../components/DrawerNavigation";
 
 const LoginUser = ({route, navigation}) => {
     const { setUserEmail } = route.params || {};
@@ -37,14 +36,14 @@ const LoginUser = ({route, navigation}) => {
     const handleLogin = () => {
         if (!error.email && !error.password && email && password) {
           if (setUserEmail) {
-            setUserEmail(email);  // Se actualiza el email en el DrawerNavigation
+            setUserEmail(email);
           }
-          navigation.navigate('Inicio'); // Navega a la pantalla principal
+          navigation.navigate('Home'); 
         }
       };
     return (
+        <View>
         <View style={StylesLogin.container}>
-            <DrawerNavigation.DrawerHeader/>
             <Text style={StylesLogin.text}>
                 Ingresa tu e-mail, teléfono o usuario de Mercado Libre:
             </Text>
@@ -53,7 +52,7 @@ const LoginUser = ({route, navigation}) => {
                 style={[StylesLogin.input, error.email && StylesLogin.inputError]}
                 value={email}
                 onChangeText={validateEmail}
-                placeholder="Usuario"
+                placeholder="Email"
                 placeholderTextColor={colors.secondaryElements}
                 color="black"
             />
@@ -85,6 +84,7 @@ const LoginUser = ({route, navigation}) => {
             <View style={StylesLogin.containerFooter}>
                 <Text style={StylesLogin.footerText}>Cómo cuidamos tu privacidad</Text>
             </View>
+        </View>
         </View>
         
     );

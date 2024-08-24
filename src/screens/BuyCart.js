@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { View, Text, FlatList, Image } from 'react-native';
 import StylesBuyCard from '../styles/styleBuyCard'
 import { colors } from '../styles/globalStyles';
@@ -10,7 +10,7 @@ const BuyCart = ({ navigation }) => {
     const [cartItems, setCartItems] = useState([
         {
             id: 1,
-            photo: require('../img/icon_user.png'),
+            photo: require('../img/tshirt.png'),
             name: 'Camisa',
             description: 'Camisa de spider-man muy masculina',
             price: 95000,
@@ -18,7 +18,7 @@ const BuyCart = ({ navigation }) => {
         },
         {
             id: 3,
-            photo: require('../img/icon_user.png'),
+            photo: require('../img/shoes.png'),
             name: 'Zapatos',
             description: 'Tenis Jordan 4 azul con blanco',
             price: 700000,
@@ -55,8 +55,8 @@ const BuyCart = ({ navigation }) => {
     );
     return (
         <View style={StylesBuyCard.container}>
-            <DrawerNavigation.DrawerHeader title="Carrito" />
-
+             <DrawerNavigation.Menu navigation={navigation} />
+             <View style={StylesBuyCard.containerForm}>
             <FlatList
                 data={cartItems}
                 renderItem={renderItem}
@@ -67,10 +67,12 @@ const BuyCart = ({ navigation }) => {
             </View>
             <MyOwnButton
                 title="Proceder al Pago"
-                onPress={() => navigation.navigate('Payment', {cartItems:cartItems})}
+                onPress={() => navigation.navigate('PaymentScreen', {cartItems:cartItems})}
                 color={colors.highlight}
             />
+            </View>
         </View>
+        
     );
 };
 
