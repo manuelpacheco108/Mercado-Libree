@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, TouchableOpacity, Text, Image } from 'react-native';
+import { View, TextInput, Pressable, Text, Image } from 'react-native';
 import Styles from "../styles/navBarStyles";
 import { useNavigation } from '@react-navigation/native';
 import productStyles from '../styles/ProductStyles';
@@ -12,7 +12,7 @@ const NavBar = () => {
   return (
     <View>
       <View style={Styles.container}>
-        <TouchableOpacity
+        <Pressable
           style={Styles.hamburguerMenu}
           onPress={() => navigation.openDrawer()}
         >
@@ -20,7 +20,7 @@ const NavBar = () => {
           source={require('../img/menu_hamburguer.png')}
           style={productStyles.menuIcon}
         />
-        </TouchableOpacity>
+        </Pressable>
 
         <View style={Styles.searchContainer}>
         <Image 
@@ -35,7 +35,7 @@ const NavBar = () => {
           />
         </View>
 
-        <TouchableOpacity
+        <Pressable
           style={Styles.cart}
           onPress={() => navigation.navigate('BuyCart')}
         >
@@ -43,11 +43,9 @@ const NavBar = () => {
           source={require('../img/shopping_cart.png')}
           style={productStyles.menuIcon}
         />
-        </TouchableOpacity>
+        </Pressable>
       </View>
-      <View style={Styles.containerUbication}>
-        <Text style={Styles.ubicationText}>Ingresa tu ubicación</Text>
-      </View>
+      
     </View>
   );
 };
