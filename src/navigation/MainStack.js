@@ -14,8 +14,11 @@ import Profile from "../screens/Profile";
 import Support from "../screens/Support";
 import Shopping from "../screens/Shopping";
 import Privacy from "../screens/Privacy";
-import DetailCard from "../components/DetailCard";
 import ProductDetail from "../screens/ProductDetail";
+import RegisterUser from "../screens/RegisterUser";
+import LoginUser from "../screens/LoginUser";
+import BuyCart from "../screens/BuyCart";
+import PaymentScreen from "../screens/PaymentScreen";
 
 const Stack = createStackNavigator();
 
@@ -25,10 +28,36 @@ const MainStack = () => {
             <Stack.Navigator>
 
                 <Stack.Screen
+                    name='LoginUser'
+                    component={LoginUser}
+                    options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
                     name='Home'
                     component={HomeScreen}
                     options={{ headerShown: false }}
                 />
+
+                <Stack.Screen
+                    name='PaymentScreen'
+                    component={PaymentScreen}
+                    options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
+                    name='BuyCart'
+                    component={BuyCart}
+                    options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
+                    name='RegisterUser'
+                    component={RegisterUser}
+                    options={{ headerShown: false }}
+                />
+
+
 
                 <Stack.Screen
                     name='Favorite'
@@ -109,7 +138,6 @@ const MainStack = () => {
                     component={ProductDetail}
                     options={{ headerShown: false }}
                 />
-
             </Stack.Navigator>
         </NavigationContainer>
     );

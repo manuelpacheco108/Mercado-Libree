@@ -64,7 +64,6 @@ const Menu = ({ navigation }) => {
   );
 };
 
-
 const Shopping = ({ navigation }) => {
   return (
     <View>

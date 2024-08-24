@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, Image } from 'react-native';
+import { View, FlatList } from 'react-native';
 import productStyles from '../styles/ProductStyles';
 import ProductCard from '../components/ProductCard';
 

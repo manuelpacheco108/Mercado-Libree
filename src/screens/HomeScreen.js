@@ -1,10 +1,7 @@
 import React from 'react';
-import { View, Text, Button, Image } from 'react-native';
-import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer';
-import { createStackNavigator } from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { View } from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import NavBar from "../components/NavBar";
-import Styles from "../styles/navBarStyles";
 import Search from '../components/Search';
 import Category from './Category';
 import Shopping from './Shopping';
@@ -12,8 +9,8 @@ import Offer from './Offer';
 import Profile from './Profile';
 import Support from './Support';
 import Product from '../components/HomeContent';
-import productStyles from '../styles/ProductStyles';
 import Favorite from './Favorite';
+import DrawerNavigation from '../components/DrawerNavigation';
 
 const Drawer = createDrawerNavigator();
 
@@ -28,25 +25,12 @@ const HomeContent = ({navigation}) => {
   );
 };
 
-const CustomDrawerContent = (props) => {
-  return (
-    <View>
-      <View style={Styles.drawerHeader}>
-      <Image 
-          source={require('../img/user.png')}
-          style={Styles.menuIcon}
-        />
-        <Button title="Iniciar sesión" onPress={() => {      }} />
-      </View>
-      <DrawerItemList {...props} />
-    </View>
-  );
-};
+
 
 const HomeScreen = () => {
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
+      drawerContent={(props) => <DrawerNavigation.CustomDrawerContent {...props} />}
       screenOptions={{
         headerShown: false,
       }}

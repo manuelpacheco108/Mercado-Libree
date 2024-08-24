@@ -39,7 +39,6 @@ const Menu = ({ navigation }) => {
   );
 };
 
-
 const Profile = ({ navigation }) => {
   return (
     <View>

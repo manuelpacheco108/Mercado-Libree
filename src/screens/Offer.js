@@ -10,7 +10,7 @@ const product = [
     name: 'Audífonos',
     description: 'Audífonos inalámbricos grises',
     price: '100000$',
-    discount: '95000$', 
+    discount: '95000$',
     offerValue: '5%OFF',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../img/mastercard.png'),
@@ -84,12 +84,12 @@ const product = [
     bancolombia: require('../img/bancolombia.png')
   }
 ]
-  
-const Menu = ({navigation}) => {
+
+const Menu = ({ navigation }) => {
   return (
     <View style={offerStyles.menuContainer}>
-      <Pressable 
-        style={offerStyles.menuButton} 
+      <Pressable
+        style={offerStyles.menuButton}
         onPress={() => {
           navigation.reset({
             index: 0,
@@ -107,18 +107,18 @@ const Menu = ({navigation}) => {
   );
 };
 
-const Offer = ({navigation}) => {
+const Offer = ({ navigation }) => {
   return (
     <View>
-      <Menu navigation={navigation}/>
+      <Menu navigation={navigation} />
       <FlatList
         data={product}
-        renderItem={({ item }) => <OfferCard product={item} navigation={navigation}/>}
+        renderItem={({ item }) => <OfferCard product={item} navigation={navigation} />}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
-        columnWrapperStyle={offerStyles.row} 
+        columnWrapperStyle={offerStyles.row}
       />
- 
+
     </View>
   );
 }
