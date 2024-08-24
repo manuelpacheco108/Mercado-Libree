@@ -1,12 +1,9 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import HomeScreen from "./src/screens/HomeScreen";
-import PaymentScreen from './src/screens/Payments';
+import React from "react";
+import MainStack from "./src/navigation/MainStack";
 
 const App = () => {
-    return (
-        <NavigationContainer>
-            <HomeScreen/>
-        </NavigationContainer>
-    );
-};export default App;
+  return (<MainStack />
+  );
+}
+
+export default App;
