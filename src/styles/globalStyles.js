@@ -1,8 +1,8 @@
 export const colors = {
-    background: '#F6F1F1', // Blanco hueso
-    text: '#146C94', // Azul Oscuro
-    highlight: '#19A7CE', // Azul claro
-    secondaryElements: '#AFD3E2', // Blanco Azul
+    background: '#F6F1F1',
+    text: '#146C94', 
+    highlight: '#19A7CE', 
+    secondaryElements: '#AFD3E2', 
 }
 
 export const typography = {
@@ -24,6 +24,6 @@ export const imgs = {
     iconLoginUser:{
         width: 80,
         height: 80,
+        
     }
-    
 }

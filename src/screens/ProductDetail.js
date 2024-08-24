@@ -12,7 +12,7 @@ const Menu = ({ navigation }) => {
             <Pressable
                 style={productStyles.menuButton}
                 onPress={() => {
-                    navigation.goBack(); // Volver a la pantalla anterior
+                    navigation.goBack();
                 }}
             >
                 <Image
@@ -25,7 +25,7 @@ const Menu = ({ navigation }) => {
     );
 };
 
- 
+
 
 const ProductDetail = ({ route, navigation }) => {
     const { product } = route.params;

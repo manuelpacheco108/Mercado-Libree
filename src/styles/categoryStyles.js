@@ -36,7 +36,7 @@ const categoryStyles = StyleSheet.create({
     height: 30,
     borderRadius: 5,
     textAlign: 'center',
-    lineHeight: 30, // Ajusta el alto de línea para centrar verticalmente
+    lineHeight: 30,
   },
   menuContainer: {
     padding: 2,
@@ -53,7 +53,7 @@ const categoryStyles = StyleSheet.create({
     marginBottom: 7,
   },
   touchable: {
-    flex: 1, // Asegura que el TouchableOpacity ocupe todo el espacio del contenedor
+    flex: 1,
   },
   card: {
     backgroundColor: '#AFD3E2',

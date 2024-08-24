@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, TextInput, TouchableOpacity, Text, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import Styles from "../styles/navBarStyles";
 import { useNavigation } from '@react-navigation/native';
 import productStyles from '../styles/ProductStyles';
@@ -38,7 +37,7 @@ const NavBar = () => {
 
         <TouchableOpacity
           style={Styles.cart}
-          onPress={() => navigation.navigate('Carrito')}
+          onPress={() => navigation.navigate('BuyCart')}
         >
          <Image 
           source={require('../img/shopping_cart.png')}
