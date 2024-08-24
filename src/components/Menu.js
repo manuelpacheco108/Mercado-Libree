@@ -1,16 +1,16 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity } from 'react-native';
+import {View, Text, Image, Pressable } from 'react-native';
 import styles from '../styles/globalStyles';
 
 const Menu = () => {
     return (
         <View style={styles.menuContainer}>
-            <TouchableOpacity style={styles.menuButton} onPress={() => console.log('Menu clicked')}>
+            <Pressable style={styles.menuButton} onPress={() => console.log('Menu clicked')}>
                 <Image
                     source={require('../img/atras.png')}
                     style={styles.menuIcon}
                 />
-            </TouchableOpacity>
+            </Pressable>
             <Text style={styles.textCategories}>Categorias</Text>
             
         </View>
