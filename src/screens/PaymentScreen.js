@@ -30,6 +30,7 @@ const PaymentScreen = ({ navigation }) => {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [selectedBank, setSelectedBank] = useState('');
+  const [isPressed, setIsPressed] = useState(false)
 
   useEffect(() => {
     calculateTotalValue(items);
@@ -88,6 +89,7 @@ const PaymentScreen = ({ navigation }) => {
                 value={item.price.toString()}
                 onChangeText={(text) => handleValueChange(text, item.id)}
                 keyboardType="numeric"
+                color="black"
               />
               <TextInput
                 style={StylesPayment.input}
@@ -95,6 +97,7 @@ const PaymentScreen = ({ navigation }) => {
                 value={item.quantity.toString()}
                 onChangeText={(text) => handleQuantityChange(text, item.id)}
                 keyboardType="numeric"
+                color="black"
               />
             </View>
           </View>
@@ -103,8 +106,10 @@ const PaymentScreen = ({ navigation }) => {
         <TextInput
           style={StylesPayment.input}
           placeholder="Dirección de entrega"
+          placeholderTextColor={"black"}
           value={deliveryAddress}
           onChangeText={(text) => setDeliveryAddress(text.slice(0, 30))}
+          color="black"
         />
 
         <View style={StylesPayment.paymentMethodContainer}>
@@ -131,9 +136,12 @@ const PaymentScreen = ({ navigation }) => {
               StylesPayment.paymentMethodButton,
               paymentMethod === 'efecty' && StylesPayment.selectedPaymentMethod,
             ]}
-            onPress={() => setPaymentMethod('efecty')}
+            onPress={() => { setPaymentMethod('efecty')
+            }}
+            onPressIn={()=> setIsPressed(true)}
+            onPressOut={()=> setIsPressed(false)}
           >
-            <Text style={StylesPayment.paymentMethodText}>Efecty</Text>
+            <Text style={[StylesPayment.paymentMethodText, isPressed && StylesPayment.selectedPaymentMethod]} >Efecty</Text>
           </Pressable>
         </View>
 
@@ -141,9 +149,12 @@ const PaymentScreen = ({ navigation }) => {
           <TextInput
             style={StylesPayment.input}
             placeholder="Número de tarjeta"
+            placeholderTextColor={"black"}
             value={cardNumber}
             onChangeText={(text) => setCardNumber(text.replace(/[^0-9]/g, '').slice(0, 16))}
             keyboardType="numeric"
+            color="black"
+
           />
         )}
 
@@ -151,8 +162,10 @@ const PaymentScreen = ({ navigation }) => {
           <TextInput
             style={StylesPayment.input}
             placeholder="Seleccionar Banco"
+            placeholderTextColor={"black"}
             value={selectedBank}
             onChangeText={(text) => setSelectedBank(text)}
+            color="black"
           />
         )}
 

@@ -53,7 +53,21 @@ const StylesPayment = StyleSheet.create({
     textAlign: 'right',
     marginBottom: 16,
   },
-  
+  paymentMethodContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  paymentMethodButton:{
+    width: 100,
+    height: 40,
+    color: "black",
+  },
+  paymentMethodText:{
+    color: "black",
+  },
+  selectedPaymentMethod:{
+    color: colors.highlight,
+  }
 });
 
 export default StylesPayment;
