@@ -4,8 +4,6 @@ import Styles from "../styles/navBarStyles";
 import { useNavigation } from '@react-navigation/native';
 import productStyles from '../styles/ProductStyles';
 
-
-
 const NavBar = () => {
   const navigation = useNavigation(); 
 
