@@ -1,10 +1,8 @@
 import React from 'react';
-import { View, TextInput, Pressable, Text, Image } from 'react-native';
+import { View, TextInput, Pressable, Image } from 'react-native';
 import Styles from "../styles/navBarStyles";
 import { useNavigation } from '@react-navigation/native';
 import productStyles from '../styles/ProductStyles';
-
-
 
 const NavBar = () => {
   const navigation = useNavigation(); 

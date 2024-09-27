@@ -5,7 +5,7 @@ import productStyles from '../styles/ProductStyles';
 const ProductCard = ({ product, navigation }) => {
     return (
         <View style={productStyles.container}>
-             <Pressable onPress={() => navigation.navigate('ProductDetail', { product })}>
+            <Pressable onPress={() => navigation.navigate('ProductDetail', { product })}>
                 <Image style={productStyles.image} source={product.photo} />
                 <Text style={productStyles.title}>{product.name}</Text>
                 <Text style={productStyles.text}>{product.description}</Text>
@@ -15,5 +15,5 @@ const ProductCard = ({ product, navigation }) => {
         </View>
     );
 };
- 
+
 export default ProductCard   
