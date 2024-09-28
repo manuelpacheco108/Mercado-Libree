@@ -8,7 +8,7 @@ import Shopping from './Shopping';
 import Offer from './Offer';
 import Profile from './Profile';
 import Support from './Support';
-import Product from '../components/HomeContent';
+import Product from '../components/Product';
 import Favorite from './Favorite';
 import DrawerNavigation from '../components/DrawerNavigation';
 
