@@ -38,7 +38,7 @@ const LoginUser = ({route, navigation}) => {
           if (setUserEmail) {
             setUserEmail(email);
           }
-          navigation.navigate('Home'); 
+          navigation.navigate('HomeDrawer'); 
         }
       };
     return (

@@ -69,7 +69,7 @@ const PaymentScreen = ({ navigation }) => {
   };
 
   const handlePayment = () => {
-    navigation.navigate('Home')
+    navigation.navigate('HomeDrawer')
   };
 
   return (

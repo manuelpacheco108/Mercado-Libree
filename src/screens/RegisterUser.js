@@ -57,7 +57,7 @@ const RegisterUser = ({ navigation }) => {
 
     const handleSignUp = () => {
         if (!error.email && !error.password && !error.birthdate && email && password && nombre && apellido && birthdate) {
-            navigation.navigate('Home');
+            navigation.navigate('HomeDrawer');
         }
     };
 
