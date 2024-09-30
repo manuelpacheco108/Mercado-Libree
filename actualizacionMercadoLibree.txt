@@ -22,3 +22,21 @@ Tareas:
 			-Profile.js (Solucionar problema de datos del usuario a ingresado. Toda la logica de la aplicación va acorde a el usuario si ingreso o usuario no registrado)
 			-Shopping.js (Hay datos que depende de las compras del usuario que ya ha hecho)
 			-Support.js (Agregar uso de hooks. Dependiendo cual el usuario ha seleccionado, se despliega la caja de texto para que el usuario rellene)
+
+		2.2 Archivos a modificar según rama:
+			Manuel:
+				- PaymentScreen.
+				- BuyCart
+				- ProductDetail
+				- Product
+				- HomeContent
+				- Shopping
+				(-)
+			Juan:
+			 	- Login
+				- RegisterUser
+				- Profile
+				- Favorites
+				- ProductDetail
+				(-)
+			
