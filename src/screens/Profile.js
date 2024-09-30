@@ -7,11 +7,11 @@ import { UserContext } from '../context/UserContext'; // Importar el contexto
 const Profile = ({ navigation }) => {
   const { user } = useContext(UserContext); // Acceder a los datos del usuario
 
-  // array para el FlatList con los datos del usuario
+  // Array para el FlatList con los datos del usuario
   const profile = [
     {
-      id: 1,
-      photo: user.profilePhoto ? { uri: user.profilePhoto } : require('../img/profile.jpg'), // Usa la imagen de perfil seleccionada o una por defecto
+      id: 1, 
+      photo: user.profilePhoto ? { uri: user.profilePhoto } : require('../img/profile.jpg'),
       name: `${user.nombre} ${user.apellido}`,
       date: user.birthdate,
       age: new Date().getFullYear() - new Date(user.birthdate).getFullYear(),
@@ -21,6 +21,12 @@ const Profile = ({ navigation }) => {
       bancolombia: require('../img/bancolombia.png')
     }
   ];
+
+  // hay más perfiles en el array
+  const profileWithIds = profile.map((item, index) => ({
+    ...item,
+    id: index + 1, 
+  }));
 
   const Menu = ({ navigation }) => {
     return (
@@ -48,9 +54,9 @@ const Profile = ({ navigation }) => {
     <View>
       <Menu navigation={navigation} />
       <FlatList
-        data={profile}
+        data={profileWithIds} // Usar el array con los ids generados automáticamente
         renderItem={({ item }) => <ProfileCard profile={item} navigation={navigation} />}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id.toString()} // El id es único y se convierte a string
       />
       <Pressable style={profileStyles.logoutButton}
         onPress={() => {

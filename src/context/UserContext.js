@@ -1,16 +1,15 @@
 import React, { useState, createContext } from 'react';
-
-// Crear el contexto
 export const UserContext = createContext();
 
-// Proveedor del contexto que envuelve la app o parte de la app que necesita acceso a la info del usuario
+// Proveedor del contexto
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     email: '',
     nombre: '',
     apellido: '',
+    password: '', 
     birthdate: '',
-    profilePhoto: null, // Agregamos el campo para la imagen de perfil
+    profilePhoto: null,
   });
 
   // Función para actualizar la imagen de perfil
