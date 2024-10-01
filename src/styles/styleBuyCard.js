@@ -4,7 +4,7 @@ import { colors, typography } from './globalStyles';
 const StylesBuyCard = StyleSheet.create({
 
     container: {
-        flex: 1
+        flex: 1,
     },
 
     containerForm: {
@@ -52,12 +52,26 @@ const StylesBuyCard = StyleSheet.create({
         fontSize: 16,
         color: colors.text,
     },
+    removeButton:{
+        backgroundColor: colors.secondaryElements,
+    },
     totalContainer: {
         marginTop: 16,
         alignItems: 'center',
     },
     totalText: {
         fontSize:typography.header.fontSize,
+        color: colors.text,
+    },
+    clearCartButton:{
+        backgroundColor:colors.secondaryElements
+    },
+    checkoutButton:{
+        backgroundColor: colors.text,
+    },
+    emptyCartText:{
+        alignSelf: 'center',
+        fontSize: typography.header.fontSize,
         color: colors.text,
     },
 });

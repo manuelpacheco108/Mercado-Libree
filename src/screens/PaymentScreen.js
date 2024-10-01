@@ -1,182 +1,115 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TextInput, Image, Pressable } from 'react-native';
+import AppDataContext from '../context/AppDataContext';
 import StylesPayment from '../styles/stylePayment';
 import MyOwnButton from '../components/MyOwnButton';
 import DrawerNavigation from '../components/DrawerNavigation';
+import { colors } from '../styles/globalStyles';
 
 const PaymentScreen = ({ navigation }) => {
-  const cartItems = [
-    {
-      id: 1,
-      photo: require('../img/tshirt.png'),
-      name: 'Camisa',
-      description: 'Camisa de spider-man muy masculina',
-      price: 95000,
-      quantity: 1,
-    },
-    {
-      id: 3,
-      photo: require('../img/shoes.png'),
-      name: 'Zapatos',
-      description: 'Tenis Jordan 4 azul con blanco',
-      price: 700000,
-      quantity: 1,
-    },
-  ];
+    const { cart, total, clearCart} = useContext(AppDataContext);
+    const [deliveryAddress, setDeliveryAddress] = useState('');
+    const [paymentMethod, setPaymentMethod] = useState('');
+    const [cardNumber, setCardNumber] = useState('');
+    const [selectedBank, setSelectedBank] = useState('');
+    const [isPressed, setIsPressed] = useState(false);
 
-  const [items, setItems] = useState(cartItems);
-  const [totalValue, setTotalValue] = useState(0);
-  const [deliveryAddress, setDeliveryAddress] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
-  const [selectedBank, setSelectedBank] = useState('');
-  const [isPressed, setIsPressed] = useState(false)
+    const handlePayment = () => {
+      clearCart();
+        navigation.navigate('HomeDrawer');
+    };
 
-  useEffect(() => {
-    calculateTotalValue(items);
-  }, [items]);
+    return (
+        <View style={StylesPayment.container}>
+            <DrawerNavigation.Menu navigation={navigation} />
+            <View style={StylesPayment.containerForm}>
+                <Text style={StylesPayment.headerText}>Sucursal de Pago</Text>
+                {cart.map((item) => (
+                    <View key={item.id} style={StylesPayment.itemContainer}>
+                        <Image source={item.photo} style={StylesPayment.thumbnail} />
+                        <View style={StylesPayment.itemDetails}>
+                            <Text style={StylesPayment.itemName}>{item.name}</Text>
+                            <Text style={StylesPayment.itemDescription}>{item.description}</Text>
+                            <Text style={StylesPayment.itemDescription}>Cantidad: {item.quantity}</Text>
+                            <Text style={StylesPayment.itemDescription}>Precio: ${item.price}</Text>
+                        </View>
+                    </View>
+                ))}
+                <Text style={StylesPayment.totalValue}>Valor total: ${total.toFixed(2)}</Text>
+                <TextInput
+                    style={StylesPayment.input}
+                    placeholder="Dirección de entrega"
+                    placeholderTextColor={colors.highlight}
+                    value={deliveryAddress}
+                    onChangeText={(text) => setDeliveryAddress(text.slice(0, 30))}
+                    color="black"
+                />
 
-  const handleValueChange = (text, id) => {
-    const updatedItems = items.map(item => {
-      if (item.id === id) {
-        item.price = text.replace(/[^0-9]/g, '').slice(0, 8);
-      }
-      return item;
-    });
-    setItems(updatedItems);
-    calculateTotalValue(updatedItems);
-  };
+                <View style={StylesPayment.paymentMethodContainer}>
+                    <Pressable
+                        style={[
+                            StylesPayment.paymentMethodButton,
+                            paymentMethod === 'PSE' && StylesPayment.selectedPaymentMethod,
+                        ]}
+                        onPress={() => setPaymentMethod('PSE')}
+                    >
+                        <Text style={StylesPayment.paymentMethodText}>PSE</Text>
+                    </Pressable>
+                    <Pressable
+                        style={[
+                            StylesPayment.paymentMethodButton,
+                            paymentMethod === 'credit_card' && StylesPayment.selectedPaymentMethod,
+                        ]}
+                        onPress={() => setPaymentMethod('credit_card')}
+                    >
+                        <Text style={StylesPayment.paymentMethodText}>Tarjeta de crédito</Text>
+                    </Pressable>
+                    <Pressable
+                        style={[
+                            StylesPayment.paymentMethodButton,
+                            paymentMethod === 'efecty' && StylesPayment.selectedPaymentMethod,
+                        ]}
+                        onPress={() => { setPaymentMethod('efecty') }}
+                        onPressIn={() => setIsPressed(true)}
+                        
+                    >
+                        <Text style={[StylesPayment.paymentMethodText, isPressed && StylesPayment.selectedPaymentMethod]}>
+                            Efecty
+                        </Text>
+                    </Pressable>
+                </View>
 
-  const handleQuantityChange = (text, id) => {
-    const updatedItems = items.map(item => {
-      if (item.id === id) {
-        item.quantity = text.replace(/[^0-9]/g, '').slice(0, 2);
-      }
-      return item;
-    });
-    setItems(updatedItems);
-    calculateTotalValue(updatedItems);
-  };
+                {paymentMethod === 'credit_card' && (
+                    <TextInput
+                        style={StylesPayment.input}
+                        placeholder="Número de tarjeta"
+                        placeholderTextColor={colors.highlight}
+                        value={cardNumber}
+                        onChangeText={(text) => setCardNumber(text.replace(/[^0-9]/g, '').slice(0, 16))}
+                        keyboardType="numeric"
+                        color="black"
+                    />
+                )}
 
-  const calculateTotalValue = (items) => {
-    let total = 0;
-    items.forEach(item => {
-      const price = parseInt(item.price) || 0;
-      const quantity = parseInt(item.quantity) || 0;
-      total += price * quantity;
-    });
-    setTotalValue(total);
-  };
+                {paymentMethod === 'PSE' && (
+                    <TextInput
+                        style={StylesPayment.input}
+                        placeholder="Seleccionar Banco"
+                        placeholderTextColor={colors.highlight}
+                        value={selectedBank}
+                        onChangeText={(text) => setSelectedBank(text)}
+                        color="black"
+                    />
+                )}
 
-  const handlePayment = () => {
-    navigation.navigate('HomeDrawer')
-  };
-
-  return (
-    <View style={StylesPayment.container}>
-      <DrawerNavigation.Menu navigation={navigation} />
-      <View style={StylesPayment.containerForm}>
-        <Text style={StylesPayment.headerText}>Sucursal de Pago</Text>
-        {items.map((item) => (
-          <View key={item.id} style={StylesPayment.itemContainer}>
-            <Image source={item.photo} style={StylesPayment.thumbnail} />
-            <View style={StylesPayment.itemDetails}>
-              <Text style={StylesPayment.itemName}>{item.name}</Text>
-              <Text style={StylesPayment.itemDescription}>{item.description}</Text>
-              <TextInput
-                style={StylesPayment.input}
-                placeholder="Valor"
-                value={item.price.toString()}
-                onChangeText={(text) => handleValueChange(text, item.id)}
-                keyboardType="numeric"
-                color="black"
-              />
-              <TextInput
-                style={StylesPayment.input}
-                placeholder="Cantidad"
-                value={item.quantity.toString()}
-                onChangeText={(text) => handleQuantityChange(text, item.id)}
-                keyboardType="numeric"
-                color="black"
-              />
+                <MyOwnButton
+                    title="Pagar"
+                    onPress={handlePayment}
+                    disabled={!paymentMethod || total === 0 || !deliveryAddress}
+                />
             </View>
-          </View>
-        ))}
-        <Text style={StylesPayment.totalValue}>Valor total: {totalValue}</Text>
-        <TextInput
-          style={StylesPayment.input}
-          placeholder="Dirección de entrega"
-          placeholderTextColor={"black"}
-          value={deliveryAddress}
-          onChangeText={(text) => setDeliveryAddress(text.slice(0, 30))}
-          color="black"
-        />
-
-        <View style={StylesPayment.paymentMethodContainer}>
-          <Pressable
-            style={[
-              StylesPayment.paymentMethodButton,
-              paymentMethod === 'PSE' && StylesPayment.selectedPaymentMethod,
-            ]}
-            onPress={() => setPaymentMethod('PSE')}
-          >
-            <Text style={StylesPayment.paymentMethodText}>PSE</Text>
-          </Pressable>
-          <Pressable
-            style={[
-              StylesPayment.paymentMethodButton,
-              paymentMethod === 'credit_card' && StylesPayment.selectedPaymentMethod,
-            ]}
-            onPress={() => setPaymentMethod('credit_card')}
-          >
-            <Text style={StylesPayment.paymentMethodText}>Tarjeta de crédito</Text>
-          </Pressable>
-          <Pressable
-            style={[
-              StylesPayment.paymentMethodButton,
-              paymentMethod === 'efecty' && StylesPayment.selectedPaymentMethod,
-            ]}
-            onPress={() => { setPaymentMethod('efecty')
-            }}
-            onPressIn={()=> setIsPressed(true)}
-            onPressOut={()=> setIsPressed(false)}
-          >
-            <Text style={[StylesPayment.paymentMethodText, isPressed && StylesPayment.selectedPaymentMethod]} >Efecty</Text>
-          </Pressable>
         </View>
-
-        {paymentMethod === 'credit_card' && (
-          <TextInput
-            style={StylesPayment.input}
-            placeholder="Número de tarjeta"
-            placeholderTextColor={"black"}
-            value={cardNumber}
-            onChangeText={(text) => setCardNumber(text.replace(/[^0-9]/g, '').slice(0, 16))}
-            keyboardType="numeric"
-            color="black"
-
-          />
-        )}
-
-        {paymentMethod === 'PSE' && (
-          <TextInput
-            style={StylesPayment.input}
-            placeholder="Seleccionar Banco"
-            placeholderTextColor={"black"}
-            value={selectedBank}
-            onChangeText={(text) => setSelectedBank(text)}
-            color="black"
-          />
-        )}
-
-        <MyOwnButton
-          title="Pagar"
-          onPress={handlePayment}
-          disabled={!paymentMethod || totalValue === 0 || !deliveryAddress}
-        />
-      </View>
-    </View>
-  );
+    );
 };
 
 export default PaymentScreen;
