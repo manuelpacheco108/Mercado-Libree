@@ -25,13 +25,16 @@ Tareas:
 
 		2.2 Archivos a modificar según rama:
 			Manuel:
-				- PaymentScreen.
-				- BuyCart
-				- ProductDetail
-				- Product
+				- PaymentScreen .
+				- BuyCart .
+				- ProductDetail .
+				- Product .
 				- HomeContent
 				- Shopping
-				(-)
+				- Categories
+				(- styleBuyCard.js [7 ; 55-58 ; 66-76 ; ]
+				 - Product.js [25 ; 38 ; 63]
+				 - Tecnology.js [26 ; 38 ; 64])
 			Juan:
 			 	- Login
 				- RegisterUser
