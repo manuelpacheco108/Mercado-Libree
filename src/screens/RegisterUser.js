@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, TextInput, Alert, Image, Button } from 'react-native';
+import { View, Text, TextInput, Alert, Image, ScrollView } from 'react-native';
 import MyOwnButton from '../components/MyOwnButton';
 import StylesRegisterUser from '../styles/styleRegisterUser';
 import DrawerNavigation from '../components/DrawerNavigation';
 import { UserContext } from '../context/UserContext'; // Importar el contexto
 
 const RegisterUser = ({ navigation }) => {
-  const { setUser } = useContext(UserContext); // Acceder a la función para actualizar el usuario
+  const { registerUser } = useContext(UserContext); // Acceder a la función para registrar el usuario
 
   // Estado para los datos de usuario
   const [email, setEmail] = useState('');
@@ -23,30 +23,35 @@ const RegisterUser = ({ navigation }) => {
     setEmail(text);
     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!pattern.test(text)) {
-        setError({ ...error, email: 'Usa el formato ejemplo@correo.com' });
+      setError({ ...error, email: 'Usa el formato ejemplo@correo.com' });
     } else {
-        setError({ ...error, email: '' });
+      setError({ ...error, email: '' });
     }
   };
 
   const validatePassword = (text) => {
     setPassword(text);
-    const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8}$/;
+    const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Al menos 8 caracteres
     if (!pattern.test(text)) {
-        setError({
-            ...error,
-            password: 'Debe incluir 1 Mayúscula, 1 carácter especial, letras y números.',
-        });
+      setError({
+        ...error,
+        password: 'Debe incluir 1 mayúscula, 1 carácter especial, letras y números, y al menos 8 caracteres.',
+      });
     } else {
-        setError({ ...error, password: '' });
+      setError({ ...error, password: '' });
     }
   };
 
   const validateBirthdate = (value) => {
     const birthDateObj = new Date(value);
-    const age = new Date().getFullYear() - birthDateObj.getFullYear();
+    const today = new Date();
+    let age = today.getFullYear() - birthDateObj.getFullYear();
+    const m = today.getMonth() - birthDateObj.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDateObj.getDate())) {
+      age--;
+    }
     if (isNaN(birthDateObj.getTime()) || age < 18 || age > 50) {
-      setError((prev) => ({ ...prev, birthdate: 'Debes ser mayor de 18 años y menor a 50 años' }));
+      setError((prev) => ({ ...prev, birthdate: 'Debes ser mayor de 18 años y menor a 50 años.' }));
     } else {
       setError((prev) => ({ ...prev, birthdate: '' }));
     }
@@ -54,25 +59,39 @@ const RegisterUser = ({ navigation }) => {
   };
 
   const handleSignUp = () => {
-    if (!error.email && !error.password && !error.birthdate && email && password && nombre && apellido && birthdate) {
-      // Actualizar el contexto del usuario
-      setUser({
-        nombre,
-        apellido,
-        gender,
-        email,
-        birthdate,
-        profilePhoto: imageUrl, 
-      });
+    if (
+      !error.email &&
+      !error.password &&
+      !error.birthdate &&
+      email &&
+      password &&
+      nombre &&
+      apellido &&
+      birthdate
+    ) {
+      try {
+        registerUser({
+          nombre,
+          apellido,
+          gender,
+          email,
+          password,
+          birthdate,
+          profilePhoto: imageUrl || null,
+        });
 
-      navigation.navigate('Home');
+        Alert.alert('Éxito', 'Cuenta creada exitosamente.');
+        navigation.navigate('Home'); // Redirigir al login después de registrarse
+      } catch (err) {
+        Alert.alert('Error', err.message);
+      }
     } else {
       Alert.alert('Error', 'Por favor, corrige los errores antes de continuar.');
     }
-  }
-  
+  };
+
   return (
-    <View>
+    <ScrollView>
       <DrawerNavigation.Menu navigation={navigation} />
       <View style={StylesRegisterUser.container}>
         <TextInput
@@ -89,7 +108,7 @@ const RegisterUser = ({ navigation }) => {
         />
         <TextInput
           style={StylesRegisterUser.input}
-          placeholder="Genero"
+          placeholder="Género"
           value={gender}
           onChangeText={setGender}
         />
@@ -129,7 +148,9 @@ const RegisterUser = ({ navigation }) => {
         />
 
         {/* Mostrar vista previa de la imagen */}
-        {imageUrl ? <Image source={{ uri: imageUrl }} style={{ width: 100, height: 100, marginTop: 10 }} /> : null}
+        {imageUrl ? (
+          <Image source={{ uri: imageUrl }} style={{ width: 100, height: 100, marginTop: 10 }} />
+        ) : null}
 
         <MyOwnButton
           title="Crear cuenta"
@@ -137,7 +158,7 @@ const RegisterUser = ({ navigation }) => {
           disabled={!!error.email || !!error.password || !!error.birthdate}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
