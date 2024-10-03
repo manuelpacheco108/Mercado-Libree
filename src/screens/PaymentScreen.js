@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, Image, Pressable, ScrollView } from 'react-native';
 import AppDataContext from '../context/AppDataContext';
 import StylesPayment from '../styles/stylePayment';
@@ -13,11 +13,15 @@ const PaymentScreen = ({ navigation }) => {
     const [cardNumber, setCardNumber] = useState('');
     const [selectedBank, setSelectedBank] = useState('');
     const [isPressed, setIsPressed] = useState(false);
+    const [paymentMessage, setPaymentMessage] = useState(''); 
 
     const handlePayment = () => {
         addPurchase();
-        clearCart();
-        navigation.navigate('HomeDrawer');
+        setPaymentMessage('Pago realizado con éxito 💰');
+        setTimeout(() => {
+            clearCart();
+            navigation.navigate('HomeDrawer');
+        }, 1500);
     };
 
     return (
@@ -32,11 +36,11 @@ const PaymentScreen = ({ navigation }) => {
                             <Text style={StylesPayment.itemName}>{item.name}</Text>
                             <Text style={StylesPayment.itemDescription}>{item.description}</Text>
                             <Text style={StylesPayment.itemDescription}>Cantidad: {item.quantity}</Text>
-                            <Text style={StylesPayment.itemDescription}>Precio: ${item.price}</Text>
+                            <Text style={StylesPayment.itemDescription}>Precio: ${item.price} COP</Text>
                         </View>
                     </View>
                 ))}
-                <Text style={StylesPayment.totalValue}>Valor total: ${total.toFixed(2)}</Text>
+                <Text style={StylesPayment.totalValue}>Valor total: ${total.toFixed(2)} COP</Text>
                 <TextInput
                     style={StylesPayment.input}
                     placeholder="Dirección de entrega"
@@ -102,7 +106,14 @@ const PaymentScreen = ({ navigation }) => {
                         color="black"
                     />
                 )}
-
+                {paymentMessage ? 
+                <View style={StylesPayment.containerMessageToConfirmation}>
+                    <Text 
+                    style={StylesPayment.paymentMessage}>
+                        {paymentMessage}
+                    </Text>
+                </View>
+                : null}
                 <MyOwnButton
                     title="Pagar"
                     onPress={handlePayment}

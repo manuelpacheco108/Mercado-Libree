@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, Pressable, Image } from 'react-native';
-import productStyles from '../../styles/ProductStyles';
+import productStyles from '../../styles/productStyles';
 import ProductCard from '../../components/ProductCard';
 
 const product = [
@@ -9,8 +9,8 @@ const product = [
     photo: require('../../img/tshirt.png'),
     name: 'Camisa',
     description: 'Camisa de spider-man muy masculina',
-    price: '100000$',
-    discount: '95000$',
+    price: '100000',
+    discount: '95000',
     offerValue: '5%OFF',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
@@ -22,8 +22,8 @@ const product = [
     photo: require('../../img/pant.jpg'),
     name: 'Pantalón',
     description: 'Pantalones oscuros para trabajar',
-    price: '400000$',
-    discount: '95000$',
+    price: '400000',
+    discount: '95000',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
@@ -35,8 +35,8 @@ const product = [
     photo: require('../../img/shoes.png'),
     name: 'Zapatos',
     description: 'Tenis Jordan 4 azul con blanco',
-    price: '2000000$',
-    discount: '1$',
+    price: '2000000',
+    discount: '1',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
@@ -47,8 +47,8 @@ const product = [
     photo: require('../../img/jacket.png'),
     name: 'Chaqueta',
     description: 'Chaqueta impermeable de color verde',
-    price: '200000$',
-    discount: '130000$',
+    price: '200000',
+    discount: '130000',
     offerValue: '35%OFF',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
@@ -60,8 +60,8 @@ const product = [
     photo: require('../../img/hoddie.png'),
     name: 'Saco',
     description: 'Saco medio formal color verde',
-    price: '250000$',
-    discount: '95000$',
+    price: '250000',
+    discount: '95000',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
@@ -72,8 +72,8 @@ const product = [
     photo: require('../../img/littlePant.jpg'),
     name: 'Pantaloneta',
     description: 'Pantalonea pequeña de color amarillo con negro',
-    price: '100000$',
-    discount: '95000$',
+    price: '100000',
+    discount: '95000',
     offerValue: '5%OFF',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),

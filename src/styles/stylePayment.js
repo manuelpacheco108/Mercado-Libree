@@ -67,6 +67,15 @@ const StylesPayment = StyleSheet.create({
   },
   selectedPaymentMethod:{
     color: colors.highlight,
+  },
+  containerMessageToConfirmation:{
+    flex: 1,
+    justifyContent: 'center',
+  },
+  paymentMessage:{
+    color: colors.highlight,
+    fontSize: typography.header.fontSize,
+    fontWeight: typography.header.fontWeight,
   }
 });
 

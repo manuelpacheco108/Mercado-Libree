@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, Image, Pressable, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import AppDataContext from '../context/AppDataContext';
 import MyOwnButton from '../components/MyOwnButton';
 import DrawerNavigation from '../components/DrawerNavigation';
@@ -20,7 +20,7 @@ const BuyCart = ({ navigation }) => {
                             <View style={StylesBuyCard.itemDetails}>
                                 <Text style={StylesBuyCard.itemName}>{item.name}</Text>
                                 <Text style={StylesBuyCard.itemDescription}>{item.description}</Text>
-                                <Text style={StylesBuyCard.itemPrice}>Precio: ${item.price}</Text>
+                                <Text style={StylesBuyCard.itemPrice}>Precio: ${item.price} COP</Text>
                                 <View style={StylesBuyCard.quantityContainer}>
                                     <MyOwnButton
                                         title="-"
@@ -33,7 +33,7 @@ const BuyCart = ({ navigation }) => {
                                     />
                                 </View>
                                 <Text style={StylesBuyCard.itemPrice}>
-                                    Precio Por Unidad: ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                                    Precio Por Unidad: ${(parseFloat(item.price) * item.quantity).toFixed(2)} COP
                                 </Text>
                                 <MyOwnButton
                                     title="Quitar del carrito"
@@ -43,7 +43,7 @@ const BuyCart = ({ navigation }) => {
                             </View>
                         </View>
                     ))}
-                    <Text style={StylesBuyCard.totalText}>Total: ${total.toFixed(2)}</Text>
+                    <Text style={StylesBuyCard.totalText}>Total: ${total.toFixed(2)} COP</Text>
                     <View style={StylesBuyCard.container}>
                     <MyOwnButton
                         title="Vaciar Carrito"

@@ -11,7 +11,7 @@ const ShoppingCard = ({ product, navigation }) => {
             <Card style={shoppingStyles.card}>
                 <Text style={shoppingStyles.title}>{product.name}</Text>
                 <Text style={shoppingStyles.description}>{product.description}</Text>
-                <Text style={shoppingStyles.description}>Valor: {product.price}</Text>
+                <Text style={shoppingStyles.description}>Valor: ${product.price} COP</Text>
             </Card>
             </Pressable>
         </View>

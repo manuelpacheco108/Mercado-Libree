@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import productStyles from '../styles/ProductStyles';
+import productStyles from '../styles/productStyles';
 import profileStyles from '../styles/profileStyles';
 import suportStyle from '../styles/suportStyle';
  

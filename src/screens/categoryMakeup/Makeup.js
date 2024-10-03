@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, Pressable, Image } from 'react-native';
-import productStyles from '../../styles/ProductStyles';
+import productStyles from '../../styles/productStyles';
 import ProductCard from '../../components/ProductCard';
 
 const product = [
@@ -9,8 +9,8 @@ const product = [
     photo: require('../../img/pencil.png'),
     name: 'Lapiz',
     description: 'Lapiz maquillador',
-    price: '100000$',
-    discount: '95000$',
+    price: '100000',
+    discount: '95000',
     offerValue: '5%OFF',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
@@ -22,8 +22,8 @@ const product = [
     photo: require('../../img/soapFace.png'),
     name: 'Jabón',
     description: 'Jabón dermatologico para el rostro',
-    price: '540000$',
-    discount: '95000$',
+    price: '540000',
+    discount: '95000',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
@@ -35,8 +35,8 @@ const product = [
     photo: require('../../img/pen.png'),
     name: 'Labial',
     description: 'Labial rojo con acabado mate',
-    price: '500000$',
-    discount: '700000$',
+    price: '500000',
+    discount: '700000',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
@@ -47,8 +47,8 @@ const product = [
     photo: require('../../img/sunFactor.png'),
     name: 'Bloqueador',
     description: 'Bloqueador solar de 1000ml',
-    price: '200000$',
-    discount: '130000$',
+    price: '200000',
+    discount: '130000',
     offerValue: '35%OFF',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
@@ -60,8 +60,8 @@ const product = [
     photo: require('../../img/compact.png'),
     name: 'Polvo',
     description: 'Polvo compacto con espejo',
-    price: '100000$',
-    discount: '95000$',
+    price: '100000',
+    discount: '95000',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
@@ -72,8 +72,8 @@ const product = [
     photo: require('../../img/face.png'),
     name: 'Mascarilla',
     description: 'Mascarilla de aguacate para la cara',
-    price: '100000$',
-    discount: '95000$',
+    price: '100000',
+    discount: '95000',
     offerValue: '5%OFF',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),

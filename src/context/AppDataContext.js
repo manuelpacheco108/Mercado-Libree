@@ -2,19 +2,18 @@ import { createContext, useReducer } from "react";
 
 const AppDataContext = createContext();
 
-// Definimos las acciones que nuestro reducer manejará
+
 const ADD_TO_CART = 'ADD_TO_CART';
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const CLEAR_CART = 'CLEAR_CART';
 const ADD_PURCHASE = 'ADD_PURCHASE';
 
-// Función para calcular el total del carrito
 const calculateTotal = (cart) => {
     return cart.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
 };
 
-// Definimos nuestro reducer
+
 const appReducer = (state, action) => {
     switch (action.type) {
         case ADD_TO_CART: {

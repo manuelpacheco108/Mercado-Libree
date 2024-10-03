@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, Image, Pressable } from 'react-native';
 import MyOwnButton from '../components/MyOwnButton'
-import productStyles from '../styles/ProductStyles';
+import productStyles from '../styles/productStyles';
 import profileStyles from '../styles/profileStyles';
 import suportStyle from '../styles/suportStyle';
 import { Card, TextInput } from 'react-native-paper';
@@ -27,27 +27,38 @@ const Menu = ({ navigation }) => {
     );
 };
 
-
-
 const ProductDetail = ({ route, navigation }) => {
     const { product } = route.params;
     const [rating, setRating] = useState(0);
+    const [message, setMessage] = useState('');
+    const [quantityAdded, setQuantityAdded] = useState(0);
     const { addToCart } = useContext(AppDataContext);
 
     const Star = ({ filled }) => {
-        let color;
-        if (filled) {
-            color = '#FFD700';
-        } else {
-            color = '#black';
-        }
-        return <Text style={{ fontSize: 30, color: color }}>★</Text>;
+        let color = filled ? '#FFD700' : 'black';
+        return <Text style={{ fontSize: 30, color }}>★</Text>;
     };
 
     const handleRating = (value) => {
         setRating(value);
     };
 
+    const handleAddToCart = () => {
+        const quantity = 1; 
+        addToCart({ ...product, quantity });
+        setQuantityAdded(quantity);
+    };
+
+    useEffect(() => {
+        if (quantityAdded > 0) {
+            setMessage(`Agregaste ${quantityAdded} producto(s) al carrito`);
+            const timer = setTimeout(() => {
+                setMessage('');
+                setQuantityAdded(0); 
+            }, 2500); 
+            return () => clearTimeout(timer);
+        }
+    }, [quantityAdded]);
 
     return (
         <ScrollView>
@@ -60,8 +71,10 @@ const ProductDetail = ({ route, navigation }) => {
                     <Image style={productStyles.image} source={product.photo} />
                     <Text style={productStyles.title}>{product.name}</Text>
                     <Text style={productStyles.text}>{product.description}</Text>
-                    <Text style={productStyles.textPrice}>{product.price}</Text>
-                    <Text style={productStyles.offerPrice}>{product.discount} <Text style={productStyles.offerValue}>{product.offerValue}</Text></Text>
+                    <Text style={productStyles.textPrice}>${product.price} COP</Text>
+                    <Text style={productStyles.offerPrice}>${product.discount} COP
+                        <Text style={productStyles.offerValue}>{product.offerValue}</Text>
+                    </Text>
                     <Text style={productStyles.text}>{product.characteristics}</Text>
                     <Text style={profileStyles.titlePrivacy}>Medios de Pago</Text>
 
@@ -72,10 +85,14 @@ const ProductDetail = ({ route, navigation }) => {
                     </View>
                 </Card>
             </View>
+
+            {message ? <Text style={productStyles.confirmationMessage}>{message}</Text> : null}
+
             <View style={suportStyle.viewContainerButton}>
-            <MyOwnButton 
-                title="Agregar al carrito" 
-                onPress={()=> addToCart({...product,quantity:1})}/>
+                <MyOwnButton
+                    title="Agregar al carrito"
+                    onPress={handleAddToCart}
+                />
             </View>
 
             <View style={suportStyle.infoSupport}>
@@ -136,8 +153,6 @@ const ProductDetail = ({ route, navigation }) => {
                 </Card>
             </View>
         </ScrollView>
-
-
     );
 };
 

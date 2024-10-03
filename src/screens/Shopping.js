@@ -37,8 +37,8 @@ const Shopping = ({ navigation }) => {
       {purchases.length > 0 ? (
         <FlatList
           data={purchases}
-          renderItem={({ item }) => <ShoppingCard product={item} navigation={navigation} />}
-          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item,index }) => <ShoppingCard product={item} navigation={navigation} />}
+          keyExtractor={(item, index) => index.toString()}
         />
       ) : (
         <Text style={shoppingStyles.emptyPurhcasesT}>No hay ninguna compra todavía. 🤨</Text>
