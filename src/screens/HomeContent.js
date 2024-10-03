@@ -1,13 +1,13 @@
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import NavBar from "../components/NavBar";
 import Product from '../components/Product';
 
 const HomeContent = ({ navigation }) => {
     return (
-        <View>
+        <ScrollView>
             <NavBar />
             <Product navigation={navigation} />
-        </View>
+        </ScrollView>
 
     );
 };
