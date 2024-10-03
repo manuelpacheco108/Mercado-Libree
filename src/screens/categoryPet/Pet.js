@@ -5,7 +5,7 @@ import ProductCard from '../../components/ProductCard';
 
 const product = [
   {
-    id: 1,
+    id: 19,
     photo: require('../../img/beltPet.png'),
     name: 'Correa',
     description: 'Correa dinamica para mascotas',
@@ -19,11 +19,11 @@ const product = [
     
   },
   {
-    id: 2,
+    id: 20,
     photo: require('../../img/ball.png'),
     name: 'Pelota',
     description: 'Pelota saltarina para mascotas',
-
+    price: '400000$',
     discount: '95000$',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
@@ -32,10 +32,11 @@ const product = [
 
   },
   {
-    id: 3,
+    id: 21,
     photo: require('../../img/drink.png'),
     name: 'Bebedero',
     description: 'Bebedero para mascotas inoxidable',
+    price: '2000000$',
     discount: '700000$',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
@@ -43,7 +44,7 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 4,
+    id: 22,
     photo: require('../../img/eat.jpg'),
     name: 'Comedero',
     description: 'Comedero para mascotas de varios colores',
@@ -56,10 +57,11 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 5,
+    id: 23,
     photo: require('../../img/shirt.png'),
     name: 'Camisa',
     description: 'Camisa comodas para mascotas',
+    price: '2530000$',
     discount: '95000$',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
@@ -67,7 +69,7 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 6,
+    id: 24,
     photo: require('../../img/bone.png'),
     name: 'Hueso',
     description: 'Hueso para mascotas comestible',

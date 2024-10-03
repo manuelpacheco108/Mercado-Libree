@@ -29,12 +29,15 @@ Tareas:
 				- BuyCart .
 				- ProductDetail .
 				- Product .
-				- HomeContent
+				- HomeContent .
 				- Shopping
-				- Categories
+				- Categories .
+				- AppDataContext .
 				(- styleBuyCard.js [7 ; 55-58 ; 66-76 ; ]
 				 - Product.js [25 ; 38 ; 63]
-				 - Tecnology.js [26 ; 38 ; 64])
+				 - Tecnology.js [26 ; 38 ; 64]
+				 - category/* [Cambios en los ´id´ del objeto producto ; precios]
+				 - shoppingStyles.js [104-109 ; ])
 			Juan:
 			 	- Login
 				- RegisterUser

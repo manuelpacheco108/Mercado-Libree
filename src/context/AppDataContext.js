@@ -7,8 +7,7 @@ const ADD_TO_CART = 'ADD_TO_CART';
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const CLEAR_CART = 'CLEAR_CART';
-const LOGIN_USER = 'LOGIN_USER';
-const LOGOUT_USER = 'LOGOUT_USER';
+const ADD_PURCHASE = 'ADD_PURCHASE';
 
 // Función para calcular el total del carrito
 const calculateTotal = (cart) => {
@@ -22,8 +21,8 @@ const appReducer = (state, action) => {
             const existingProductIndex = state.cart.findIndex(item => item.id === action.payload.id);
             let updatedCart;
             if (existingProductIndex !== -1) {
-                updatedCart = state.cart.map((item, index) => 
-                    index === existingProductIndex 
+                updatedCart = state.cart.map((item, index) =>
+                    index === existingProductIndex
                         ? { ...item, quantity: item.quantity + 1 }
                         : item
                 );
@@ -37,7 +36,7 @@ const appReducer = (state, action) => {
             };
         }
         case UPDATE_QUANTITY: {
-            const updatedCart = state.cart.map(item => 
+            const updatedCart = state.cart.map(item =>
                 item.id === action.payload.productId
                     ? { ...item, quantity: Math.max(0, item.quantity + action.payload.amount) }
                     : item
@@ -62,18 +61,14 @@ const appReducer = (state, action) => {
                 cart: [],
                 total: 0
             };
-        case LOGIN_USER:
+        case ADD_PURCHASE: {
             return {
                 ...state,
-                user: action.payload
-            };
-        case LOGOUT_USER:
-            return {
-                ...state,
-                user: null,
+                purchases: [...state.purchases, ...state.cart],
                 cart: [],
                 total: 0
             };
+        }
         default:
             return state;
     }
@@ -81,9 +76,9 @@ const appReducer = (state, action) => {
 
 export const AppDataContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(appReducer, {
-        user: null,
         cart: [],
-        total: 0
+        total: 0,
+        purchases: [],
     });
 
     const addToCart = (product) => {
@@ -91,9 +86,9 @@ export const AppDataContextProvider = ({ children }) => {
     };
 
     const quantity = (productId, action) => {
-        dispatch({ 
-            type: UPDATE_QUANTITY, 
-            payload: { productId, amount: action === 'add' ? 1 : -1 } 
+        dispatch({
+            type: UPDATE_QUANTITY,
+            payload: { productId, amount: action === 'add' ? 1 : -1 }
         });
     };
 
@@ -105,26 +100,20 @@ export const AppDataContextProvider = ({ children }) => {
         dispatch({ type: CLEAR_CART });
     };
 
-    const loginUser = (userData) => {
-        dispatch({ type: LOGIN_USER, payload: userData });
+    const addPurchase = () => {
+        dispatch({ type: ADD_PURCHASE });
     };
-
-    const logoutUser = () => {
-        dispatch({ type: LOGOUT_USER });
-    };
-
     return (
         <AppDataContext.Provider
             value={{
-                user: state.user,
                 cart: state.cart,
                 total: state.total,
+                purchases: state.purchases,
                 addToCart,
                 quantity,
                 removeFromCart,
-                loginUser,
-                logoutUser,
                 clearCart,
+                addPurchase,
             }}>
             {children}
         </AppDataContext.Provider>

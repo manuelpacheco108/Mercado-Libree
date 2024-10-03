@@ -5,7 +5,7 @@ import ProductCard from '../../components/ProductCard';
 
 const product = [
   {
-    id: 1,
+    id: 13,
     photo: require('../../img/pencil.png'),
     name: 'Lapiz',
     description: 'Lapiz maquillador',
@@ -18,11 +18,11 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 2,
+    id: 14,
     photo: require('../../img/soapFace.png'),
     name: 'Jabón',
     description: 'Jabón dermatologico para el rostro',
-
+    price: '540000$',
     discount: '95000$',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
@@ -31,10 +31,11 @@ const product = [
 
   },
   {
-    id: 3,
+    id: 15,
     photo: require('../../img/pen.png'),
     name: 'Labial',
     description: 'Labial rojo con acabado mate',
+    price: '500000$',
     discount: '700000$',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
@@ -42,7 +43,7 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 4,
+    id: 16,
     photo: require('../../img/sunFactor.png'),
     name: 'Bloqueador',
     description: 'Bloqueador solar de 1000ml',
@@ -55,10 +56,11 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 5,
+    id: 17,
     photo: require('../../img/compact.png'),
     name: 'Polvo',
     description: 'Polvo compacto con espejo',
+    price: '100000$',
     discount: '95000$',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
@@ -66,7 +68,7 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 6,
+    id: 18,
     photo: require('../../img/face.png'),
     name: 'Mascarilla',
     description: 'Mascarilla de aguacate para la cara',

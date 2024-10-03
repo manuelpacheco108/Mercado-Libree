@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, TextInput, Image, Pressable } from 'react-native';
+import { View, Text, TextInput, Image, Pressable, ScrollView } from 'react-native';
 import AppDataContext from '../context/AppDataContext';
 import StylesPayment from '../styles/stylePayment';
 import MyOwnButton from '../components/MyOwnButton';
@@ -7,7 +7,7 @@ import DrawerNavigation from '../components/DrawerNavigation';
 import { colors } from '../styles/globalStyles';
 
 const PaymentScreen = ({ navigation }) => {
-    const { cart, total, clearCart} = useContext(AppDataContext);
+    const { cart, total, clearCart, addPurchase } = useContext(AppDataContext);
     const [deliveryAddress, setDeliveryAddress] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('');
     const [cardNumber, setCardNumber] = useState('');
@@ -15,12 +15,13 @@ const PaymentScreen = ({ navigation }) => {
     const [isPressed, setIsPressed] = useState(false);
 
     const handlePayment = () => {
-      clearCart();
+        addPurchase();
+        clearCart();
         navigation.navigate('HomeDrawer');
     };
 
     return (
-        <View style={StylesPayment.container}>
+        <ScrollView style={StylesPayment.container}>
             <DrawerNavigation.Menu navigation={navigation} />
             <View style={StylesPayment.containerForm}>
                 <Text style={StylesPayment.headerText}>Sucursal de Pago</Text>
@@ -71,7 +72,7 @@ const PaymentScreen = ({ navigation }) => {
                         ]}
                         onPress={() => { setPaymentMethod('efecty') }}
                         onPressIn={() => setIsPressed(true)}
-                        
+
                     >
                         <Text style={[StylesPayment.paymentMethodText, isPressed && StylesPayment.selectedPaymentMethod]}>
                             Efecty
@@ -108,7 +109,7 @@ const PaymentScreen = ({ navigation }) => {
                     disabled={!paymentMethod || total === 0 || !deliveryAddress}
                 />
             </View>
-        </View>
+        </ScrollView>
     );
 };
 

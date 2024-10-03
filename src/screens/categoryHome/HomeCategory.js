@@ -5,7 +5,7 @@ import ProductCard from '../../components/ProductCard';
 
 const product = [
   {
-    id: 1,
+    id: 7,
     photo: require('../../img/broom.jpg'),
     name: 'Escoba',
     description: 'Escoba pequeña muy suave',
@@ -18,11 +18,11 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 2,
+    id: 8,
     photo: require('../../img/mop.png'),
     name: 'Trapeadora',
     description: 'Trapeadora de defensa personal',
-
+    price: '700000$',
     discount: '95000$',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
@@ -31,10 +31,11 @@ const product = [
 
   },
   {
-    id: 3,
+    id: 9,
     photo: require('../../img/chair.jpg'),
     name: 'Silla',
     description: 'Silla de madera en color negro',
+    price: '4700000$',
     discount: '700000$',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
@@ -42,7 +43,7 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 4,
+    id: 10,
     photo: require('../../img/soap.png'),
     name: 'Jabón',
     description: 'Jabón para tocador de menta',
@@ -55,10 +56,11 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 5,
+    id: 11,
     photo: require('../../img/cleaner.jpg'),
     name: 'Fabuloso',
     description: 'Jabón limpia pisos con olor a rosas',
+    price: '100000$',
     discount: '95000$',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
@@ -66,7 +68,7 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 6,
+    id: 12,
     photo: require('../../img/cook.png'),
     name: 'Sarten',
     description: 'Juego de sartenes de acero inoxidable',

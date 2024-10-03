@@ -6,7 +6,7 @@ import ProductCard from '../../components/ProductCard';
 
 const product = [
   {
-    id: 1,
+    id: 25,
     photo: require('../../img/headphones.png'),
     name: 'Audífonos',
     description: 'Audífonos inalámbricos grises',
@@ -19,7 +19,7 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 2,
+    id: 26,
     photo: require('../../img/mouse.png'),
     name: 'Mouse',
     description: 'Mouse gamer RedDragon con luces',
@@ -32,7 +32,7 @@ const product = [
 
   },
   {
-    id: 3,
+    id: 27,
     photo: require('../../img/tecno.png'),
     name: 'Celular',
     price: '4500000$',
@@ -44,7 +44,7 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 4,
+    id: 28,
     photo: require('../../img/battery.jpg'),
     name: 'Batería',
     description: 'Batería portátil con linterna',
@@ -57,7 +57,7 @@ const product = [
     bancolombia: require('../../img/bancolombia.png')
   },
   {
-    id: 5,
+    id: 29,
     photo: require('../../img/watch.png'),
     name: 'Reloj',
     description: 'Reloj digital con manillas azules',
@@ -70,7 +70,7 @@ const product = [
 
   },
   {
-    id: 6,
+    id: 30,
     photo: require('../../img/camera.png'),
     name: 'Cámara',
     description: 'Cámara digital Nikon negra',
