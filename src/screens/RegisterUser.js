@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TextInput, Alert, Image, ScrollView } from 'react-native';
 import MyOwnButton from '../components/MyOwnButton';
 import StylesRegisterUser from '../styles/styleRegisterUser';
-import DrawerNavigation from '../components/DrawerNavigation';
 import { UserContext } from '../context/UserContext'; // Importar el contexto
+import DrawerNavigation from '../components/DrawerNavigation'; // Verifica si este es correcto
 
 const RegisterUser = ({ navigation }) => {
   const { registerUser } = useContext(UserContext); // Acceder a la función para registrar el usuario
@@ -19,44 +19,53 @@ const RegisterUser = ({ navigation }) => {
 
   const [error, setError] = useState({ email: '', password: '', birthdate: '' });
 
-  const validateEmail = (text) => {
-    setEmail(text);
+  // useEffect para validar el correo electrónico
+  useEffect(() => {
     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!pattern.test(text)) {
-      setError({ ...error, email: 'Usa el formato ejemplo@correo.com' });
+    if (email && !pattern.test(email)) {
+      setError((prevError) => ({ ...prevError, email: 'Usa el formato ejemplo@correo.com' }));
     } else {
-      setError({ ...error, email: '' });
+      setError((prevError) => ({ ...prevError, email: '' }));
     }
-  };
+  }, [email]); // Ejecutar cuando el email cambie
 
-  const validatePassword = (text) => {
-    setPassword(text);
+  // useEffect para validar la contraseña
+  useEffect(() => {
     const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Al menos 8 caracteres
-    if (!pattern.test(text)) {
-      setError({
-        ...error,
+    if (password && !pattern.test(password)) {
+      setError((prevError) => ({
+        ...prevError,
         password: 'Debe incluir 1 mayúscula, 1 carácter especial, letras y números, y al menos 8 caracteres.',
-      });
+      }));
     } else {
-      setError({ ...error, password: '' });
+      setError((prevError) => ({ ...prevError, password: '' }));
     }
-  };
+  }, [password]); // Ejecutar cuando la contraseña cambie
 
-  const validateBirthdate = (value) => {
-    const birthDateObj = new Date(value);
-    const today = new Date();
-    let age = today.getFullYear() - birthDateObj.getFullYear();
-    const m = today.getMonth() - birthDateObj.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDateObj.getDate())) {
-      age--;
-    }
-    if (isNaN(birthDateObj.getTime()) || age < 18 || age > 50) {
-      setError((prev) => ({ ...prev, birthdate: 'Debes ser mayor de 18 años y menor a 50 años.' }));
+  // useEffect para validar la fecha de nacimiento solo si hay algo en el campo
+  useEffect(() => {
+    if (birthdate) { // Solo ejecutar la validación si el campo no está vacío
+      const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+      const birthDateObj = new Date(birthdate);
+      const today = new Date();
+      let age = today.getFullYear() - birthDateObj.getFullYear();
+      const m = today.getMonth() - birthDateObj.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDateObj.getDate())) {
+        age--;
+      }
+      if (!datePattern.test(birthdate) || isNaN(birthDateObj.getTime()) || age < 18 || age > 50) {
+        setError((prevError) => ({
+          ...prevError,
+          birthdate: 'Debes ser mayor de 18 años y menor a 50 años, y usar el formato YYYY-MM-DD.',
+        }));
+      } else {
+        setError((prevError) => ({ ...prevError, birthdate: '' }));
+      }
     } else {
-      setError((prev) => ({ ...prev, birthdate: '' }));
+      // Si el campo de la fecha está vacío, no mostrar error
+      setError((prevError) => ({ ...prevError, birthdate: '' }));
     }
-    setBirthdate(value);
-  };
+  }, [birthdate]); // Ejecutar cuando la fecha de nacimiento cambie
 
   const handleSignUp = () => {
     if (
@@ -92,7 +101,11 @@ const RegisterUser = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <DrawerNavigation.Menu navigation={navigation} />
+      {/* Asegúrate de que este componente exista */}
+      {DrawerNavigation && DrawerNavigation.Menu ? (
+        <DrawerNavigation.Menu navigation={navigation} />
+      ) : null}
+      
       <View style={StylesRegisterUser.container}>
         <TextInput
           style={StylesRegisterUser.input}
@@ -116,7 +129,7 @@ const RegisterUser = ({ navigation }) => {
           style={StylesRegisterUser.input}
           placeholder="Email"
           value={email}
-          onChangeText={validateEmail}
+          onChangeText={setEmail}
           keyboardType="email-address"
           autoCapitalize="none"
         />
@@ -126,7 +139,7 @@ const RegisterUser = ({ navigation }) => {
           style={StylesRegisterUser.input}
           placeholder="Contraseña"
           value={password}
-          onChangeText={validatePassword}
+          onChangeText={setPassword}
           secureTextEntry
         />
         {error.password ? <Text style={StylesRegisterUser.errorText}>{error.password}</Text> : null}
@@ -135,9 +148,10 @@ const RegisterUser = ({ navigation }) => {
           style={StylesRegisterUser.input}
           placeholder="Fecha de nacimiento (YYYY-MM-DD)"
           value={birthdate}
-          onChangeText={validateBirthdate}
+          onChangeText={setBirthdate}
         />
-        {error.birthdate ? <Text style={StylesRegisterUser.errorText}>{error.birthdate}</Text> : null}
+        {/* Mostrar error solo si el campo no está vacío y hay un error */}
+        {birthdate && error.birthdate ? <Text style={StylesRegisterUser.errorText}>{error.birthdate}</Text> : null}
 
         {/* Campo para ingresar la URL de la imagen */}
         <TextInput
@@ -155,7 +169,7 @@ const RegisterUser = ({ navigation }) => {
         <MyOwnButton
           title="Crear cuenta"
           onPress={handleSignUp}
-          disabled={!!error.email || !!error.password || !!error.birthdate}
+          disabled={!!error.email || !!error.password || !!error.birthdate || !email || !password || !nombre || !apellido || !birthdate}
         />
       </View>
     </ScrollView>

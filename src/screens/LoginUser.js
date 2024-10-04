@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { View, Text, TextInput, Alert, ScrollView } from "react-native";
 import MyOwnButton from "../components/MyOwnButton";
 import StylesLogin from "../styles/styleLoginUser";
@@ -11,28 +11,28 @@ const LoginUser = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState({ email: '', password: '' });
 
-  const validateEmail = (text) => {
-    setEmail(text);
+  // useEffect para validar el email cuando cambie
+  useEffect(() => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!regex.test(text)) {
-      setError({ ...error, email: 'Usa el formato ejemplo@correo.com' });
+    if (email && !regex.test(email)) {
+      setError(prev => ({ ...prev, email: 'Usa el formato ejemplo@correo.com' }));
     } else {
-      setError({ ...error, email: '' });
+      setError(prev => ({ ...prev, email: '' }));
     }
-  };
+  }, [email]);
 
-  const validatePassword = (text) => {
-    setPassword(text);
+  // useEffect para validar la contraseña cuando cambie
+  useEffect(() => {
     const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Al menos 8 caracteres
-    if (!pattern.test(text)) {
-      setError({
-        ...error,
+    if (password && !pattern.test(password)) {
+      setError(prev => ({
+        ...prev,
         password: 'Debe incluir 1 mayúscula, 1 carácter especial, letras y números, y al menos 8 caracteres.',
-      });
+      }));
     } else {
-      setError({ ...error, password: '' });
+      setError(prev => ({ ...prev, password: '' }));
     }
-  };
+  }, [password]);
 
   const handleLogin = () => {
     // Verificamos si el email y la contraseña son válidos
@@ -58,7 +58,7 @@ const LoginUser = ({ navigation }) => {
         <TextInput
           style={[StylesLogin.input, error.email && StylesLogin.inputError]}
           value={email}
-          onChangeText={validateEmail}
+          onChangeText={setEmail}  // Solo actualizamos el estado de email
           placeholder="Email"
           placeholderTextColor={colors.secondaryElements}
           autoCapitalize="none"
@@ -71,7 +71,7 @@ const LoginUser = ({ navigation }) => {
         <TextInput
           style={[StylesLogin.input, error.password && StylesLogin.inputError]}
           value={password}
-          onChangeText={validatePassword}
+          onChangeText={setPassword}  // Solo actualizamos el estado de password
           placeholder="Contraseña"
           placeholderTextColor={colors.secondaryElements}
           secureTextEntry

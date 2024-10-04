@@ -1,4 +1,5 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useContext } from "react";
+import { UserContext } from './UserContext';  // Importar el UserContext
 
 const AppDataContext = createContext();
 
@@ -63,23 +64,32 @@ const appReducer = (state, action) => {
                 total: 0
             };
         case ADD_TO_FAVORITES: {
-            const existingFavoriteIndex = state.favorites.findIndex(item => item.id === action.payload.id);
+            const { userId, product } = action.payload; // Usamos el userId para distinguir favoritos
+            const existingFavorites = state.favorites[userId] || [];
+            const existingFavoriteIndex = existingFavorites.findIndex(item => item.id === product.id);
             let updatedFavorites;
             if (existingFavoriteIndex === -1) {
-                updatedFavorites = [...state.favorites, action.payload];
+                updatedFavorites = [...existingFavorites, product];
             } else {
-                updatedFavorites = state.favorites; // No agregar duplicados
+                updatedFavorites = existingFavorites; // No agregar duplicados
             }
             return {
                 ...state,
-                favorites: updatedFavorites
+                favorites: {
+                    ...state.favorites,
+                    [userId]: updatedFavorites // Asociar los favoritos con el userId
+                }
             };
         }
         case REMOVE_FROM_FAVORITES: {
-            const updatedFavorites = state.favorites.filter(item => item.id !== action.payload);
+            const { userId, productId } = action.payload;
+            const updatedFavorites = (state.favorites[userId] || []).filter(item => item.id !== productId);
             return {
                 ...state,
-                favorites: updatedFavorites
+                favorites: {
+                    ...state.favorites,
+                    [userId]: updatedFavorites
+                }
             };
         }
         default:
@@ -88,10 +98,11 @@ const appReducer = (state, action) => {
 };
 
 export const AppDataContextProvider = ({ children }) => {
+    const { currentUser } = useContext(UserContext); // Obtener el usuario actual
     const [state, dispatch] = useReducer(appReducer, {
         cart: [],
         total: 0,
-        favorites: []  // Inicializamos el estado de favoritos
+        favorites: {}  // Almacenamos los favoritos por usuario usando un objeto
     });
 
     const addToCart = (product) => {
@@ -99,11 +110,15 @@ export const AppDataContextProvider = ({ children }) => {
     };
 
     const addToFavorites = (product) => {
-        dispatch({ type: ADD_TO_FAVORITES, payload: product });
+        if (currentUser) {
+            dispatch({ type: ADD_TO_FAVORITES, payload: { userId: currentUser.email, product } });
+        }
     };
 
     const removeFromFavorites = (productId) => {
-        dispatch({ type: REMOVE_FROM_FAVORITES, payload: productId });
+        if (currentUser) {
+            dispatch({ type: REMOVE_FROM_FAVORITES, payload: { userId: currentUser.email, productId } });
+        }
     };
 
     const quantity = (productId, action) => {
@@ -126,7 +141,7 @@ export const AppDataContextProvider = ({ children }) => {
             value={{
                 cart: state.cart,
                 total: state.total,
-                favorites: state.favorites,
+                favorites: state.favorites[currentUser?.email] || [],  // Pasar solo los favoritos del usuario actual
                 addToCart,
                 addToFavorites,
                 removeFromFavorites,

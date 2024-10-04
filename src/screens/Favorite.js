@@ -4,6 +4,7 @@ import FavoriteCard from '../components/FavoriteCard';
 import favoriteStyles from '../styles/favoriteStyles';
 import AppDataContext from '../context/AppDataContext'; // Importar el contexto
 import productStyles from '../styles/ProductStyles';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const Menu = ({ navigation }) => { 
   return (
@@ -31,6 +32,7 @@ const Favorite = ({ navigation }) => {
   const { favorites } = useContext(AppDataContext); // Obtener la lista de favoritos del contexto
 
   return (
+    <ScrollView>
     <View>
       <Menu navigation={navigation} />
       <FlatList
@@ -40,7 +42,8 @@ const Favorite = ({ navigation }) => {
         ListEmptyComponent={<Text style={productStyles.titleProduct}>No tienes favoritos aún</Text>} // Mensaje cuando no hay favoritos
       />
     </View>
+    </ScrollView>
   );
-}
+} 
 
 export default Favorite;

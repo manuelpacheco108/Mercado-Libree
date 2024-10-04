@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, Image, Pressable } from 'react-native';
-import MyOwnButton from '../components/MyOwnButton'
+import { View, Text, Image, Pressable, Alert } from 'react-native';
+import MyOwnButton from '../components/MyOwnButton';
 import productStyles from '../styles/ProductStyles';
 import profileStyles from '../styles/profileStyles';
 import suportStyle from '../styles/suportStyle';
@@ -46,6 +46,16 @@ const ProductDetail = ({ route, navigation }) => {
         setRating(value);
     };
 
+    const handleAddToCart = () => {
+        addToCart({ ...product, quantity: 1 });
+        Alert.alert('Éxito', 'Producto agregado al carrito');
+    };
+
+    const handleAddToFavorites = () => {
+        addToFavorites(product);
+        Alert.alert('Éxito', 'Producto agregado a favoritos');
+    };
+
     return (
         <ScrollView>
             <View>
@@ -73,11 +83,11 @@ const ProductDetail = ({ route, navigation }) => {
             <View style={suportStyle.viewContainerButton}>
                 <MyOwnButton 
                     title="Agregar al carrito" 
-                    onPress={() => addToCart({ ...product, quantity: 1 })} 
+                    onPress={handleAddToCart} // Llama a la función que agrega al carrito y muestra la alerta
                 />
                 <MyOwnButton 
                     title="Agregar a Favoritos" 
-                    onPress={() => addToFavorites(product)} 
+                    onPress={handleAddToFavorites} // Llama a la función que agrega a favoritos y muestra la alerta
                 />
             </View>
 

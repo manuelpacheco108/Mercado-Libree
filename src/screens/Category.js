@@ -1,9 +1,9 @@
-import React from 'react';
-import { View, Text, FlatList, Pressable, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, FlatList, Pressable, Image, Alert } from 'react-native';
 import CategoryCard from '../components/CategoryCard';
 import categoryStyles from '../styles/categoryStyles';
 
-const categories = [
+const categories = [ 
   {
     id: 1,
     photo: require('../img/tecno.png'),
@@ -41,7 +41,7 @@ const categories = [
     category:'Category'
   }
 ]
- 
+
 const Menu = ({navigation}) => {
   return (
     <View style={categoryStyles.menuContainer}>
@@ -64,20 +64,37 @@ const Menu = ({navigation}) => {
   );
 };
 
-
-
 const Category = ({navigation}) => {
+  const [favorites, setFavorites] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  const addToFavorites = (category) => {
+    setFavorites([...favorites, category]);
+    Alert.alert('Favoritos', `${category.name} agregado a favoritos`);
+  };
+
+  const addToCart = (category) => {
+    setCart([...cart, category]);
+    Alert.alert('Carrito', `${category.name} agregado al carrito`);
+  };
+
   return (
     <View>
       <Menu navigation={navigation} />
       <FlatList
         data={categories}
-        renderItem={({ item }) => <CategoryCard category={item} navigation={navigation}/>}
+        renderItem={({ item }) => (
+          <CategoryCard 
+            category={item} 
+            navigation={navigation} 
+            addToFavorites={addToFavorites} 
+            addToCart={addToCart}
+          />
+        )}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         columnWrapperStyle={categoryStyles.row} 
       />
-
     </View>
   );
 }

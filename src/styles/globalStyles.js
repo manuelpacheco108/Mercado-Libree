@@ -20,10 +20,12 @@ export const imgs = {
         
         width: 24, 
         height: 24,
+        
     },
     iconLoginUser:{
         width: 80,
         height: 80,
+        borderRadius: 40
         
     }
 }
