@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { typography } from "./globalStyles";
+import { black } from "react-native-paper/lib/typescript/styles/themes/v2/colors";
 const StylesRegisterUser = StyleSheet.create({
     container: {
       padding: 20,
@@ -12,10 +13,17 @@ const StylesRegisterUser = StyleSheet.create({
     },
     input: {
       borderWidth: 1,
-      borderColor: '#ccc',
+      borderColor: 'lightslategrey',
       padding: 10,
       borderRadius: 5,
       marginBottom: 10,
+    },
+    textTopInput: {
+      alignSelf: "flex-start",
+      color: "black",
+      fontSize: typography.body.fontSize,
+      marginLeft: 5,
+      marginBottom: 5,
     },
     inputError: {
       borderColor: 'red',
@@ -24,5 +32,13 @@ const StylesRegisterUser = StyleSheet.create({
       color: 'red',
       marginBottom: 10,
     },
+    title: {
+      color: 'black',
+      fontSize: 20,
+      textAlign: "center",
+      marginBottom: 15,
+      fontWeight: 'bold'
+
+    }
   });
   export default StylesRegisterUser;

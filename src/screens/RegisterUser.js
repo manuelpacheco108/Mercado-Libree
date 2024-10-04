@@ -4,6 +4,7 @@ import MyOwnButton from '../components/MyOwnButton';
 import StylesRegisterUser from '../styles/styleRegisterUser';
 import { UserContext } from '../context/UserContext'; // Importar el contexto
 import DrawerNavigation from '../components/DrawerNavigation'; // Verifica si este es correcto
+import { colors } from "../styles/globalStyles";
 
 const RegisterUser = ({ navigation }) => {
   const { registerUser } = useContext(UserContext); // Acceder a la función para registrar el usuario
@@ -100,53 +101,64 @@ const RegisterUser = ({ navigation }) => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       {/* Asegúrate de que este componente exista */}
       {DrawerNavigation && DrawerNavigation.Menu ? (
         <DrawerNavigation.Menu navigation={navigation} />
       ) : null}
-      
+
       <View style={StylesRegisterUser.container}>
+        <Text style={StylesRegisterUser.title}>Registrate en Mercado Libre</Text>
+        <Text style={StylesRegisterUser.textTopInput}>Nombre</Text>
         <TextInput
           style={StylesRegisterUser.input}
           placeholder="Nombre"
+          placeholderTextColor={colors.highlight}
           value={nombre}
           onChangeText={setNombre}
         />
+        <Text style={StylesRegisterUser.textTopInput}>Apellido</Text>
         <TextInput
           style={StylesRegisterUser.input}
           placeholder="Apellido"
+          placeholderTextColor={colors.highlight}
           value={apellido}
           onChangeText={setApellido}
         />
+        <Text style={StylesRegisterUser.textTopInput}>Género</Text>
         <TextInput
           style={StylesRegisterUser.input}
           placeholder="Género"
+          placeholderTextColor={colors.highlight}
           value={gender}
           onChangeText={setGender}
         />
+        <Text style={StylesRegisterUser.textTopInput}>E-mail</Text>
         <TextInput
           style={StylesRegisterUser.input}
           placeholder="Email"
+          placeholderTextColor={colors.highlight}
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
           autoCapitalize="none"
         />
         {error.email ? <Text style={StylesRegisterUser.errorText}>{error.email}</Text> : null}
-
+        <Text style={StylesRegisterUser.textTopInput}>Contraseña</Text>
         <TextInput
           style={StylesRegisterUser.input}
           placeholder="Contraseña"
+          placeholderTextColor={colors.highlight}
           value={password}
           onChangeText={setPassword}
           secureTextEntry
         />
         {error.password ? <Text style={StylesRegisterUser.errorText}>{error.password}</Text> : null}
-
+        <Text style={StylesRegisterUser.textTopInput}>Fecha Nacimiento</Text>
         <TextInput
           style={StylesRegisterUser.input}
           placeholder="Fecha de nacimiento (YYYY-MM-DD)"
+          placeholderTextColor={colors.highlight}
           value={birthdate}
           onChangeText={setBirthdate}
         />
@@ -154,9 +166,11 @@ const RegisterUser = ({ navigation }) => {
         {birthdate && error.birthdate ? <Text style={StylesRegisterUser.errorText}>{error.birthdate}</Text> : null}
 
         {/* Campo para ingresar la URL de la imagen */}
+        <Text style={StylesRegisterUser.textTopInput}>Imagen</Text>
         <TextInput
           style={StylesRegisterUser.input}
           placeholder="URL de imagen de perfil"
+          placeholderTextColor={colors.highlight}
           value={imageUrl}
           onChangeText={setImageUrl}
         />

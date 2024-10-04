@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { View, Text, TextInput, Alert, ScrollView } from "react-native";
+import { View, Text, TextInput, Alert, ScrollView, Pressable } from "react-native";
 import MyOwnButton from "../components/MyOwnButton";
 import StylesLogin from "../styles/styleLoginUser";
 import { colors } from "../styles/globalStyles";
@@ -23,7 +23,7 @@ const LoginUser = ({ navigation }) => {
 
   // useEffect para validar la contraseña cuando cambie
   useEffect(() => {
-    const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Al menos 8 caracteres
+    const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (password && !pattern.test(password)) {
       setError(prev => ({
         ...prev,
@@ -52,35 +52,39 @@ const LoginUser = ({ navigation }) => {
     <ScrollView>
       <View style={StylesLogin.container}>
         <Text style={StylesLogin.text}>
-          Ingresa tu e-mail, teléfono o usuario de Mercado Libre:
+          Ingresa tu E-Mail y Contraseña de Mercado Libre
         </Text>
-        <Text style={StylesLogin.textTopInput}>E-mail</Text>
-        <TextInput
-          style={[StylesLogin.input, error.email && StylesLogin.inputError]}
-          value={email}
-          onChangeText={setEmail}  // Solo actualizamos el estado de email
-          placeholder="Email"
-          placeholderTextColor={colors.secondaryElements}
-          autoCapitalize="none"
-          keyboardType="email-address"
-          color="black"
-        />
-        {error.email ? <Text style={StylesLogin.errorText}>{error.email}</Text> : null}
+        <View style={StylesLogin.inputContainer}>
+          <Text style={StylesLogin.textTopInput}>E-mail</Text>
+          <TextInput
+            style={[StylesLogin.input, error.email && StylesLogin.inputError]}
+            value={email}
+            onChangeText={setEmail}  // Solo actualizamos el estado de email
+            placeholder="Email"
+            placeholderTextColor={colors.highlight}
+            autoCapitalize="none"
+            keyboardType="email-address"
+            color="black"
+          />
+          {error.email ? <Text style={StylesLogin.errorText}>{error.email}</Text> : null}
+        </View>
 
-        <Text style={StylesLogin.textTopInput}>Contraseña</Text>
-        <TextInput
-          style={[StylesLogin.input, error.password && StylesLogin.inputError]}
-          value={password}
-          onChangeText={setPassword}  // Solo actualizamos el estado de password
-          placeholder="Contraseña"
-          placeholderTextColor={colors.secondaryElements}
-          secureTextEntry
-          color="black"
-        />
-        {error.password ? <Text style={StylesLogin.errorText}>{error.password}</Text> : null}
+        <View style={StylesLogin.inputContainer}>
+          <Text style={StylesLogin.textTopInput}>Contraseña</Text>
+          <TextInput
+            style={[StylesLogin.input, error.password && StylesLogin.inputError]}
+            value={password}
+            onChangeText={setPassword}  // Solo actualizamos el estado de password
+            placeholder="Contraseña"
+            placeholderTextColor={colors.highlight}
+            secureTextEntry
+            color="black"
+          />
+          {error.password ? <Text style={StylesLogin.errorText}>{error.password}</Text> : null}
+        </View>
 
         <MyOwnButton
-          title="Iniciar sesión"
+          title="Iniciar Sesión"
           disabled={!!error.email || !!error.password}
           onPress={handleLogin}
           style={[StylesLogin.buttonLogIn, StylesLogin.textButtonLogIn]}
@@ -91,7 +95,14 @@ const LoginUser = ({ navigation }) => {
           style={[StylesLogin.buttonSignin, StylesLogin.textButtonSignIn]}
         />
         <View style={StylesLogin.containerFooter}>
-          <Text style={StylesLogin.footerText}>Cómo cuidamos tu privacidad</Text>
+    
+
+          <Pressable style={StylesLogin.containerFooter}
+                    onPress={() => navigation.navigate('Privacy')}>
+                    <Text style={StylesLogin.footerText}>Cómo cuidamos tu privacidad</Text>
+                </Pressable>
+
+
         </View>
       </View>
     </ScrollView>
