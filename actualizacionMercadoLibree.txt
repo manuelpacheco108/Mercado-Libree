@@ -1,0 +1,52 @@
+MercadoLibree
+
+#: PARA COMENTARIOS POSTERIORES A LA REVISIÓN (Manuel)
+.: REALIZADO
+Tareas: 
+	1. actualizar el sentido de la aplicación: componentes y pantallas
+	2. Hacer uso de los hooks en los archivos:
+		2.1 Archivos a modificar:
+			-HomeContent.js (Cambiarle el nombre, la funcion que exporta se denomina Product)
+			-Menu.js (Quitarlo pues me parece que no cumple funcionalidad)
+			-MyOwnButton.jsx (Parece que no ejerce ninguna funcionalidad en otro archivo) #Ya lo revise y si existe la funcionalidad en otro
+			-OfferCard.js (Quitarlo, la funcion que exporta se denomina ProductCard y ya existe un archivo nombrado asi con las mismas lineas)
+			-Search.js (Hay un hook que no conozco, useRef)
+			-category/* (Hay una constante que no entiendo, se llama Menu y esta en todos los archivos de categoría) # Ya entendí la constante. Es una pequeña vista para mostrar que pantalla es en la que se esta, y se usa para devolverse al menu principal
+			-categoryHome/HomeCategory.js (Hay una funcion que se exporta ue se llama HomeScreen. De igual forma hay un archivo que se denomina HomeScreen.js. Ademas no veo el uso de este HomeScreen en niguna pantalla)
+			-BuyCart.js (Hay uso de useState, pero considero que puede agregarse otro por que existe una funcion que se llama renderItem)
+			-Favorite.js (No hay uso de ningun hook. Favorite depende de aquellos artículos que se seleccionan como favoritos)
+			-HomeScreen.js y HomeScreen.jsx (Eliminar alguno de los dos porque son iguales) .
+			-ItemDetail.js (No hay codigo) .
+			-Offer.js (Depende de la logica para agregar algun hook. Hay datos que se extraen de la BD)
+			-PaymentScreen.js (Agregar mas hooks pues esta pantalla depende del carrito de compras, por ende se puede aplicar algun hook que requiera de mas complejidad)
+			-Profile.js (Solucionar problema de datos del usuario a ingresado. Toda la logica de la aplicación va acorde a el usuario si ingreso o usuario no registrado)
+			-Shopping.js (Hay datos que depende de las compras del usuario que ya ha hecho)
+			-Support.js (Agregar uso de hooks. Dependiendo cual el usuario ha seleccionado, se despliega la caja de texto para que el usuario rellene)
+
+		2.2 Archivos a modificar según rama:
+			Manuel:
+				- PaymentScreen .
+				- BuyCart .
+				- ProductDetail .
+				- Product .
+				- HomeContent .
+				- Shopping .
+				- Categories .
+				- AppDataContext .
+				(- styleBuyCard.js [7 ; 55-58 ; 66-76 ; ]
+				 - Product.js [25 ; 38 ; 63]
+				 - Tecnology.js [26 ; 38 ; 64]
+				 - category/* [Cambios en los ´id´ del objeto producto ; precios]
+				 - shoppingStyles.js [104-109 ; ]
+				 - stylePayment.js [70-78]
+				 - ProductCard.js [12-13]
+				 - OfferCard.js [8 ; 12-15 ; 20]
+				 - productStyles.js [2 ; 116-120])
+			Juan:
+			 	- Login
+				- RegisterUser
+				- Profile
+				- Favorites
+				- ProductDetail
+				(-)
+			
