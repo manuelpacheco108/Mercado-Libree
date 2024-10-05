@@ -3,6 +3,7 @@ import { View, Text, FlatList, Pressable, Image } from 'react-native';
 import ShoppingCard from '../components/ShoppingCard';
 import AppDataContext from '../context/AppDataContext';
 import shoppingStyles from '../styles/shoppingStyles';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 
@@ -32,7 +33,7 @@ const Shopping = ({ navigation }) => {
   const { purchases } = useContext(AppDataContext);
 
   return (
-    <View>
+    <ScrollView>
       <Menu navigation={navigation} />
       {purchases.length > 0 ? (
         <FlatList
@@ -43,7 +44,7 @@ const Shopping = ({ navigation }) => {
       ) : (
         <Text style={shoppingStyles.emptyPurhcasesT}>No hay ninguna compra todavía. 🤨</Text>
       )}
-    </View>
+    </ScrollView>
   );
 };
 

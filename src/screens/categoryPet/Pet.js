@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, Pressable, Image } from 'react-native';
+import { View, Text, FlatList, Pressable, Image, ScrollView } from 'react-native';
 import productStyles from '../../styles/productStyles';
 import ProductCard from '../../components/ProductCard';
 
@@ -102,7 +102,7 @@ const Menu = ({navigation}) => {
 
 const Pet = ({navigation}) => {
   return (
-    <View>
+    <ScrollView>
       <Menu navigation={navigation}/>
       <FlatList
         data={product}
@@ -112,7 +112,7 @@ const Pet = ({navigation}) => {
         columnWrapperStyle={productStyles.row} 
       />
 
-    </View> 
+    </ScrollView> 
   );
 }
 
