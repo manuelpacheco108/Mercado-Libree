@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { View, TextInput, Image } from 'react-native';
-import Styles from '../styles/navBarStyles'
-import productStyles from '../styles/ProductStyles';
+import Styles from '../styles/navBarStyles';
+import productStyles from '../styles/productStyles';
 
 const Search = () => {
     const inputRef = useRef(null);

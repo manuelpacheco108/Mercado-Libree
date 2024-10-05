@@ -2,10 +2,10 @@ import React from 'react';
 import { View, TextInput, Pressable, Image } from 'react-native';
 import Styles from "../styles/navBarStyles";
 import { useNavigation } from '@react-navigation/native';
-import productStyles from '../styles/ProductStyles';
+import productStyles from '../styles/productStyles';
 
 const NavBar = () => {
-  const navigation = useNavigation(); 
+  const navigation = useNavigation();
 
   return (
     <View>
@@ -14,17 +14,17 @@ const NavBar = () => {
           style={Styles.hamburguerMenu}
           onPress={() => navigation.openDrawer()}
         >
-         <Image 
-          source={require('../img/menu_hamburguer.png')}
-          style={productStyles.menuIcon}
-        />
+          <Image
+            source={require('../img/menu_hamburguer.png')}
+            style={productStyles.menuIcon}
+          />
         </Pressable>
 
         <View style={Styles.searchContainer}>
-        <Image 
-          source={require('../img/search-interface-symbol.png')}
-          style={productStyles.menuIconSearch}
-        />
+          <Image
+            source={require('../img/search-interface-symbol.png')}
+            style={productStyles.menuIconSearch}
+          />
           <TextInput
             style={Styles.searchInput}
             placeholder="Buscar en Mercado Libree"
@@ -37,13 +37,13 @@ const NavBar = () => {
           style={Styles.cart}
           onPress={() => navigation.navigate('BuyCart')}
         >
-         <Image 
-          source={require('../img/shopping_cart.png')}
-          style={productStyles.menuIcon}
-        />
+          <Image
+            source={require('../img/shopping_cart.png')}
+            style={productStyles.menuIcon}
+          />
         </Pressable>
       </View>
-      
+
     </View>
   );
 };

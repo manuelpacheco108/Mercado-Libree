@@ -5,12 +5,13 @@ const StylesLogin = StyleSheet.create({
     container: {
         backgroundColor: colors.background,
         padding: 20,
-        alignContent: "center"
+        alignContent: "center",
+        textAlign: "center"
     },
     header: {
         paddingTop: 15,
         paddingBottom: 20,
-        alignItems: "flex-start"
+        textAlign: "center"
     },
     containerForm: {
         flex: 1,
@@ -19,7 +20,7 @@ const StylesLogin = StyleSheet.create({
         borderColor: "lightslategrey",
     },
     text: {
-        alignSelf: "flex-start",
+        textAlign: "center",
         fontSize: typography.header.fontSize,
         fontWeight: typography.header.fontWeight,
         color: "black",
@@ -29,7 +30,7 @@ const StylesLogin = StyleSheet.create({
         alignSelf: "flex-start",
         color: "black",
         fontSize: typography.body.fontSize,
-        marginLeft: 10,
+        marginLeft: 15,
         marginBottom: 5,
     },
     input: {
@@ -39,7 +40,8 @@ const StylesLogin = StyleSheet.create({
         borderRadius: 5,
         borderWidth: 1,
         borderColor: "lightslategrey",
-        marginBottom: 30,
+        marginBottom: 15,
+
     },
     buttons: {
         flexDirection: "column",
@@ -85,8 +87,11 @@ const StylesLogin = StyleSheet.create({
     },
     errorText: {
         color: 'red',
-        marginBottom: 10,
+        fontSize: 14,
+        marginTop: 5, 
+        marginLeft: 10, 
+        marginBottom: 5
     },
-})
+});
 
 export default StylesLogin;

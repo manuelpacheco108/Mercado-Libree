@@ -2,7 +2,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import Offer from "../screens/Offer";
-import HomeScreen from "../screens/HomeScreen";
 import Category from "../screens/Category";
 import Technology from "../screens/categoryTechnology/Technology";
 import HomeCategory from "../screens/categoryHome/HomeCategory";
@@ -19,6 +18,7 @@ import RegisterUser from "../screens/RegisterUser";
 import LoginUser from "../screens/LoginUser";
 import BuyCart from "../screens/BuyCart";
 import PaymentScreen from "../screens/PaymentScreen";
+import HomeDrawer from "./HomeDrawer";
 
 const Stack = createStackNavigator();
 
@@ -34,8 +34,8 @@ const MainStack = () => {
                 />
 
                 <Stack.Screen
-                    name='Home'
-                    component={HomeScreen}
+                    name='HomeDrawer'
+                    component={HomeDrawer}
                     options={{ headerShown: false }}
                 />
 
@@ -56,8 +56,6 @@ const MainStack = () => {
                     component={RegisterUser}
                     options={{ headerShown: false }}
                 />
-
-
 
                 <Stack.Screen
                     name='Favorite'
@@ -89,7 +87,6 @@ const MainStack = () => {
                     component={Makeup}
                     options={{ headerShown: false }}
                 />
-
 
                 <Stack.Screen
                     name='Pet'

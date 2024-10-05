@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import productStyles from '../styles/ProductStyles';
+import productStyles from '../styles/productStyles';
 import profileStyles from '../styles/profileStyles';
 import suportStyle from '../styles/suportStyle';
- 
 
 const DetailCard = ({ product }) => {
 
@@ -13,7 +12,9 @@ const DetailCard = ({ product }) => {
             <Text style={productStyles.title}>{product.name}</Text>
             <Text style={productStyles.text}>{product.description}</Text>
             <Text style={productStyles.textPrice}>{product.price}</Text>
-            <Text style={productStyles.offerPrice}>{product.discount} <Text style={productStyles.offerValue}>{product.offerValue}</Text></Text>
+            <Text style={productStyles.offerPrice}>{product.discount}
+                <Text style={productStyles.offerValue}>{product.offerValue}</Text>
+            </Text>
             <Text style={productStyles.text}>{product.characteristics}</Text>
             <Text style={profileStyles.titlePrivacy}>Medios de Pago</Text>
             <View style={profileStyles.buy}>

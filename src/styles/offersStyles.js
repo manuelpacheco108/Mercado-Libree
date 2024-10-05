@@ -10,7 +10,7 @@ const offerStyles = StyleSheet.create({
         height: 230,
         paddingTop: 10,
     },
-    textOffers: { 
+    textOffers: {
         fontSize: 15,
         fontWeight: 'bold',
         fontFamily: 'System',

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const categoryStyles = StyleSheet.create({
   container: {
     margin: 5,
-    flex: 1, 
+    flex: 1,
     borderRadius: 5,
     paddingTop: 10,
   },

@@ -91,6 +91,10 @@ const suportStyle = StyleSheet.create({
     status: {
         fontWeight: 'bold'
     },
+    viewContainerButton:{
+        flex:1,
+        alignItems:'center',
+    },
     listItemText: {
         fontSize: 16,
         padding: 5,
