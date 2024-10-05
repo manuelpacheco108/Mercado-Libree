@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, Pressable, Image } from 'react-native';
-import CategoryCard from '../components/ShoppingCard';
+import ShoppingCard from '../components/ShoppingCard';
 import shoppingStyles from '../styles/shoppingStyles';
 
 const product = [
@@ -70,7 +70,7 @@ const Shopping = ({ navigation }) => {
       <Menu navigation={navigation} />
       <FlatList
         data={product}
-        renderItem={({ item }) => <CategoryCard product={item} navigation={navigation} />}
+        renderItem={({ item }) => <ShoppingCard product={item} navigation={navigation} />}
         keyExtractor={(item) => item.id.toString()}
       />
     </View>

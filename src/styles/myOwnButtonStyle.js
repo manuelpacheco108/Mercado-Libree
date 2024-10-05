@@ -9,6 +9,7 @@ const Style = StyleSheet.create({
         borderRadius: 5,
         alignItems: 'center',
         marginVertical: 10,
+        margin: 10
     },
     buttonText: {
         color: colors.background,

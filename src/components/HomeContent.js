@@ -15,7 +15,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../img/mastercard.png'),
     visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
+    bancolombia: require('../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 2,
@@ -27,7 +28,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../img/mastercard.png'),
     visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
+    bancolombia: require('../img/bancolombia.png'),
+    status: 'No'
 
   },
   {
@@ -39,7 +41,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../img/mastercard.png'),
     visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
+    bancolombia: require('../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 4,
@@ -52,7 +55,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../img/mastercard.png'),
     visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
+    bancolombia: require('../img/bancolombia.png'),
+    status: 'No'
   },
   {
     id: 5,
@@ -63,7 +67,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../img/mastercard.png'),
     visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
+    bancolombia: require('../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 6,
@@ -76,7 +81,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../img/mastercard.png'),
     visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
+    bancolombia: require('../img/bancolombia.png'),
+    status: 'No'
   }
 ]
  
