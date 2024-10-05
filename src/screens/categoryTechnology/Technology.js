@@ -3,7 +3,6 @@ import { View, Text, FlatList, Pressable, Image, ScrollView } from 'react-native
 import productStyles from '../../styles/productStyles';
 import ProductCard from '../../components/ProductCard';
 
-
 const product = [
   {
     id: 25,
@@ -16,7 +15,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 26,
@@ -28,8 +28,8 @@ const product = [
     characteristics: 'Marca RedDragon, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
-
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 27,
@@ -41,7 +41,8 @@ const product = [
     characteristics: 'Marca Xiaomi, Azul, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 28,
@@ -54,7 +55,8 @@ const product = [
     characteristics: 'Marca Batería, Negra, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 29,
@@ -66,8 +68,8 @@ const product = [
     characteristics: 'Marca Batería, Azul, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
-
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 30,
@@ -80,17 +82,17 @@ const product = [
     characteristics: 'Marca Nikon, Negra, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
-
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   }
 ]
- 
-const Menu = ({navigation}) => {
+
+const Menu = ({ navigation }) => {
   return (
     <View style={productStyles.menuContainer}>
-      <Pressable 
-        style={productStyles.menuButton} 
-        onPress={() => navigation.navigate('Category')} 
+      <Pressable
+        style={productStyles.menuButton}
+        onPress={() => navigation.navigate('Category')}
       >
         <Image
           source={require('../../img/back.png')}
@@ -102,16 +104,16 @@ const Menu = ({navigation}) => {
   );
 };
 
-const Technology = ({navigation}) => {
+const Technology = ({ navigation }) => {
   return (
     <ScrollView>
-      <Menu navigation={navigation}/>
+      <Menu navigation={navigation} />
       <FlatList
         data={product}
         renderItem={({ item }) => <ProductCard product={item} navigation={navigation} />}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
-        columnWrapperStyle={productStyles.row} 
+        columnWrapperStyle={productStyles.row}
       />
 
     </ScrollView>

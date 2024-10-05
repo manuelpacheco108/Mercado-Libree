@@ -5,8 +5,6 @@ import AppDataContext from '../context/AppDataContext';
 import shoppingStyles from '../styles/shoppingStyles';
 import { ScrollView } from 'react-native-gesture-handler';
 
-
-
 const Menu = ({ navigation }) => {
   return (
     <View style={shoppingStyles.menuContainer}>
@@ -38,7 +36,7 @@ const Shopping = ({ navigation }) => {
       {purchases.length > 0 ? (
         <FlatList
           data={purchases}
-          renderItem={({ item,index }) => <ShoppingCard product={item} navigation={navigation} />}
+          renderItem={({ item, index }) => <ShoppingCard product={item} navigation={navigation} />}
           keyExtractor={(item, index) => index.toString()}
         />
       ) : (
@@ -47,6 +45,5 @@ const Shopping = ({ navigation }) => {
     </ScrollView>
   );
 };
-
 
 export default Shopping;

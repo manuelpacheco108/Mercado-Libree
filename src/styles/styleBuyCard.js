@@ -30,7 +30,7 @@ const StylesBuyCard = StyleSheet.create({
         justifyContent: 'center',
     },
     itemName: {
-        fontSize:typography.header.fontSize,
+        fontSize: typography.header.fontSize,
         color: colors.text,
     },
     itemDescription: {
@@ -39,7 +39,7 @@ const StylesBuyCard = StyleSheet.create({
         marginVertical: 4,
     },
     itemPrice: {
-        fontSize:typography.body.fontSize,
+        fontSize: typography.body.fontSize,
         color: colors.highlight,
         fontWeight: 'bold',
     },
@@ -52,7 +52,7 @@ const StylesBuyCard = StyleSheet.create({
         fontSize: 16,
         color: colors.text,
     },
-    removeButton:{
+    removeButton: {
         backgroundColor: colors.secondaryElements,
     },
     totalContainer: {
@@ -60,16 +60,16 @@ const StylesBuyCard = StyleSheet.create({
         alignItems: 'center',
     },
     totalText: {
-        fontSize:typography.header.fontSize,
+        fontSize: typography.header.fontSize,
         color: colors.text,
     },
-    clearCartButton:{
-        backgroundColor:colors.secondaryElements
+    clearCartButton: {
+        backgroundColor: colors.secondaryElements
     },
-    checkoutButton:{
+    checkoutButton: {
         backgroundColor: colors.text,
     },
-    emptyCartText:{
+    emptyCartText: {
         alignSelf: 'center',
         fontSize: typography.header.fontSize,
         color: colors.text,

@@ -1,18 +1,19 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useContext } from "react";
+import { UserContext } from './UserContext';
 
 const AppDataContext = createContext();
-
 
 const ADD_TO_CART = 'ADD_TO_CART';
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const CLEAR_CART = 'CLEAR_CART';
 const ADD_PURCHASE = 'ADD_PURCHASE';
+const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
+const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
 
 const calculateTotal = (cart) => {
     return cart.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
 };
-
 
 const appReducer = (state, action) => {
     switch (action.type) {
@@ -68,15 +69,46 @@ const appReducer = (state, action) => {
                 total: 0
             };
         }
+        case ADD_TO_FAVORITES: {
+            const { userId, product } = action.payload;
+            const existingFavorites = state.favorites[userId] || [];
+            const existingFavoriteIndex = existingFavorites.findIndex(item => item.id === product.id);
+            let updatedFavorites;
+            if (existingFavoriteIndex === -1) {
+                updatedFavorites = [...existingFavorites, product];
+            } else {
+                updatedFavorites = existingFavorites;
+            }
+            return {
+                ...state,
+                favorites: {
+                    ...state.favorites,
+                    [userId]: updatedFavorites
+                }
+            };
+        }
+        case REMOVE_FROM_FAVORITES: {
+            const { userId, productId } = action.payload;
+            const updatedFavorites = (state.favorites[userId] || []).filter(item => item.id !== productId);
+            return {
+                ...state,
+                favorites: {
+                    ...state.favorites,
+                    [userId]: updatedFavorites
+                }
+            };
+        }
         default:
             return state;
     }
 };
 
 export const AppDataContextProvider = ({ children }) => {
+    const { currentUser } = useContext(UserContext);
     const [state, dispatch] = useReducer(appReducer, {
         cart: [],
         total: 0,
+        favorites: {},
         purchases: [],
     });
 
@@ -102,13 +134,29 @@ export const AppDataContextProvider = ({ children }) => {
     const addPurchase = () => {
         dispatch({ type: ADD_PURCHASE });
     };
+
+    const addToFavorites = (product) => {
+        if (currentUser) {
+            dispatch({ type: ADD_TO_FAVORITES, payload: { userId: currentUser.email, product } });
+        }
+    };
+
+    const removeFromFavorites = (productId) => {
+        if (currentUser) {
+            dispatch({ type: REMOVE_FROM_FAVORITES, payload: { userId: currentUser.email, productId } });
+        }
+    };
+
     return (
         <AppDataContext.Provider
             value={{
                 cart: state.cart,
                 total: state.total,
                 purchases: state.purchases,
+                favorites: state.favorites[currentUser?.email] || [],
                 addToCart,
+                addToFavorites,
+                removeFromFavorites,
                 quantity,
                 removeFromCart,
                 clearCart,

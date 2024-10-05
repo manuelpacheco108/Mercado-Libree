@@ -5,7 +5,6 @@ import MyOwnButton from '../components/MyOwnButton';
 import DrawerNavigation from '../components/DrawerNavigation';
 import StylesBuyCard from '../styles/styleBuyCard';
 
-
 const BuyCart = ({ navigation }) => {
     const { cart, total, quantity, removeFromCart, clearCart } = useContext(AppDataContext);
 
@@ -45,16 +44,16 @@ const BuyCart = ({ navigation }) => {
                     ))}
                     <Text style={StylesBuyCard.totalText}>Total: ${total.toFixed(2)} COP</Text>
                     <View style={StylesBuyCard.container}>
-                    <MyOwnButton
-                        title="Vaciar Carrito"
-                        onPress={clearCart}
-                        style={StylesBuyCard.clearCartButton}
-                    />
-                    <MyOwnButton
-                        title="Proceder al Pago"
-                        onPress={() => navigation.navigate('PaymentScreen')}
-                        style={StylesBuyCard.checkoutButton}
-                    />
+                        <MyOwnButton
+                            title="Vaciar Carrito"
+                            onPress={clearCart}
+                            style={StylesBuyCard.clearCartButton}
+                        />
+                        <MyOwnButton
+                            title="Proceder al Pago"
+                            onPress={() => navigation.navigate('PaymentScreen')}
+                            style={StylesBuyCard.checkoutButton}
+                        />
                     </View>
                 </ScrollView>
             ) : (

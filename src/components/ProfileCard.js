@@ -3,7 +3,6 @@ import { View, Text, Image, Pressable } from 'react-native';
 import profileStyles from '../styles/profileStyles';
 import { Card } from 'react-native-paper';
 
-
 const ProfileCard = ({ profile, navigation }) => {
     return (
         <View>

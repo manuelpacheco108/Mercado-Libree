@@ -18,7 +18,7 @@ import RegisterUser from "../screens/RegisterUser";
 import LoginUser from "../screens/LoginUser";
 import BuyCart from "../screens/BuyCart";
 import PaymentScreen from "../screens/PaymentScreen";
-import HomeDrawer from "../screens/HomeDrawer";
+import HomeDrawer from "./HomeDrawer";
 
 const Stack = createStackNavigator();
 
@@ -57,8 +57,6 @@ const MainStack = () => {
                     options={{ headerShown: false }}
                 />
 
-
-
                 <Stack.Screen
                     name='Favorite'
                     component={Favorite}
@@ -89,7 +87,6 @@ const MainStack = () => {
                     component={Makeup}
                     options={{ headerShown: false }}
                 />
-
 
                 <Stack.Screen
                     name='Pet'

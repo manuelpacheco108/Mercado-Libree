@@ -92,7 +92,7 @@ const shoppingStyles = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 5,
-    }, 
+    },
     status: {
         fontWeight: 'bold'
     },
@@ -102,7 +102,7 @@ const shoppingStyles = StyleSheet.create({
         padding: 5,
         marginLeft: 5
     },
-    emptyPurhcasesT:{
+    emptyPurhcasesT: {
         alignSelf: 'center',
         fontSize: typography.header.fontSize,
         color: colors.text,

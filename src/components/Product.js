@@ -15,7 +15,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../img/mastercard.png'),
     visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
+    bancolombia: require('../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 26,
@@ -27,7 +28,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../img/mastercard.png'),
     visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
+    bancolombia: require('../img/bancolombia.png'),
+    status: 'Si'
 
   },
   {
@@ -40,7 +42,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../img/mastercard.png'),
     visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
+    bancolombia: require('../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 28,
@@ -53,7 +56,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../img/mastercard.png'),
     visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
+    bancolombia: require('../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 29,
@@ -65,7 +69,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../img/mastercard.png'),
     visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
+    bancolombia: require('../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 30,
@@ -78,12 +83,13 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../img/mastercard.png'),
     visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
+    bancolombia: require('../img/bancolombia.png'),
+    status: 'Si'
   }
 ]
- 
 
-const Product = ({navigation}) => {
+
+const Product = ({ navigation }) => {
   return (
     <View>
       <FlatList
@@ -91,7 +97,7 @@ const Product = ({navigation}) => {
         renderItem={({ item }) => <ProductCard product={item} navigation={navigation} />}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
-        columnWrapperStyle={productStyles.row} 
+        columnWrapperStyle={productStyles.row}
       />
 
     </View>

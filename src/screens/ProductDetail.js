@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, Image, Pressable } from 'react-native';
-import MyOwnButton from '../components/MyOwnButton'
+import { View, Text, Image, Pressable, Alert } from 'react-native';
+import MyOwnButton from '../components/MyOwnButton';
 import productStyles from '../styles/productStyles';
 import profileStyles from '../styles/profileStyles';
 import suportStyle from '../styles/suportStyle';
@@ -30,9 +30,20 @@ const Menu = ({ navigation }) => {
 const ProductDetail = ({ route, navigation }) => {
     const { product } = route.params;
     const [rating, setRating] = useState(0);
+    const { addToCart, addToFavorites } = useContext(AppDataContext);
     const [message, setMessage] = useState('');
     const [quantityAdded, setQuantityAdded] = useState(0);
-    const { addToCart } = useContext(AppDataContext);
+
+    useEffect(() => {
+        if (quantityAdded > 0) {
+            setMessage(`Agregaste ${quantityAdded} producto(s) al carrito`);
+            const timer = setTimeout(() => {
+                setMessage('');
+                setQuantityAdded(0);
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [quantityAdded]);
 
     const Star = ({ filled }) => {
         let color = filled ? '#FFD700' : 'black';
@@ -44,21 +55,15 @@ const ProductDetail = ({ route, navigation }) => {
     };
 
     const handleAddToCart = () => {
-        const quantity = 1; 
+        const quantity = 1;
         addToCart({ ...product, quantity });
         setQuantityAdded(quantity);
     };
 
-    useEffect(() => {
-        if (quantityAdded > 0) {
-            setMessage(`Agregaste ${quantityAdded} producto(s) al carrito`);
-            const timer = setTimeout(() => {
-                setMessage('');
-                setQuantityAdded(0); 
-            }, 2500); 
-            return () => clearTimeout(timer);
-        }
-    }, [quantityAdded]);
+    const handleAddToFavorites = () => {
+        addToFavorites(product);
+        Alert.alert('Éxito', 'Producto agregado a favoritos');
+    };
 
     return (
         <ScrollView>
@@ -93,6 +98,10 @@ const ProductDetail = ({ route, navigation }) => {
                     title="Agregar al carrito"
                     onPress={handleAddToCart}
                 />
+                <MyOwnButton
+                    title="Agregar a Favoritos"
+                    onPress={handleAddToFavorites}
+                />
             </View>
 
             <View style={suportStyle.infoSupport}>
@@ -111,23 +120,6 @@ const ProductDetail = ({ route, navigation }) => {
                     </Pressable>
                 </Card>
             </View>
-            <View style={suportStyle.infoSupport}>
-                <Card style={suportStyle.card}>
-                    <Text style={suportStyle.listItemText}>Comentarios</Text>
-                    <Text style={suportStyle.listItemTextInfo}>Aquí podrás dejar algún comentario</Text>
-                    <TextInput
-                        style={suportStyle.inputSupport}
-                        label='Comentario'
-                        mode='outlined'
-                        activeOutlineColor='#146C94'
-                        maxLength={200}
-                    />
-                    <Pressable style={suportStyle.sendButton}>
-                        <Text style={suportStyle.sendButtonText}>Enviar</Text>
-                    </Pressable>
-                </Card>
-            </View>
-
             <View style={suportStyle.infoSupport}>
                 <Card style={suportStyle.card}>
                     <Text style={productStyles.ratingTitle}>Califica Este Producto</Text>

@@ -13,7 +13,7 @@ const PaymentScreen = ({ navigation }) => {
     const [cardNumber, setCardNumber] = useState('');
     const [selectedBank, setSelectedBank] = useState('');
     const [isPressed, setIsPressed] = useState(false);
-    const [paymentMessage, setPaymentMessage] = useState(''); 
+    const [paymentMessage, setPaymentMessage] = useState('');
 
     const handlePayment = () => {
         addPurchase();
@@ -106,14 +106,14 @@ const PaymentScreen = ({ navigation }) => {
                         color="black"
                     />
                 )}
-                {paymentMessage ? 
-                <View style={StylesPayment.containerMessageToConfirmation}>
-                    <Text 
-                    style={StylesPayment.paymentMessage}>
-                        {paymentMessage}
-                    </Text>
-                </View>
-                : null}
+                {paymentMessage ?
+                    <View style={StylesPayment.containerMessageToConfirmation}>
+                        <Text
+                            style={StylesPayment.paymentMessage}>
+                            {paymentMessage}
+                        </Text>
+                    </View>
+                    : null}
                 <MyOwnButton
                     title="Pagar"
                     onPress={handlePayment}

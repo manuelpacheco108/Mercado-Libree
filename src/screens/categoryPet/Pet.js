@@ -15,8 +15,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
-    
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 20,
@@ -28,8 +28,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
-
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 21,
@@ -41,7 +41,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 22,
@@ -54,7 +55,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 23,
@@ -66,7 +68,8 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
     id: 24,
@@ -79,18 +82,19 @@ const product = [
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   }
 ]
- 
-const Menu = ({navigation}) => {
+
+const Menu = ({ navigation }) => {
   return (
     <View style={productStyles.menuContainer}>
-      <Pressable 
-        style={productStyles.menuButton} 
-        onPress={() => navigation.navigate('Category')} 
+      <Pressable
+        style={productStyles.menuButton}
+        onPress={() => navigation.navigate('Category')}
       >
-        <Image 
+        <Image
           source={require('../../img/back.png')}
           style={productStyles.menuIcon}
         />
@@ -100,19 +104,19 @@ const Menu = ({navigation}) => {
   );
 };
 
-const Pet = ({navigation}) => {
+const Pet = ({ navigation }) => {
   return (
     <ScrollView>
-      <Menu navigation={navigation}/>
+      <Menu navigation={navigation} />
       <FlatList
         data={product}
-        renderItem={({ item }) => <ProductCard product={item} navigation={navigation}/>}
+        renderItem={({ item }) => <ProductCard product={item} navigation={navigation} />}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
-        columnWrapperStyle={productStyles.row} 
+        columnWrapperStyle={productStyles.row}
       />
 
-    </ScrollView> 
+    </ScrollView>
   );
 }
 
