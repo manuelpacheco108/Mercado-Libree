@@ -11,7 +11,7 @@ const Menu = ({ navigation }) => {
         onPress={() => {
           navigation.reset({
             index: 0,
-            routes: [{ name: 'Home' }],
+            routes: [{ name: 'HomeDrawer' }],
           });
         }}
       >

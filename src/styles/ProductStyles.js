@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { colors, typography } from './globalStyles';
 const productStyles = StyleSheet.create({
 
     container: {
@@ -111,6 +112,11 @@ const productStyles = StyleSheet.create({
         marginTop: 10,
         fontSize: 16,
         fontWeight: 'bold',
+    },
+    confirmationMessage: {
+        alignSelf: 'center',
+        fontSize: typography.header.fontSize,
+        color: colors.highlight,
     },
 });
 

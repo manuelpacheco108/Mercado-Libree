@@ -1,30 +1,28 @@
 import { createContext, useReducer, useContext } from "react";
-import { UserContext } from './UserContext';  // Importar el UserContext
+import { UserContext } from './UserContext';
 
 const AppDataContext = createContext();
 
-// Definimos las acciones que nuestro reducer manejará
 const ADD_TO_CART = 'ADD_TO_CART';
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const CLEAR_CART = 'CLEAR_CART';
+const ADD_PURCHASE = 'ADD_PURCHASE';
 const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
 const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
 
-// Función para calcular el total del carrito
 const calculateTotal = (cart) => {
     return cart.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
 };
 
-// Definimos nuestro reducer
 const appReducer = (state, action) => {
     switch (action.type) {
         case ADD_TO_CART: {
             const existingProductIndex = state.cart.findIndex(item => item.id === action.payload.id);
             let updatedCart;
             if (existingProductIndex !== -1) {
-                updatedCart = state.cart.map((item, index) => 
-                    index === existingProductIndex 
+                updatedCart = state.cart.map((item, index) =>
+                    index === existingProductIndex
                         ? { ...item, quantity: item.quantity + 1 }
                         : item
                 );
@@ -38,7 +36,7 @@ const appReducer = (state, action) => {
             };
         }
         case UPDATE_QUANTITY: {
-            const updatedCart = state.cart.map(item => 
+            const updatedCart = state.cart.map(item =>
                 item.id === action.payload.productId
                     ? { ...item, quantity: Math.max(0, item.quantity + action.payload.amount) }
                     : item
@@ -63,21 +61,29 @@ const appReducer = (state, action) => {
                 cart: [],
                 total: 0
             };
+        case ADD_PURCHASE: {
+            return {
+                ...state,
+                purchases: [...state.purchases, ...state.cart],
+                cart: [],
+                total: 0
+            };
+        }
         case ADD_TO_FAVORITES: {
-            const { userId, product } = action.payload; // Usamos el userId para distinguir favoritos
+            const { userId, product } = action.payload;
             const existingFavorites = state.favorites[userId] || [];
             const existingFavoriteIndex = existingFavorites.findIndex(item => item.id === product.id);
             let updatedFavorites;
             if (existingFavoriteIndex === -1) {
                 updatedFavorites = [...existingFavorites, product];
             } else {
-                updatedFavorites = existingFavorites; // No agregar duplicados
+                updatedFavorites = existingFavorites;
             }
             return {
                 ...state,
                 favorites: {
                     ...state.favorites,
-                    [userId]: updatedFavorites // Asociar los favoritos con el userId
+                    [userId]: updatedFavorites
                 }
             };
         }
@@ -98,15 +104,35 @@ const appReducer = (state, action) => {
 };
 
 export const AppDataContextProvider = ({ children }) => {
-    const { currentUser } = useContext(UserContext); // Obtener el usuario actual
+    const { currentUser } = useContext(UserContext);
     const [state, dispatch] = useReducer(appReducer, {
         cart: [],
         total: 0,
-        favorites: {}  // Almacenamos los favoritos por usuario usando un objeto
+        favorites: {},
+        purchases: [],
     });
 
     const addToCart = (product) => {
         dispatch({ type: ADD_TO_CART, payload: product });
+    };
+
+    const quantity = (productId, action) => {
+        dispatch({
+            type: UPDATE_QUANTITY,
+            payload: { productId, amount: action === 'add' ? 1 : -1 }
+        });
+    };
+
+    const removeFromCart = (productId) => {
+        dispatch({ type: REMOVE_FROM_CART, payload: productId });
+    };
+
+    const clearCart = () => {
+        dispatch({ type: CLEAR_CART });
+    };
+
+    const addPurchase = () => {
+        dispatch({ type: ADD_PURCHASE });
     };
 
     const addToFavorites = (product) => {
@@ -121,33 +147,20 @@ export const AppDataContextProvider = ({ children }) => {
         }
     };
 
-    const quantity = (productId, action) => {
-        dispatch({ 
-            type: UPDATE_QUANTITY, 
-            payload: { productId, amount: action === 'add' ? 1 : -1 } 
-        });
-    };
-
-    const removeFromCart = (productId) => {
-        dispatch({ type: REMOVE_FROM_CART, payload: productId });
-    };
-
-    const clearCart = () => {
-        dispatch({ type: CLEAR_CART });
-    };
-
     return (
         <AppDataContext.Provider
             value={{
                 cart: state.cart,
                 total: state.total,
-                favorites: state.favorites[currentUser?.email] || [],  // Pasar solo los favoritos del usuario actual
+                purchases: state.purchases,
+                favorites: state.favorites[currentUser?.email] || [],
                 addToCart,
                 addToFavorites,
                 removeFromFavorites,
                 quantity,
                 removeFromCart,
                 clearCart,
+                addPurchase,
             }}>
             {children}
         </AppDataContext.Provider>

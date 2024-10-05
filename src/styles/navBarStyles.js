@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import {colors} from "./globalStyles"
+import { colors } from "./globalStyles"
 const Styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
@@ -37,13 +37,13 @@ const Styles = StyleSheet.create({
     cart: {
         marginLeft: 10
     },
-    containerUbication:{
+    containerUbication: {
         alignItems: "flex-start",
         backgroundColor: colors.text,
-        paddingTop:5,
+        paddingTop: 5,
         paddingBottom: 20,
     },
-    ubicationText:{
+    ubicationText: {
         marginLeft: 20,
 
     },
@@ -59,7 +59,7 @@ const Styles = StyleSheet.create({
         height: 30,
         marginBottom: 10
     }
-    
+
 });
 
 export default Styles;

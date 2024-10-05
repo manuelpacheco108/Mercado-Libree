@@ -57,16 +57,25 @@ const StylesPayment = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  paymentMethodButton:{
+  paymentMethodButton: {
     width: 100,
     height: 40,
     color: "black",
   },
-  paymentMethodText:{
+  paymentMethodText: {
     color: "black",
   },
-  selectedPaymentMethod:{
+  selectedPaymentMethod: {
     color: colors.highlight,
+  },
+  containerMessageToConfirmation: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  paymentMessage: {
+    color: colors.highlight,
+    fontSize: typography.header.fontSize,
+    fontWeight: typography.header.fontWeight,
   }
 });
 

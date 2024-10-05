@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { View, Text, FlatList, Pressable, Image } from 'react-native';
 import ProfileCard from '../components/ProfileCard';
 import profileStyles from '../styles/profileStyles';
-import { UserContext } from '../context/UserContext'; // Importar el contexto
+import { UserContext } from '../context/UserContext';
 
 const Profile = ({ navigation }) => {
-  const { currentUser, logoutUser } = useContext(UserContext); // Acceder al usuario actual y función de logout
+  const { currentUser, logoutUser } = useContext(UserContext);
 
   if (!currentUser) {
     return (
@@ -15,7 +15,6 @@ const Profile = ({ navigation }) => {
     );
   }
 
-  // Datos del perfil del usuario actual
   const profile = [
     {
       id: 1,
@@ -30,7 +29,6 @@ const Profile = ({ navigation }) => {
     }
   ];
 
-  // Función para calcular la edad
   function calculateAge(birthdate) {
     const birthDateObj = new Date(birthdate);
     const today = new Date();
@@ -52,7 +50,7 @@ const Profile = ({ navigation }) => {
       />
       <Pressable style={profileStyles.logoutButton}
         onPress={() => {
-          logoutUser(); // Cerrar sesión en el contexto
+          logoutUser();
           navigation.reset({
             index: 0,
             routes: [{ name: 'LoginUser' }],
@@ -65,16 +63,15 @@ const Profile = ({ navigation }) => {
   );
 };
 
-// Componente del menú
 const Menu = ({ navigation }) => {
   return (
     <View style={profileStyles.menuContainer}>
-      <Pressable 
-        style={profileStyles.menuButton} 
+      <Pressable
+        style={profileStyles.menuButton}
         onPress={() => {
           navigation.reset({
             index: 0,
-            routes: [{ name: 'Home' }],
+            routes: [{ name: 'HomeDrawer' }],
           });
         }}
       >

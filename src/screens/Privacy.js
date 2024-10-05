@@ -12,7 +12,7 @@ const Menu = ({ navigation }) => {
             <Pressable
                 style={favoriteStyles.menuButton}
                 onPress={() => {
-                    navigation.goBack(); // Navegar a la página anterior
+                    navigation.goBack();
                 }}
             >
                 <Image

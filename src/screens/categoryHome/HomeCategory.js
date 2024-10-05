@@ -1,91 +1,98 @@
 import React from 'react';
-import { View, Text, FlatList, Pressable, Image } from 'react-native';
-import productStyles from '../../styles/ProductStyles';
+import { View, Text, FlatList, Pressable, Image, ScrollView } from 'react-native';
+import productStyles from '../../styles/productStyles';
 import ProductCard from '../../components/ProductCard';
 
 const product = [
   {
-    id: 1,
+    id: 7,
     photo: require('../../img/broom.jpg'),
     name: 'Escoba',
     description: 'Escoba pequeña muy suave',
-    price: '100000$',
-    discount: '95000$',
+    price: '100000',
+    discount: '95000',
     offerValue: '5%OFF',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
-    id: 2,
+    id: 8,
     photo: require('../../img/mop.png'),
     name: 'Trapeadora',
     description: 'Trapeadora de defensa personal',
-
-    discount: '95000$',
+    price: '700000',
+    discount: '95000',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
-
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
-    id: 3,
+    id: 9,
     photo: require('../../img/chair.jpg'),
     name: 'Silla',
     description: 'Silla de madera en color negro',
-    discount: '700000$',
+    price: '4700000',
+    discount: '700000',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
-    id: 4,
+    id: 10,
     photo: require('../../img/soap.png'),
     name: 'Jabón',
     description: 'Jabón para tocador de menta',
-    price: '200000$',
-    discount: '130000$',
+    price: '200000',
+    discount: '130000',
     offerValue: '35%OFF',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
-    id: 5,
+    id: 11,
     photo: require('../../img/cleaner.jpg'),
     name: 'Fabuloso',
     description: 'Jabón limpia pisos con olor a rosas',
-    discount: '95000$',
+    price: '100000',
+    discount: '95000',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   },
   {
-    id: 6,
+    id: 12,
     photo: require('../../img/cook.png'),
     name: 'Sarten',
     description: 'Juego de sartenes de acero inoxidable',
-    price: '100000$',
-    discount: '95000$',
+    price: '100000',
+    discount: '95000',
     offerValue: '5%OFF',
     characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
     master: require('../../img/mastercard.png'),
     visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png')
+    bancolombia: require('../../img/bancolombia.png'),
+    status: 'Si'
   }
 ]
- 
-const Menu = ({navigation}) => {
+
+const Menu = ({ navigation }) => {
   return (
     <View style={productStyles.menuContainer}>
-      <Pressable 
-        style={productStyles.menuButton} 
-        onPress={() => navigation.navigate('Category')} 
+      <Pressable
+        style={productStyles.menuButton}
+        onPress={() => navigation.navigate('Category')}
       >
         <Image
           source={require('../../img/back.png')}
@@ -97,19 +104,18 @@ const Menu = ({navigation}) => {
   );
 };
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   return (
-    <View>
-      <Menu navigation={navigation}/>
+    <ScrollView>
+      <Menu navigation={navigation} />
       <FlatList
         data={product}
-        renderItem={({ item }) => <ProductCard product={item} navigation={navigation}/>}
+        renderItem={({ item }) => <ProductCard product={item} navigation={navigation} />}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
-        columnWrapperStyle={productStyles.row} 
+        columnWrapperStyle={productStyles.row}
       />
-
-    </View>
+    </ScrollView>
   );
 }
 

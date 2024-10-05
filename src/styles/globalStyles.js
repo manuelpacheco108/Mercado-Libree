@@ -1,8 +1,8 @@
 export const colors = {
     background: '#F6F1F1',
-    text: '#146C94', 
-    highlight: '#19A7CE', 
-    secondaryElements: '#AFD3E2', 
+    text: '#146C94',
+    highlight: '#19A7CE',
+    secondaryElements: '#AFD3E2',
 }
 
 export const typography = {
@@ -16,16 +16,16 @@ export const typography = {
 };
 
 export const imgs = {
-    rowBack:{
-        
-        width: 24, 
+    rowBack: {
+
+        width: 24,
         height: 24,
-        
+
     },
-    iconLoginUser:{
+    iconLoginUser: {
         width: 80,
         height: 80,
         borderRadius: 40
-        
+
     }
 }

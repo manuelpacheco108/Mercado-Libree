@@ -7,7 +7,7 @@ const DrawerNavigationStyles = StyleSheet.create({
         paddingBottom: 5,
         alignItems: "flex-start",
     },
-    text:{
+    text: {
         alignContent: "center",
         color: colors.background,
         fontSize: typography.header.fontSize
