@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, Image, Pressable, Alert } from 'react-native';
 import MyOwnButton from '../components/MyOwnButton';
-import productStyles from '../styles/ProductStyles';
+import productStyles from '../styles/productStyles';
 import profileStyles from '../styles/profileStyles';
 import suportStyle from '../styles/suportStyle';
 import { Card, TextInput } from 'react-native-paper';
@@ -31,15 +31,23 @@ const ProductDetail = ({ route, navigation }) => {
     const { product } = route.params;
     const [rating, setRating] = useState(0);
     const { addToCart, addToFavorites } = useContext(AppDataContext);
+    const [message, setMessage] = useState('');
+    const [quantityAdded, setQuantityAdded] = useState(0);
+
+    useEffect(() => {
+        if (quantityAdded > 0) {
+            setMessage(`Agregaste ${quantityAdded} producto(s) al carrito`);
+            const timer = setTimeout(() => {
+                setMessage('');
+                setQuantityAdded(0);
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [quantityAdded]);
 
     const Star = ({ filled }) => {
-        let color;
-        if (filled) {
-            color = '#FFD700';
-        } else {
-            color = '#black';
-        }
-        return <Text style={{ fontSize: 30, color: color }}>★</Text>;
+        let color = filled ? '#FFD700' : 'black';
+        return <Text style={{ fontSize: 30, color }}>★</Text>;
     };
 
     const handleRating = (value) => {
@@ -47,8 +55,9 @@ const ProductDetail = ({ route, navigation }) => {
     };
 
     const handleAddToCart = () => {
-        addToCart({ ...product, quantity: 1 });
-        Alert.alert('Éxito', 'Producto agregado al carrito');
+        const quantity = 1;
+        addToCart({ ...product, quantity });
+        setQuantityAdded(quantity);
     };
 
     const handleAddToFavorites = () => {
@@ -67,10 +76,11 @@ const ProductDetail = ({ route, navigation }) => {
                     <Image style={productStyles.image} source={product.photo} />
                     <Text style={productStyles.title}>{product.name}</Text>
                     <Text style={productStyles.text}>{product.description}</Text>
-                    <Text style={productStyles.textPrice}>{product.price}</Text>
-                    <Text style={productStyles.offerPrice}>{product.discount} <Text style={productStyles.offerValue}>{product.offerValue}</Text></Text>
+                    <Text style={productStyles.textPrice}>${product.price} COP</Text>
+                    <Text style={productStyles.offerPrice}>${product.discount} COP
+                        <Text style={productStyles.offerValue}>{product.offerValue}</Text>
+                    </Text>
                     <Text style={productStyles.text}>{product.characteristics}</Text>
-                    <Text style={productStyles.text}>Disponible: {product.status}</Text>
                     <Text style={profileStyles.titlePrivacy}>Medios de Pago</Text>
 
                     <View style={profileStyles.buy}>
@@ -80,14 +90,17 @@ const ProductDetail = ({ route, navigation }) => {
                     </View>
                 </Card>
             </View>
+
+            {message ? <Text style={productStyles.confirmationMessage}>{message}</Text> : null}
+
             <View style={suportStyle.viewContainerButton}>
-                <MyOwnButton 
-                    title="Agregar al carrito" 
-                    onPress={handleAddToCart} // Llama a la función que agrega al carrito y muestra la alerta
+                <MyOwnButton
+                    title="Agregar al carrito"
+                    onPress={handleAddToCart}
                 />
-                <MyOwnButton 
-                    title="Agregar a Favoritos" 
-                    onPress={handleAddToFavorites} // Llama a la función que agrega a favoritos y muestra la alerta
+                <MyOwnButton
+                    title="Agregar a Favoritos"
+                    onPress={handleAddToFavorites}
                 />
             </View>
 
@@ -109,6 +122,14 @@ const ProductDetail = ({ route, navigation }) => {
             </View>
             <View style={suportStyle.infoSupport}>
                 <Card style={suportStyle.card}>
+                    <Text style={productStyles.ratingTitle}>Califica Este Producto</Text>
+                    <View style={productStyles.starsContainer}>
+                        {[1, 2, 3, 4, 5].map((star) => (
+                            <Pressable key={star} onPress={() => handleRating(star)}>
+                                <Star filled={star <= rating} />
+                            </Pressable>
+                        ))}
+                    </View>
                     <Text style={suportStyle.listItemText}>Comentarios</Text>
                     <Text style={suportStyle.listItemTextInfo}>Aquí podrás dejar algún comentario</Text>
                     <TextInput
@@ -116,7 +137,7 @@ const ProductDetail = ({ route, navigation }) => {
                         label='Comentario'
                         mode='outlined'
                         activeOutlineColor='#146C94'
-                        maxLength={300}
+                        maxLength={200}
                     />
                     <Pressable style={suportStyle.sendButton}>
                         <Text style={suportStyle.sendButtonText}>Enviar</Text>

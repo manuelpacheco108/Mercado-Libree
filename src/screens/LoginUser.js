@@ -3,15 +3,14 @@ import { View, Text, TextInput, Alert, ScrollView, Pressable } from "react-nativ
 import MyOwnButton from "../components/MyOwnButton";
 import StylesLogin from "../styles/styleLoginUser";
 import { colors } from "../styles/globalStyles";
-import { UserContext } from '../context/UserContext'; // Importamos el contexto
+import { UserContext } from '../context/UserContext';
 
 const LoginUser = ({ navigation }) => {
-  const { loginUser } = useContext(UserContext); // Accedemos a la función de login desde el contexto
+  const { loginUser } = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState({ email: '', password: '' });
 
-  // useEffect para validar el email cuando cambie
   useEffect(() => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email && !regex.test(email)) {
@@ -21,7 +20,6 @@ const LoginUser = ({ navigation }) => {
     }
   }, [email]);
 
-  // useEffect para validar la contraseña cuando cambie
   useEffect(() => {
     const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (password && !pattern.test(password)) {
@@ -35,11 +33,10 @@ const LoginUser = ({ navigation }) => {
   }, [password]);
 
   const handleLogin = () => {
-    // Verificamos si el email y la contraseña son válidos
     if (!error.email && !error.password && email && password) {
       try {
         loginUser(email, password);
-        navigation.navigate('Home'); // Navegar a la pantalla principal después del login
+        navigation.navigate('HomeDrawer');
       } catch (err) {
         Alert.alert('Error', err.message);
       }
@@ -59,7 +56,7 @@ const LoginUser = ({ navigation }) => {
           <TextInput
             style={[StylesLogin.input, error.email && StylesLogin.inputError]}
             value={email}
-            onChangeText={setEmail}  // Solo actualizamos el estado de email
+            onChangeText={setEmail}
             placeholder="Email"
             placeholderTextColor={colors.highlight}
             autoCapitalize="none"
@@ -74,7 +71,7 @@ const LoginUser = ({ navigation }) => {
           <TextInput
             style={[StylesLogin.input, error.password && StylesLogin.inputError]}
             value={password}
-            onChangeText={setPassword}  // Solo actualizamos el estado de password
+            onChangeText={setPassword}
             placeholder="Contraseña"
             placeholderTextColor={colors.highlight}
             secureTextEntry
@@ -95,12 +92,12 @@ const LoginUser = ({ navigation }) => {
           style={[StylesLogin.buttonSignin, StylesLogin.textButtonSignIn]}
         />
         <View style={StylesLogin.containerFooter}>
-    
+
 
           <Pressable style={StylesLogin.containerFooter}
-                    onPress={() => navigation.navigate('Privacy')}>
-                    <Text style={StylesLogin.footerText}>Cómo cuidamos tu privacidad</Text>
-                </Pressable>
+            onPress={() => navigation.navigate('Privacy')}>
+            <Text style={StylesLogin.footerText}>Cómo cuidamos tu privacidad</Text>
+          </Pressable>
 
 
         </View>

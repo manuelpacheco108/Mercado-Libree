@@ -3,10 +3,10 @@ import { View, Text, Image, Pressable } from 'react-native';
 import favoriteStyles from '../styles/favoriteStyles';
 import { Card } from 'react-native-paper';
 import MyOwnButton from '../components/MyOwnButton';
-import AppDataContext from '../context/AppDataContext'; // Importar el contexto
+import AppDataContext from '../context/AppDataContext';
 
 const FavoriteCard = ({ product, navigation }) => {
-    const { removeFromFavorites } = useContext(AppDataContext); // Obtener la función para eliminar favoritos
+    const { removeFromFavorites } = useContext(AppDataContext);
 
     return (
         <View style={favoriteStyles.favoriteCardContainer}>
@@ -16,7 +16,7 @@ const FavoriteCard = ({ product, navigation }) => {
                     <View style={favoriteStyles.textContainer}>
                         <Text style={favoriteStyles.title}>{product.name}</Text>
                         <Text style={favoriteStyles.description}>{product.description}</Text>
-                        <Text style={favoriteStyles.description}>Valor: {product.discount}</Text>
+                        <Text style={favoriteStyles.description}>Valor: ${product.discount} COP</Text>
                         <Text style={favoriteStyles.description}>Disponible: {product.status}</Text>
                     </View>
                 </Card>
@@ -24,7 +24,7 @@ const FavoriteCard = ({ product, navigation }) => {
             <MyOwnButton
                 title="Quitar de Favoritos"
                 style={favoriteStyles.removeButton}
-                onPress={() => removeFromFavorites(product.id)} // Usar product.id para eliminar el favorito
+                onPress={() => removeFromFavorites(product.id)}
             />
         </View>
     );

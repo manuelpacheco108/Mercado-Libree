@@ -2,12 +2,10 @@ import React, { useState, createContext } from 'react';
 
 export const UserContext = createContext();
 
-// Proveedor del contexto
 export const UserProvider = ({ children }) => {
-  const [users, setUsers] = useState([]); // Arreglo de usuarios registrados
-  const [currentUser, setCurrentUser] = useState(null); // Usuario actualmente logueado
+  const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
 
-  // Función para registrar un nuevo usuario
   const registerUser = (newUser) => {
     const emailExists = users.some(user => user.email === newUser.email);
     if (emailExists) {
@@ -15,7 +13,7 @@ export const UserProvider = ({ children }) => {
     }
 
     setUsers([...users, newUser]);
-    setCurrentUser(newUser); // Establecer al nuevo usuario como el actual
+    setCurrentUser(newUser);
   };
 
   const loginUser = (email, password) => {

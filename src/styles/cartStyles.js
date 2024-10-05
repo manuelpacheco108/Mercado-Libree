@@ -55,5 +55,5 @@ export default StyleSheet.create({
         ...typography.header,
         color: colors.text,
     },
-    
+
 });

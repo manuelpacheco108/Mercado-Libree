@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors, typography } from './globalStyles';
 const shoppingStyles = StyleSheet.create({
 
     container: {
@@ -91,7 +92,7 @@ const shoppingStyles = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 5,
-    }, 
+    },
     status: {
         fontWeight: 'bold'
     },
@@ -100,7 +101,12 @@ const shoppingStyles = StyleSheet.create({
         flex: 1,
         padding: 5,
         marginLeft: 5
-    }
+    },
+    emptyPurhcasesT: {
+        alignSelf: 'center',
+        fontSize: typography.header.fontSize,
+        color: colors.text,
+    },
 
 });
 

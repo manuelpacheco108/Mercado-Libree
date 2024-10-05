@@ -1,78 +1,65 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, Image } from 'react-native';
-import StylesBuyCard from '../styles/styleBuyCard'
-import { colors } from '../styles/globalStyles';
+import React, { useContext } from 'react';
+import { View, Text, Image, ScrollView } from 'react-native';
+import AppDataContext from '../context/AppDataContext';
+import MyOwnButton from '../components/MyOwnButton';
 import DrawerNavigation from '../components/DrawerNavigation';
-import MyOwnButton from '../components/MyOwnButton'
-
+import StylesBuyCard from '../styles/styleBuyCard';
 
 const BuyCart = ({ navigation }) => {
-    const [cartItems, setCartItems] = useState([
-        {
-            id: 1,
-            photo: require('../img/tshirt.png'),
-            name: 'Camisa',
-            description: 'Camisa de spider-man muy masculina',
-            price: 95000,
-            quantity: 1
-        },
-        {
-            id: 3,
-            photo: require('../img/shoes.png'),
-            name: 'Zapatos',
-            description: 'Tenis Jordan 4 azul con blanco',
-            price: 700000,
-            quantity: 1
-        },
-    ]);
-    const updateQuantity = (id, amount) => {
-        setCartItems(prevItems =>
-            prevItems.map(item =>
-                item.id === id
-                    ? { ...item, quantity: Math.max(1, item.quantity + amount) }
-                    : item
-            )
-        );
-    };
-    const calculateTotal = () => {
-        return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    };
+    const { cart, total, quantity, removeFromCart, clearCart } = useContext(AppDataContext);
 
-    const renderItem = ({ item }) => (
-        <View style={StylesBuyCard.itemContainer}>
-            <Image source={item.photo} style={StylesBuyCard.itemImage} />
-            <View style={StylesBuyCard.itemDetails}>
-                <Text style={StylesBuyCard.itemName}>{item.name}</Text>
-                <Text style={StylesBuyCard.itemDescription}>{item.description}</Text>
-                <Text style={StylesBuyCard.itemPrice}>${item.price}</Text>
-                <View style={StylesBuyCard.quantityContainer}>
-                    <MyOwnButton title="-" onPress={() => updateQuantity(item.id, -1)} />
-                    <Text style={StylesBuyCard.itemQuantity}>{item.quantity}</Text>
-                    <MyOwnButton title="+" onPress={() => updateQuantity(item.id, 1)} />
-                </View>
-            </View>
-        </View>
-    );
     return (
-        <View style={StylesBuyCard.container}>
-             <DrawerNavigation.Menu navigation={navigation} />
-             <View style={StylesBuyCard.containerForm}>
-            <FlatList
-                data={cartItems}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id.toString()}
-            />
-            <View style={StylesBuyCard.totalContainer}>
-                <Text style={StylesBuyCard.totalText}>Total: ${calculateTotal()}</Text>
-            </View>
-            <MyOwnButton
-                title="Proceder al Pago"
-                onPress={() => navigation.navigate('PaymentScreen', {cartItems:cartItems})}
-                color={colors.highlight}
-            />
-            </View>
-        </View>
-        
+        <ScrollView style={StylesBuyCard.container}>
+            <DrawerNavigation.Menu navigation={navigation} />
+            {cart.length > 0 ? (
+                <ScrollView style={StylesBuyCard.containerForm}>
+                    {cart.map((item, index) => (
+                        <View key={index} style={StylesBuyCard.itemContainer}>
+                            <Image source={item.photo} style={StylesBuyCard.itemImage} />
+                            <View style={StylesBuyCard.itemDetails}>
+                                <Text style={StylesBuyCard.itemName}>{item.name}</Text>
+                                <Text style={StylesBuyCard.itemDescription}>{item.description}</Text>
+                                <Text style={StylesBuyCard.itemPrice}>Precio: ${item.price} COP</Text>
+                                <View style={StylesBuyCard.quantityContainer}>
+                                    <MyOwnButton
+                                        title="-"
+                                        onPress={() => quantity(item.id, 'subtract')}
+                                    />
+                                    <Text style={StylesBuyCard.itemQuantity}>{item.quantity}</Text>
+                                    <MyOwnButton
+                                        title="+"
+                                        onPress={() => quantity(item.id, 'add')}
+                                    />
+                                </View>
+                                <Text style={StylesBuyCard.itemPrice}>
+                                    Precio Por Unidad: ${(parseFloat(item.price) * item.quantity).toFixed(2)} COP
+                                </Text>
+                                <MyOwnButton
+                                    title="Quitar del carrito"
+                                    style={StylesBuyCard.removeButton}
+                                    onPress={() => removeFromCart(item.id)}
+                                />
+                            </View>
+                        </View>
+                    ))}
+                    <Text style={StylesBuyCard.totalText}>Total: ${total.toFixed(2)} COP</Text>
+                    <View style={StylesBuyCard.container}>
+                        <MyOwnButton
+                            title="Vaciar Carrito"
+                            onPress={clearCart}
+                            style={StylesBuyCard.clearCartButton}
+                        />
+                        <MyOwnButton
+                            title="Proceder al Pago"
+                            onPress={() => navigation.navigate('PaymentScreen')}
+                            style={StylesBuyCard.checkoutButton}
+                        />
+                    </View>
+                </ScrollView>
+            ) : (
+                <Text style={StylesBuyCard.emptyCartText}> El carrito está vacío 🚑 </Text>
+            )}
+        </ScrollView>
     );
 };
 

@@ -40,8 +40,8 @@ const StylesLogin = StyleSheet.create({
         borderRadius: 5,
         borderWidth: 1,
         borderColor: "lightslategrey",
-        marginBottom: 15, // Reducido para que el espacio no sea excesivo
-        
+        marginBottom: 15,
+
     },
     buttons: {
         flexDirection: "column",
@@ -87,9 +87,9 @@ const StylesLogin = StyleSheet.create({
     },
     errorText: {
         color: 'red',
-        fontSize: 14, // Tamaño de fuente más pequeño para el texto de error
-        marginTop: 5, // Espacio entre el input y el mensaje de error
-        marginLeft: 10, // Alinear el texto de error con el campo
+        fontSize: 14,
+        marginTop: 5, 
+        marginLeft: 10, 
         marginBottom: 5
     },
 });

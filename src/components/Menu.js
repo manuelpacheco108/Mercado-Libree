@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, Pressable } from 'react-native';
+import { View, Text, Image, Pressable } from 'react-native';
 import styles from '../styles/globalStyles';
 
 const Menu = () => {
@@ -12,7 +12,7 @@ const Menu = () => {
                 />
             </Pressable>
             <Text style={styles.textCategories}>Categorias</Text>
-            
+
         </View>
     );
 };

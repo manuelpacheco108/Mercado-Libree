@@ -2,25 +2,22 @@ import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TextInput, Alert, Image, ScrollView } from 'react-native';
 import MyOwnButton from '../components/MyOwnButton';
 import StylesRegisterUser from '../styles/styleRegisterUser';
-import { UserContext } from '../context/UserContext'; // Importar el contexto
-import DrawerNavigation from '../components/DrawerNavigation'; // Verifica si este es correcto
+import { UserContext } from '../context/UserContext';
+import DrawerNavigation from '../components/DrawerNavigation';
 import { colors } from "../styles/globalStyles";
 
 const RegisterUser = ({ navigation }) => {
-  const { registerUser } = useContext(UserContext); // Acceder a la función para registrar el usuario
-
-  // Estado para los datos de usuario
+  const { registerUser } = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [gender, setGender] = useState('');
   const [password, setPassword] = useState('');
   const [birthdate, setBirthdate] = useState('');
-  const [imageUrl, setImageUrl] = useState(''); // Estado para la URL de la imagen
+  const [imageUrl, setImageUrl] = useState('');
 
   const [error, setError] = useState({ email: '', password: '', birthdate: '' });
 
-  // useEffect para validar el correo electrónico
   useEffect(() => {
     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email && !pattern.test(email)) {
@@ -28,11 +25,10 @@ const RegisterUser = ({ navigation }) => {
     } else {
       setError((prevError) => ({ ...prevError, email: '' }));
     }
-  }, [email]); // Ejecutar cuando el email cambie
+  }, [email]);
 
-  // useEffect para validar la contraseña
   useEffect(() => {
-    const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Al menos 8 caracteres
+    const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (password && !pattern.test(password)) {
       setError((prevError) => ({
         ...prevError,
@@ -41,11 +37,10 @@ const RegisterUser = ({ navigation }) => {
     } else {
       setError((prevError) => ({ ...prevError, password: '' }));
     }
-  }, [password]); // Ejecutar cuando la contraseña cambie
+  }, [password]);
 
-  // useEffect para validar la fecha de nacimiento solo si hay algo en el campo
   useEffect(() => {
-    if (birthdate) { // Solo ejecutar la validación si el campo no está vacío
+    if (birthdate) {
       const datePattern = /^\d{4}-\d{2}-\d{2}$/;
       const birthDateObj = new Date(birthdate);
       const today = new Date();
@@ -63,10 +58,10 @@ const RegisterUser = ({ navigation }) => {
         setError((prevError) => ({ ...prevError, birthdate: '' }));
       }
     } else {
-      // Si el campo de la fecha está vacío, no mostrar error
+
       setError((prevError) => ({ ...prevError, birthdate: '' }));
     }
-  }, [birthdate]); // Ejecutar cuando la fecha de nacimiento cambie
+  }, [birthdate]);
 
   const handleSignUp = () => {
     if (
@@ -91,7 +86,7 @@ const RegisterUser = ({ navigation }) => {
         });
 
         Alert.alert('Éxito', 'Cuenta creada exitosamente.');
-        navigation.navigate('Home'); // Redirigir al login después de registrarse
+        navigation.navigate('HomeDrawer');
       } catch (err) {
         Alert.alert('Error', err.message);
       }
@@ -102,7 +97,6 @@ const RegisterUser = ({ navigation }) => {
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      {/* Asegúrate de que este componente exista */}
       {DrawerNavigation && DrawerNavigation.Menu ? (
         <DrawerNavigation.Menu navigation={navigation} />
       ) : null}
@@ -162,10 +156,8 @@ const RegisterUser = ({ navigation }) => {
           value={birthdate}
           onChangeText={setBirthdate}
         />
-        {/* Mostrar error solo si el campo no está vacío y hay un error */}
         {birthdate && error.birthdate ? <Text style={StylesRegisterUser.errorText}>{error.birthdate}</Text> : null}
 
-        {/* Campo para ingresar la URL de la imagen */}
         <Text style={StylesRegisterUser.textTopInput}>Imagen</Text>
         <TextInput
           style={StylesRegisterUser.input}
@@ -174,8 +166,6 @@ const RegisterUser = ({ navigation }) => {
           value={imageUrl}
           onChangeText={setImageUrl}
         />
-
-        {/* Mostrar vista previa de la imagen */}
         {imageUrl ? (
           <Image source={{ uri: imageUrl }} style={{ width: 100, height: 100, marginTop: 10 }} />
         ) : null}
