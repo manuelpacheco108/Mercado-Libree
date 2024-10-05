@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { colors, typography } from './globalStyles';
 const favoriteStyles = StyleSheet.create({
 
     container: {
@@ -48,6 +49,12 @@ const favoriteStyles = StyleSheet.create({
     description: {
         fontSize: 14,
         color: '#565656',
+    },
+    emptyFavoriteText: {
+        alignSelf: 'center',
+        fontSize: typography.header.fontSize,
+        color: colors.text,
+        fontWeight: 'bold'
     },
     menuContainer: {
         padding: 2,

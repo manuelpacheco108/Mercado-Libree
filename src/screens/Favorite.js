@@ -39,7 +39,8 @@ const Favorite = ({ navigation }) => {
         data={favorites} // Usar la lista de favoritos en lugar de la lista estática
         renderItem={({ item }) => <FavoriteCard product={item} navigation={navigation} />}
         keyExtractor={(item) => item.id.toString()}
-        ListEmptyComponent={<Text style={productStyles.titleProduct}>No tienes favoritos aún</Text>} // Mensaje cuando no hay favoritos
+        ListEmptyComponent={<Text style={favoriteStyles.emptyFavoriteText}> Aún no tienes favoritos 🚑 </Text>} // Mensaje cuando no hay favoritos
+        
       />
     </View>
     </ScrollView>
