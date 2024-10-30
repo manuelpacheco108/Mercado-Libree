@@ -1,27 +1,56 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, Image, Pressable, ScrollView } from 'react-native';
+import InAppBrowser from 'react-native-inappbrowser-reborn';
+import { Linking } from 'react-native';
 import AppDataContext from '../context/AppDataContext';
 import StylesPayment from '../styles/stylePayment';
 import MyOwnButton from '../components/MyOwnButton';
 import DrawerNavigation from '../components/DrawerNavigation';
+import ButtonCustomTabs from '../components/ButtonCustomTabs';
 import { colors } from '../styles/globalStyles';
+import axios from 'axios';
 
 const PaymentScreen = ({ navigation }) => {
     const { cart, total, clearCart, addPurchase } = useContext(AppDataContext);
     const [deliveryAddress, setDeliveryAddress] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('');
-    const [cardNumber, setCardNumber] = useState('');
-    const [selectedBank, setSelectedBank] = useState('');
-    const [isPressed, setIsPressed] = useState(false);
     const [paymentMessage, setPaymentMessage] = useState('');
 
-    const handlePayment = () => {
-        addPurchase();
-        setPaymentMessage('Pago realizado con éxito 💰');
-        setTimeout(() => {
-            clearCart();
-            navigation.navigate('HomeDrawer');
-        }, 1500);
+    const openUrl = async (url) => {
+        if (await InAppBrowser.isAvailable()) {
+            InAppBrowser.open(url, {
+                showTitle: true,
+                toolbarColor: '#6200EE',
+                enableUrlBarHiding: true,
+                enableDefaultShare: true,
+                forceCloseOnRedirection: false,
+                animations: {
+                    startEnter: 'slide_in_right',
+                    startExit: 'slide_out_left',
+                    endEnter: 'slide_in_left',
+                    endExit: 'slide_out_right',
+                },
+            });
+        } else {
+            Linking.openURL(url);
+        }
+    };
+
+    const createPayment = async () => {
+        try {
+            const response = await axios.post("http://192.168.128.33:3000/create_preference", {
+                items: cart.map(item => ({
+                    title: item.name,
+                    quantity: Number(item.quantity),
+                    unit_price: Number(item.price),
+                    currency_id: "COP"
+                }))
+            });
+            const preferenceUrl = response.data.init_point;
+            openUrl(preferenceUrl);
+        } catch (error) {
+            console.log("Error en la creación del pago:", error);
+        }
     };
 
     return (
@@ -49,76 +78,19 @@ const PaymentScreen = ({ navigation }) => {
                     onChangeText={(text) => setDeliveryAddress(text.slice(0, 30))}
                     color="black"
                 />
-
-                <View style={StylesPayment.paymentMethodContainer}>
-                    <Pressable
-                        style={[
-                            StylesPayment.paymentMethodButton,
-                            paymentMethod === 'PSE' && StylesPayment.selectedPaymentMethod,
-                        ]}
-                        onPress={() => setPaymentMethod('PSE')}
-                    >
-                        <Text style={StylesPayment.paymentMethodText}>PSE</Text>
-                    </Pressable>
-                    <Pressable
-                        style={[
-                            StylesPayment.paymentMethodButton,
-                            paymentMethod === 'credit_card' && StylesPayment.selectedPaymentMethod,
-                        ]}
-                        onPress={() => setPaymentMethod('credit_card')}
-                    >
-                        <Text style={StylesPayment.paymentMethodText}>Tarjeta de crédito</Text>
-                    </Pressable>
-                    <Pressable
-                        style={[
-                            StylesPayment.paymentMethodButton,
-                            paymentMethod === 'efecty' && StylesPayment.selectedPaymentMethod,
-                        ]}
-                        onPress={() => { setPaymentMethod('efecty') }}
-                        onPressIn={() => setIsPressed(true)}
-
-                    >
-                        <Text style={[StylesPayment.paymentMethodText, isPressed && StylesPayment.selectedPaymentMethod]}>
-                            Efecty
-                        </Text>
-                    </Pressable>
-                </View>
-
-                {paymentMethod === 'credit_card' && (
-                    <TextInput
-                        style={StylesPayment.input}
-                        placeholder="Número de tarjeta"
-                        placeholderTextColor={colors.highlight}
-                        value={cardNumber}
-                        onChangeText={(text) => setCardNumber(text.replace(/[^0-9]/g, '').slice(0, 16))}
-                        keyboardType="numeric"
-                        color="black"
-                    />
-                )}
-
-                {paymentMethod === 'PSE' && (
-                    <TextInput
-                        style={StylesPayment.input}
-                        placeholder="Seleccionar Banco"
-                        placeholderTextColor={colors.highlight}
-                        value={selectedBank}
-                        onChangeText={(text) => setSelectedBank(text)}
-                        color="black"
-                    />
-                )}
-                {paymentMessage ?
-                    <View style={StylesPayment.containerMessageToConfirmation}>
-                        <Text
-                            style={StylesPayment.paymentMessage}>
-                            {paymentMessage}
-                        </Text>
-                    </View>
-                    : null}
                 <MyOwnButton
                     title="Pagar"
-                    onPress={handlePayment}
+                    onPress={() => {
+                        addPurchase();
+                        setPaymentMessage('Pago realizado con éxito 💰');
+                        setTimeout(() => {
+                            clearCart();
+                            navigation.navigate('HomeDrawer');
+                        }, 1500);
+                    }}
                     disabled={!paymentMethod || total === 0 || !deliveryAddress}
                 />
+                <ButtonCustomTabs onPay={createPayment} />
             </View>
         </ScrollView>
     );

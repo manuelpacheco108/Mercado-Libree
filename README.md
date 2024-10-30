@@ -67,3 +67,33 @@ NAVEGACIÓN
             
 *
               Y se terminaria con el proceso
+
+# Para procesar pago con la API es necesario instalar el paquete de mercadopago:
+
+            npm install @mercadopago/sdk-react
+           * npm install react-native-inappbrowser-reborn --save
+
+# Para el backend:
+
+            npm install express mercadopago cors
+            npm install axios
+
+# Para el frontend
+            npm install react-native-webview
+            npm install axios //para manejo http en nodejs
+            
+Se modifico el archivo android/build.gradle agregandole dos lineas:
+            // Only using Android Support libraries
+            supportLibVersion = "28.0.0"
+Se modifico el archivo android/app/src/main/AndroidManifest.xml
+        En el ejemplo que te mostramos a continuación, configurarás un Deep Link de la forma myapp://checkout/congrats.
+
+            <activity ....> ....
+            <intent-filter data-generated="true">
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="myapp" android:host="checkout" android:pathPrefix="/congrats"/> <category android:name="android.intent.category.BROWSABLE"/>
+            <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            .... </activity>
+
+Para la API se necesita vincular una cuenta de pagos. Puse la mia para hacer test:
