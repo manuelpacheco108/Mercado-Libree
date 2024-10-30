@@ -12,4 +12,4 @@ const HomeContent = ({ navigation }) => {
     );
 };
 
-export default HomeContent;
+export default HomeContent; 

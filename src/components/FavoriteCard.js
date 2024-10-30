@@ -4,6 +4,7 @@ import favoriteStyles from '../styles/favoriteStyles';
 import { Card } from 'react-native-paper';
 import MyOwnButton from '../components/MyOwnButton';
 import AppDataContext from '../context/AppDataContext';
+import productStyles from '../styles/productStyles';
 
 const FavoriteCard = ({ product, navigation }) => {
     const { removeFromFavorites } = useContext(AppDataContext);
@@ -11,7 +12,7 @@ const FavoriteCard = ({ product, navigation }) => {
     return (
         <View style={favoriteStyles.favoriteCardContainer}>
             <Pressable style={favoriteStyles.favoriteContainer} onPress={() => navigation.navigate('ProductDetail', { product })}>
-                <Image style={favoriteStyles.image} source={product.photo} />
+            <Image style={productStyles.image} source={{ uri: product.photo }} />
                 <Card style={favoriteStyles.card}>
                     <View style={favoriteStyles.textContainer}>
                         <Text style={favoriteStyles.title}>{product.name}</Text>

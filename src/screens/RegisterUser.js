@@ -58,12 +58,11 @@ const RegisterUser = ({ navigation }) => {
         setError((prevError) => ({ ...prevError, birthdate: '' }));
       }
     } else {
-
       setError((prevError) => ({ ...prevError, birthdate: '' }));
     }
   }, [birthdate]);
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     if (
       !error.email &&
       !error.password &&
@@ -75,7 +74,7 @@ const RegisterUser = ({ navigation }) => {
       birthdate
     ) {
       try {
-        registerUser({
+        await registerUser({
           nombre,
           apellido,
           gender,
@@ -102,7 +101,7 @@ const RegisterUser = ({ navigation }) => {
       ) : null}
 
       <View style={StylesRegisterUser.container}>
-        <Text style={StylesRegisterUser.title}>Registrate en Mercado Libre</Text>
+        <Text style={StylesRegisterUser.title}>Regístrate en Mercado Libre</Text>
         <Text style={StylesRegisterUser.textTopInput}>Nombre</Text>
         <TextInput
           style={StylesRegisterUser.input}

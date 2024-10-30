@@ -32,13 +32,13 @@ const LoginUser = ({ navigation }) => {
     }
   }, [password]);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!error.email && !error.password && email && password) {
       try {
-        loginUser(email, password);
+        await loginUser(email, password);
         navigation.navigate('HomeDrawer');
       } catch (err) {
-        Alert.alert('Error', err.message);
+        Alert.alert('Error', err.message || 'Error al iniciar sesión. Por favor, verifica tus credenciales.');
       }
     } else {
       Alert.alert('Error', 'Por favor, ingresa un email y contraseña válidos.');
@@ -92,14 +92,10 @@ const LoginUser = ({ navigation }) => {
           style={[StylesLogin.buttonSignin, StylesLogin.textButtonSignIn]}
         />
         <View style={StylesLogin.containerFooter}>
-
-
           <Pressable style={StylesLogin.containerFooter}
             onPress={() => navigation.navigate('Privacy')}>
             <Text style={StylesLogin.footerText}>Cómo cuidamos tu privacidad</Text>
           </Pressable>
-
-
         </View>
       </View>
     </ScrollView>

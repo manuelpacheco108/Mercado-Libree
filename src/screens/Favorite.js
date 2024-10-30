@@ -16,7 +16,7 @@ const Menu = ({ navigation }) => {
             routes: [{ name: 'HomeDrawer' }],
           });
         }}
-      >
+      > 
         <Image
           source={require('../img/back.png')}
           style={favoriteStyles.menuIcon}
@@ -45,4 +45,4 @@ const Favorite = ({ navigation }) => {
   );
 }
 
-export default Favorite;
+export default Favorite; 

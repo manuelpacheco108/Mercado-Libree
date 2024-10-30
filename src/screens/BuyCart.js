@@ -15,7 +15,7 @@ const BuyCart = ({ navigation }) => {
                 <ScrollView style={StylesBuyCard.containerForm}>
                     {cart.map((item, index) => (
                         <View key={index} style={StylesBuyCard.itemContainer}>
-                            <Image source={item.photo} style={StylesBuyCard.itemImage} />
+                            <Image style={StylesBuyCard.itemImage} source={{ uri: item.photo }} />
                             <View style={StylesBuyCard.itemDetails}>
                                 <Text style={StylesBuyCard.itemName}>{item.name}</Text>
                                 <Text style={StylesBuyCard.itemDescription}>{item.description}</Text>
@@ -44,7 +44,7 @@ const BuyCart = ({ navigation }) => {
                     ))}
                     <Text style={StylesBuyCard.totalText}>Total: ${total.toFixed(2)} COP</Text>
                     <View style={StylesBuyCard.container}>
-                        <MyOwnButton
+                        <MyOwnButton 
                             title="Vaciar Carrito"
                             onPress={clearCart}
                             style={StylesBuyCard.clearCartButton}

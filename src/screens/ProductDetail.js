@@ -12,10 +12,8 @@ const Menu = ({ navigation }) => {
     return (
         <View style={productStyles.menuContainer}>
             <Pressable
-                style={productStyles.menuButton}
-                onPress={() => {
-                    navigation.goBack();
-                }}
+                style={productStyles.menuButton} 
+                onPress={() => navigation.goBack()}
             >
                 <Image
                     source={require('../img/back.png')}
@@ -33,6 +31,8 @@ const ProductDetail = ({ route, navigation }) => {
     const { addToCart, addToFavorites } = useContext(AppDataContext);
     const [message, setMessage] = useState('');
     const [quantityAdded, setQuantityAdded] = useState(0);
+    const [comment, setComment] = useState('');
+    const [question, setQuestion] = useState('');
 
     useEffect(() => {
         if (quantityAdded > 0) {
@@ -47,7 +47,7 @@ const ProductDetail = ({ route, navigation }) => {
 
     const Star = ({ filled }) => {
         let color = filled ? '#FFD700' : 'black';
-        return <Text style={{ fontSize: 30, color }}>★</Text>;
+        return <Text style={{ fontSize: 30, color }}>{'★'}</Text>;
     };
 
     const handleRating = (value) => {
@@ -65,6 +65,24 @@ const ProductDetail = ({ route, navigation }) => {
         Alert.alert('Éxito', 'Producto agregado a favoritos');
     };
 
+    const handleSubmitComment = () => {
+        if (comment.trim()) {
+            Alert.alert('Comentario enviado', comment);
+            setComment('');
+        } else {
+            Alert.alert('Error', 'Por favor, ingresa un comentario');
+        }
+    };
+
+    const handleSubmitQuestion = () => {
+        if (question.trim()) {
+            Alert.alert('Pregunta enviada', question);
+            setQuestion('');
+        } else {
+            Alert.alert('Error', 'Por favor, ingresa una pregunta');
+        }
+    };
+
     return (
         <ScrollView>
             <View>
@@ -73,7 +91,7 @@ const ProductDetail = ({ route, navigation }) => {
             <View style={suportStyle.infoSupport}>
                 <Card style={suportStyle.card}>
                     <Text style={productStyles.titleProduct}>Detalles del Producto</Text>
-                    <Image style={productStyles.image} source={product.photo} />
+                    <Image style={productStyles.image} source={{ uri: product.photo }} />
                     <Text style={productStyles.title}>{product.name}</Text>
                     <Text style={productStyles.text}>{product.description}</Text>
                     <Text style={productStyles.textPrice}>${product.price} COP</Text>
@@ -84,9 +102,9 @@ const ProductDetail = ({ route, navigation }) => {
                     <Text style={profileStyles.titlePrivacy}>Medios de Pago</Text>
 
                     <View style={profileStyles.buy}>
-                        <Image style={profileStyles.payCard} source={product.master} />
-                        <Image style={profileStyles.payCard} source={product.visa} />
-                        <Image style={profileStyles.payCard} source={product.bancolombia} />
+                    <Image style={profileStyles.payCard} source={require('../img/mastercard.png')} />
+                <Image style={profileStyles.payCard} source={require('../img/visa.png')} />
+                <Image style={profileStyles.payCard} source={require('../img/bancolombia.png')} />
                     </View>
                 </Card>
             </View>
@@ -114,8 +132,10 @@ const ProductDetail = ({ route, navigation }) => {
                         mode='outlined'
                         activeOutlineColor='#146C94'
                         maxLength={100}
+                        value={question}
+                        onChangeText={setQuestion}
                     />
-                    <Pressable style={suportStyle.sendButton}>
+                    <Pressable style={suportStyle.sendButton} onPress={handleSubmitQuestion}>
                         <Text style={suportStyle.sendButtonText}>Enviar</Text>
                     </Pressable>
                 </Card>
@@ -138,8 +158,10 @@ const ProductDetail = ({ route, navigation }) => {
                         mode='outlined'
                         activeOutlineColor='#146C94'
                         maxLength={200}
+                        value={comment}
+                        onChangeText={setComment}
                     />
-                    <Pressable style={suportStyle.sendButton}>
+                    <Pressable style={suportStyle.sendButton} onPress={handleSubmitComment}>
                         <Text style={suportStyle.sendButtonText}>Enviar</Text>
                     </Pressable>
                 </Card>

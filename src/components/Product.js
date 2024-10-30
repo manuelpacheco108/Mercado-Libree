@@ -1,107 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, FlatList } from 'react-native';
+import firestore from '@react-native-firebase/firestore'; // Asegúrate de importar firestore
 import productStyles from '../styles/productStyles';
 import ProductCard from './ProductCard';
 
-const product = [
-  {
-    id: 25,
-    photo: require('../img/headphones.png'),
-    name: 'Audífonos',
-    description: 'Audífonos inalámbricos grises',
-    price: '100000',
-    discount: '95000',
-    offerValue: '5%OFF',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../img/mastercard.png'),
-    visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png'),
-    status: 'Si'
-  },
-  {
-    id: 26,
-    photo: require('../img/mouse.png'),
-    name: 'Mouse',
-    description: 'Mouse gamer RedDragon con luces',
-    price: '500000',
-    discount: '95000',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../img/mastercard.png'),
-    visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png'),
-    status: 'Si'
-
-  },
-  {
-    id: 27,
-    photo: require('../img/tecno.png'),
-    name: 'Celular',
-    description: 'Celular Xiaomi azul brillante',
-    price: '4500000',
-    discount: '700000',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../img/mastercard.png'),
-    visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png'),
-    status: 'Si'
-  },
-  {
-    id: 28,
-    photo: require('../img/battery.jpg'),
-    name: 'Batería',
-    description: 'Batería portátil con linterna',
-    price: '200000',
-    discount: '130000',
-    offerValue: '35%OFF',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../img/mastercard.png'),
-    visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png'),
-    status: 'Si'
-  },
-  {
-    id: 29,
-    photo: require('../img/watch.png'),
-    name: 'Reloj',
-    description: 'Reloj digital con manillas azules',
-    price: '800000',
-    discount: '95000',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../img/mastercard.png'),
-    visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png'),
-    status: 'Si'
-  },
-  {
-    id: 30,
-    photo: require('../img/camera.png'),
-    name: 'Cámara',
-    description: 'Cámara digital Nikon negra',
-    price: '100000',
-    discount: '95000',
-    offerValue: '5%OFF',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../img/mastercard.png'),
-    visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png'),
-    status: 'Si'
-  }
-]
-
-
 const Product = ({ navigation }) => {
+  const [products, setProducts] = useState([]);
+
+  // Obtener productos desde Firestore
+  useEffect(() => {
+    const productRef = firestore().collection('product'); // Cambia 'products' al nombre de tu colección
+    const unsubscribe = productRef.onSnapshot(
+      (snapshot) => {
+        const productData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setProducts(productData);
+      },
+      (error) => {
+        console.error("Error fetching products: ", error);
+      }
+    );
+
+    return () => unsubscribe(); // Limpieza del listener al desmontar
+  }, []);
+
   return (
     <View>
       <FlatList
-        data={product}
+        data={products}
         renderItem={({ item }) => <ProductCard product={item} navigation={navigation} />}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         columnWrapperStyle={productStyles.row}
       />
-
     </View>
   );
-}
+};
 
 export default Product;
