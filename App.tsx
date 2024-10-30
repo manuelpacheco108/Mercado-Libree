@@ -1,6 +1,6 @@
 import React from "react";
 import MainStack from "./src/navigation/MainStack";
-import { UserProvider } from "./src/context/UserContext"; // Importar el contexto
+import { UserProvider } from "./src/context/UserContext";
 import { AppDataContextProvider } from "./src/context/AppDataContext";
 
 const App = () => {

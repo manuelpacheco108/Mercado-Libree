@@ -1,19 +1,17 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, TextInput, Image, Pressable, ScrollView } from 'react-native';
+import { View, Text, TextInput, Image, ScrollView } from 'react-native';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import { Linking } from 'react-native';
 import AppDataContext from '../context/AppDataContext';
 import StylesPayment from '../styles/stylePayment';
 import MyOwnButton from '../components/MyOwnButton';
 import DrawerNavigation from '../components/DrawerNavigation';
-import ButtonCustomTabs from '../components/ButtonCustomTabs';
 import { colors } from '../styles/globalStyles';
 import axios from 'axios';
 
 const PaymentScreen = ({ navigation }) => {
     const { cart, total, clearCart, addPurchase } = useContext(AppDataContext);
     const [deliveryAddress, setDeliveryAddress] = useState('');
-    const [paymentMethod, setPaymentMethod] = useState('');
     const [paymentMessage, setPaymentMessage] = useState('');
 
     const openUrl = async (url) => {
@@ -48,6 +46,13 @@ const PaymentScreen = ({ navigation }) => {
             });
             const preferenceUrl = response.data.init_point;
             openUrl(preferenceUrl);
+            addPurchase();
+            setTimeout(() => {
+                setPaymentMessage('Pago realizado con éxito 💰');
+                clearCart();
+                navigation.navigate('HomeDrawer');
+                setPaymentMessage('');
+            }, 2500);
         } catch (error) {
             console.log("Error en la creación del pago:", error);
         }
@@ -78,19 +83,15 @@ const PaymentScreen = ({ navigation }) => {
                     onChangeText={(text) => setDeliveryAddress(text.slice(0, 30))}
                     color="black"
                 />
-                <MyOwnButton
-                    title="Pagar"
-                    onPress={() => {
-                        addPurchase();
-                        setPaymentMessage('Pago realizado con éxito 💰');
-                        setTimeout(() => {
-                            clearCart();
-                            navigation.navigate('HomeDrawer');
-                        }, 1500);
-                    }}
-                    disabled={!paymentMethod || total === 0 || !deliveryAddress}
-                />
-                <ButtonCustomTabs onPay={createPayment} />
+                {paymentMessage ? (
+                    <Text style={StylesPayment.paymentMessage}>{paymentMessage}</Text>
+                ) : (
+                    <MyOwnButton
+                        title="Pagar"
+                        onPress={createPayment}
+                        disabled={!total || !deliveryAddress}
+                    />
+                )}
             </View>
         </ScrollView>
     );

@@ -97,3 +97,7 @@ Se modifico el archivo android/app/src/main/AndroidManifest.xml
             .... </activity>
 
 Para la API se necesita vincular una cuenta de pagos. Puse la mia para hacer test:
+            No la voy a poner
+
+Tarjeta de credito de prueba para cumplir con el pago
+            APRO | Pago aprobado | 123456789 | Mastercard 5120 6944 7061 6271  | 123 | 11/25

@@ -37,9 +37,9 @@ app.post("/create_preference", async (req, res) => {
         const preference = {
             items: items,
             back_urls: {
-                success: "myapp://success",
+                success: "mercadolibree://success",
                 failure: "https://www.youtube.com/watch?v=ZRWUvty0I9M",
-                pending: "https://www.youtube.com/watch?v=ZRWUvty0I9M"
+                pending: "mercadolibree://pending"
             },
             auto_return: "approved",
         };
