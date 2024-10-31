@@ -29,7 +29,6 @@ const MainStack = () => {
       const url = event.url;
       if (url.includes("success")) {
         // Navegar a HomeDrawer en caso de éxito
-        navigationRef.current?.navigate("HomeDrawer");
       }
     };
 
