@@ -36,7 +36,7 @@ const PaymentScreen = ({ navigation }) => {
 
     const createPayment = async () => {
         try {
-            const response = await axios.post("http://192.168.128.33:3000/create_preference", {
+            const response = await axios.post("https://api-qogssigufq-uc.a.run.app/create_preference", {
                 items: cart.map(item => ({
                     title: item.name,
                     quantity: Number(item.quantity),
