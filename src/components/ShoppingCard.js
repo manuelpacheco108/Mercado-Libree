@@ -7,7 +7,7 @@ const ShoppingCard = ({ product, navigation }) => {
     return (
         <View style={shoppingStyles.shoppingContainer}>
             <Pressable style={shoppingStyles.shoppingContainer} onPress={() => navigation.navigate('ProductDetail', { product })}>
-                <Image style={shoppingStyles.image} source={product.photo} />
+                <Image style={shoppingStyles.image} source={{ uri: product.photo }} />
                 <Card style={shoppingStyles.card}>
                     <Text style={shoppingStyles.title}>{product.name}</Text>
                     <Text style={shoppingStyles.description}>{product.description}</Text>

@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { View, Text, FlatList, Pressable, Image } from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 import ShoppingCard from '../components/ShoppingCard';
-import AppDataContext from '../context/AppDataContext';
 import shoppingStyles from '../styles/shoppingStyles';
 import { ScrollView } from 'react-native-gesture-handler';
+import { UserContext } from '../context/UserContext';
 
 const Menu = ({ navigation }) => {
   return (
@@ -28,19 +29,49 @@ const Menu = ({ navigation }) => {
 };
 
 const Shopping = ({ navigation }) => {
-  const { purchases } = useContext(AppDataContext);
+  const [purchases, setPurchases] = useState([]);
+  const { currentUser } = useContext(UserContext); 
+
+  useEffect(() => {
+    if (!currentUser) return;
+
+    const purchasesRef = firestore()
+      .collection('purchases')
+      .where('userId', '==', currentUser.email);
+
+    const unsubscribe = purchasesRef.onSnapshot(
+      (snapshot) => {
+        const purchasesData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setPurchases(purchasesData);
+      },
+      (error) => {
+        console.error('Error fetching purchases: ', error);
+      }
+    );
+
+    return () => unsubscribe();
+  }, [currentUser]);
+
+  const allItems = purchases.flatMap((purchase) => purchase.items || []);
 
   return (
     <ScrollView>
       <Menu navigation={navigation} />
-      {purchases.length > 0 ? (
+      {allItems.length > 0 ? (
         <FlatList
-          data={purchases}
-          renderItem={({ item, index }) => <ShoppingCard product={item} navigation={navigation} />}
+          data={allItems}
+          renderItem={({ item }) => (
+            <ShoppingCard product={item} navigation={navigation} />
+          )}
           keyExtractor={(item, index) => index.toString()}
         />
       ) : (
-        <Text style={shoppingStyles.emptyPurhcasesT}>No hay ninguna compra todavía. 🤨</Text>
+        <Text style={shoppingStyles.emptyPurhcasesT}>
+          No hay ninguna compra todavía. 🤨
+        </Text>
       )}
     </ScrollView>
   );

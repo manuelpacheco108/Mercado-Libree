@@ -18,7 +18,6 @@ const DetailCard = ({ product }) => {
             <Text style={productStyles.text}>{product.characteristics}</Text>
             <Text style={profileStyles.titlePrivacy}>Medios de Pago</Text>
             <View style={profileStyles.buy}>
-                {/* Asegúrate de que estas imágenes tengan rutas válidas */}
                 <Image style={profileStyles.payCard} source={require('../img/mastercard.png')} />
                 <Image style={profileStyles.payCard} source={require('../img/visa.png')} />
                 <Image style={profileStyles.payCard} source={require('../img/bancolombia.png')} />

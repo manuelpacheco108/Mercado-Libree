@@ -35,7 +35,7 @@ const Fashion = ({ navigation }) => {
           id: doc.id,
           ...doc.data(),
         }));
-        
+
         setProducts(productList);
         setLoading(false);
       } catch (error) {

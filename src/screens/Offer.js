@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, Image, Pressable } from 'react-native';
-import firestore from '@react-native-firebase/firestore'; // Importando Firestore de @react-native-firebase
+import firestore from '@react-native-firebase/firestore';
 import offerStyles from '../styles/offersStyles';
 import OfferCard from '../components/OfferCard';
 
@@ -32,10 +32,10 @@ const Offer = ({ navigation }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const snapshot = await firestore().collection('product').get(); // Cambia 'products' al nombre de tu colección
+        const snapshot = await firestore().collection('product').get();
         const productsData = snapshot.docs
           .map(doc => ({ id: doc.id, ...doc.data() }))
-          .filter(product => product.offerValue); // Filtra productos que tienen offerValue
+          .filter(product => product.offerValue); 
 
         setProducts(productsData);
       } catch (error) {
@@ -52,7 +52,7 @@ const Offer = ({ navigation }) => {
       <FlatList
         data={products}
         renderItem={({ item }) => <OfferCard product={item} navigation={navigation} />}
-        keyExtractor={(item) => item.id} // Asegúrate de que id es un string o lo conviertes aquí
+        keyExtractor={(item) => item.id}
         numColumns={2}
         columnWrapperStyle={offerStyles.row}
       />

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, TextInput, Alert, Image, ScrollView } from 'react-native';
+import { View, Text, TextInput, Alert, Image, ScrollView, Pressable } from 'react-native';
 import MyOwnButton from '../components/MyOwnButton';
 import StylesRegisterUser from '../styles/styleRegisterUser';
 import { UserContext } from '../context/UserContext';
-import DrawerNavigation from '../components/DrawerNavigation';
 import { colors } from "../styles/globalStyles";
+import favoriteStyles from '../styles/favoriteStyles';
 
 const RegisterUser = ({ navigation }) => {
   const { registerUser } = useContext(UserContext);
@@ -94,12 +94,28 @@ const RegisterUser = ({ navigation }) => {
     }
   };
 
+  const Menu = ({ navigation }) => {
+    return (
+      <View style={favoriteStyles.menuContainer}>
+        <Pressable
+          style={favoriteStyles.menuButton}
+          onPress={() => {
+            navigation.goBack();
+          }}
+        >
+          <Image
+            source={require('../img/back.png')}
+            style={favoriteStyles.menuIcon}
+          />
+        </Pressable>
+        <Text style={favoriteStyles.textFavorites}>Volver</Text>
+      </View>
+    );
+  };
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      {DrawerNavigation && DrawerNavigation.Menu ? (
-        <DrawerNavigation.Menu navigation={navigation} />
-      ) : null}
-
+      <Menu navigation={navigation} />
       <View style={StylesRegisterUser.container}>
         <Text style={StylesRegisterUser.title}>Regístrate en Mercado Libre</Text>
         <Text style={StylesRegisterUser.textTopInput}>Nombre</Text>
@@ -109,6 +125,7 @@ const RegisterUser = ({ navigation }) => {
           placeholderTextColor={colors.highlight}
           value={nombre}
           onChangeText={setNombre}
+          color="black"
         />
         <Text style={StylesRegisterUser.textTopInput}>Apellido</Text>
         <TextInput
@@ -117,6 +134,7 @@ const RegisterUser = ({ navigation }) => {
           placeholderTextColor={colors.highlight}
           value={apellido}
           onChangeText={setApellido}
+          color="black"
         />
         <Text style={StylesRegisterUser.textTopInput}>Género</Text>
         <TextInput
@@ -125,6 +143,7 @@ const RegisterUser = ({ navigation }) => {
           placeholderTextColor={colors.highlight}
           value={gender}
           onChangeText={setGender}
+          color="black"
         />
         <Text style={StylesRegisterUser.textTopInput}>E-mail</Text>
         <TextInput
@@ -135,6 +154,7 @@ const RegisterUser = ({ navigation }) => {
           onChangeText={setEmail}
           keyboardType="email-address"
           autoCapitalize="none"
+          color="black"
         />
         {error.email ? <Text style={StylesRegisterUser.errorText}>{error.email}</Text> : null}
         <Text style={StylesRegisterUser.textTopInput}>Contraseña</Text>
@@ -145,6 +165,7 @@ const RegisterUser = ({ navigation }) => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry
+          color="black"
         />
         {error.password ? <Text style={StylesRegisterUser.errorText}>{error.password}</Text> : null}
         <Text style={StylesRegisterUser.textTopInput}>Fecha Nacimiento</Text>
@@ -154,6 +175,7 @@ const RegisterUser = ({ navigation }) => {
           placeholderTextColor={colors.highlight}
           value={birthdate}
           onChangeText={setBirthdate}
+          color="black"
         />
         {birthdate && error.birthdate ? <Text style={StylesRegisterUser.errorText}>{error.birthdate}</Text> : null}
 
@@ -164,6 +186,7 @@ const RegisterUser = ({ navigation }) => {
           placeholderTextColor={colors.highlight}
           value={imageUrl}
           onChangeText={setImageUrl}
+          color="black"
         />
         {imageUrl ? (
           <Image source={{ uri: imageUrl }} style={{ width: 100, height: 100, marginTop: 10 }} />

@@ -44,7 +44,7 @@ const BuyCart = ({ navigation }) => {
                     ))}
                     <Text style={StylesBuyCard.totalText}>Total: ${total.toFixed(2)} COP</Text>
                     <View style={StylesBuyCard.container}>
-                        <MyOwnButton 
+                        <MyOwnButton
                             title="Vaciar Carrito"
                             onPress={clearCart}
                             style={StylesBuyCard.clearCartButton}

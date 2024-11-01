@@ -35,7 +35,7 @@ const Makeup = ({ navigation }) => {
           id: doc.id,
           ...doc.data(),
         }));
-        
+
         setProducts(productList);
         setLoading(false);
       } catch (error) {

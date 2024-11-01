@@ -4,7 +4,6 @@ import firestore from "@react-native-firebase/firestore";
 
 const AppDataContext = createContext();
 
-// Acciones del reducer
 const ADD_TO_CART = 'ADD_TO_CART';
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
@@ -13,14 +12,12 @@ const ADD_PURCHASE = 'ADD_PURCHASE';
 const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
 const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
 const SET_CART = 'SET_CART';
-const SET_FAVORITES = 'SET_FAVORITES'; // Nueva acción para establecer los favoritos
+const SET_FAVORITES = 'SET_FAVORITES';
 
-// Calcula el total del carrito
 const calculateTotal = (cart) => {
     return cart.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
 };
 
-// Reducer
 const appReducer = (state, action) => {
     switch (action.type) {
         case ADD_TO_CART: {
@@ -68,14 +65,20 @@ const appReducer = (state, action) => {
         }
         case ADD_PURCHASE: {
             const purchasesRef = firestore().collection('purchases');
-            purchasesRef.add({ items: state.cart });
-            firestore().collection('cart').get().then(snapshot => {
-                const batch = firestore().batch();
-                snapshot.forEach(doc => {
-                    batch.delete(doc.ref);
+            const itemsToPurchase = state.cart; 
+            
+            if (currentUser) {
+                purchasesRef.add({
+                    items: itemsToPurchase,
+                    userId: currentUser.email, 
+                    createdAt: firestore.FieldValue.serverTimestamp(),
                 });
-                return batch.commit();
-            });
+                
+                dispatch({ type: CLEAR_CART });
+            } else {
+                console.error("No hay usuario autenticado para realizar la compra.");
+            }
+
             return { ...state, cart: [], total: 0 };
         }
         case ADD_TO_FAVORITES: {
@@ -97,24 +100,22 @@ const appReducer = (state, action) => {
             return { ...state, cart: action.payload, total: calculateTotal(action.payload) };
         }
         case SET_FAVORITES: {
-            return { ...state, favorites: action.payload }; // Establecer favoritos
+            return { ...state, favorites: action.payload };
         }
         default:
             return state;
     }
 };
 
-// Proveedor del contexto de datos de la app
 export const AppDataContextProvider = ({ children }) => {
     const { currentUser } = useContext(UserContext);
     const [state, dispatch] = useReducer(appReducer, {
         cart: [],
         total: 0,
-        favorites: [], // Cambiar de objeto a array
+        favorites: [],
         purchases: [],
     });
 
-    // Escucha en Firestore para obtener el carrito
     useEffect(() => {
         const cartRef = firestore().collection('cart');
         const unsubscribe = cartRef.onSnapshot(snapshot => {
@@ -122,10 +123,9 @@ export const AppDataContextProvider = ({ children }) => {
             dispatch({ type: SET_CART, payload: cartData });
         });
 
-        return () => unsubscribe(); // Limpieza de la suscripción
+        return () => unsubscribe();
     }, []);
 
-    // Escucha en Firestore para obtener los favoritos
     useEffect(() => {
         if (currentUser) {
             const favoritesRef = firestore().collection('favorites').doc(currentUser.email);
@@ -138,11 +138,11 @@ export const AppDataContextProvider = ({ children }) => {
                     }));
                     dispatch({ type: SET_FAVORITES, payload: favoritesArray });
                 } else {
-                    dispatch({ type: SET_FAVORITES, payload: [] }); // Sin favoritos
+                    dispatch({ type: SET_FAVORITES, payload: [] });
                 }
             });
 
-            return () => unsubscribe(); // Limpieza de la suscripción
+            return () => unsubscribe();
         }
     }, [currentUser]);
 
@@ -166,8 +166,22 @@ export const AppDataContextProvider = ({ children }) => {
         dispatch({ type: CLEAR_CART });
     };
 
-    const addPurchase = () => {
-        dispatch({ type: ADD_PURCHASE });
+    const addPurchase = async () => {
+        const itemsToPurchase = state.cart;
+        const purchasesRef = firestore().collection('purchases');
+        
+        if (currentUser) {
+            await purchasesRef.add({
+                items: itemsToPurchase,
+                userId: currentUser.email,
+                createdAt: firestore.FieldValue.serverTimestamp(),
+            });
+            
+
+            dispatch({ type: CLEAR_CART });
+        } else {
+            console.error("No hay usuario autenticado para realizar la compra.");
+        }
     };
 
     const addToFavorites = (product) => {

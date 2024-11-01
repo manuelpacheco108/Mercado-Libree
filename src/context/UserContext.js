@@ -4,27 +4,25 @@ import firestore from '@react-native-firebase/firestore';
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [users, setUsers] = useState([]); // Puedes mantener esta línea o eliminarla si no es necesaria
+  const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
 
   const registerUser = async (newUser) => {
-    // Verificar si el email ya está registrado
     const emailExists = users.some(user => user.email === newUser.email);
     if (emailExists) {
       throw new Error('El email ya está registrado.');
     }
 
-    // Almacenar el nuevo usuario en Firestore
+
     await firestore().collection('users').add(newUser);
-    
+
     setUsers([...users, newUser]);
     setCurrentUser(newUser);
   };
 
   const loginUser = async (email, password) => {
-    // Buscar al usuario en Firestore
     const snapshot = await firestore().collection('users').where('email', '==', email).get();
-    
+
     if (snapshot.empty) {
       throw new Error('Email o contraseña incorrectos.');
     }
@@ -33,8 +31,8 @@ export const UserProvider = ({ children }) => {
 
     snapshot.forEach(doc => {
       const userData = doc.data();
-      if (userData.password === password) { // Asegúrate de almacenar las contraseñas de forma segura, por ejemplo, utilizando hashing
-        userFound = { id: doc.id, ...userData }; // Agregar el ID del documento a los datos del usuario
+      if (userData.password === password) {
+        userFound = { id: doc.id, ...userData }; 
       }
     });
 

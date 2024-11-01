@@ -16,7 +16,7 @@ const Menu = ({ navigation }) => {
             routes: [{ name: 'HomeDrawer' }],
           });
         }}
-      > 
+      >
         <Image
           source={require('../img/back.png')}
           style={favoriteStyles.menuIcon}
@@ -28,7 +28,7 @@ const Menu = ({ navigation }) => {
 };
 
 const Favorite = ({ navigation }) => {
-  const { favorites } = useContext(AppDataContext); 
+  const { favorites } = useContext(AppDataContext);
 
   return (
     <ScrollView>
