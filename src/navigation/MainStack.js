@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import React from "react";
+import React, { useEffect } from "react";
+import { Linking } from "react-native";
 import Offer from "../screens/Offer";
 import Category from "../screens/Category";
 import Technology from "../screens/categoryTechnology/Technology";
@@ -23,121 +24,117 @@ import HomeDrawer from "./HomeDrawer";
 const Stack = createStackNavigator();
 
 const MainStack = () => {
-    return (
-        <NavigationContainer>
-            <Stack.Navigator>
+  useEffect(() => {
+    const handleDeepLink = (event) => {
+      const url = event.url;
+      if (url.includes("success")) {
+        // Navegar a HomeDrawer en caso de éxito
+      }
+    };
 
-                <Stack.Screen
-                    name='LoginUser'
-                    component={LoginUser}
-                    options={{ headerShown: false }}
-                />
+    Linking.addEventListener("url", handleDeepLink);
 
-                <Stack.Screen
-                    name='HomeDrawer'
-                    component={HomeDrawer}
-                    options={{ headerShown: false }}
-                />
+    return () => {
+      Linking.removeEventListener("url", handleDeepLink);
+    };
+  }, []);
 
-                <Stack.Screen
-                    name='PaymentScreen'
-                    component={PaymentScreen}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='BuyCart'
-                    component={BuyCart}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='RegisterUser'
-                    component={RegisterUser}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='Favorite'
-                    component={Favorite}
-                    options={{ headerShown: false }}
-                />
-
-
-                <Stack.Screen
-                    name='Technology'
-                    component={Technology}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='Category'
-                    component={Category}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='HomeCategory'
-                    component={HomeCategory}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='Makeup'
-                    component={Makeup}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='Pet'
-                    component={Pet}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='Offer'
-                    component={Offer}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='Fashion'
-                    component={Fashion}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='Profile'
-                    component={Profile}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='Support'
-                    component={Support}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='Shopping'
-                    component={Shopping}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='Privacy'
-                    component={Privacy}
-                    options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name='ProductDetail'
-                    component={ProductDetail}
-                    options={{ headerShown: false }}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="LoginUser"
+          component={LoginUser}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HomeDrawer"
+          component={HomeDrawer}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PaymentScreen"
+          component={PaymentScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="BuyCart"
+          component={BuyCart}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="RegisterUser"
+          component={RegisterUser}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Favorite"
+          component={Favorite}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Technology"
+          component={Technology}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Category"
+          component={Category}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HomeCategory"
+          component={HomeCategory}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Makeup"
+          component={Makeup}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Pet"
+          component={Pet}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Offer"
+          component={Offer}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Fashion"
+          component={Fashion}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Support"
+          component={Support}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Shopping"
+          component={Shopping}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Privacy"
+          component={Privacy}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ProductDetail"
+          component={ProductDetail}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
 
-export default MainStack
+export default MainStack;

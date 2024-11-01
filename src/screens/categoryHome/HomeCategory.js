@@ -1,115 +1,61 @@
-import React from 'react';
-import { View, Text, FlatList, Pressable, Image, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList, Pressable, Image, ScrollView, ActivityIndicator } from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 import productStyles from '../../styles/productStyles';
 import ProductCard from '../../components/ProductCard';
 
-const product = [
-  {
-    id: 7,
-    photo: require('../../img/broom.jpg'),
-    name: 'Escoba',
-    description: 'Escoba pequeña muy suave',
-    price: '100000',
-    discount: '95000',
-    offerValue: '5%OFF',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../../img/mastercard.png'),
-    visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png'),
-    status: 'Si'
-  },
-  {
-    id: 8,
-    photo: require('../../img/mop.png'),
-    name: 'Trapeadora',
-    description: 'Trapeadora de defensa personal',
-    price: '700000',
-    discount: '95000',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../../img/mastercard.png'),
-    visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png'),
-    status: 'Si'
-  },
-  {
-    id: 9,
-    photo: require('../../img/chair.jpg'),
-    name: 'Silla',
-    description: 'Silla de madera en color negro',
-    price: '4700000',
-    discount: '700000',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../../img/mastercard.png'),
-    visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png'),
-    status: 'Si'
-  },
-  {
-    id: 10,
-    photo: require('../../img/soap.png'),
-    name: 'Jabón',
-    description: 'Jabón para tocador de menta',
-    price: '200000',
-    discount: '130000',
-    offerValue: '35%OFF',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../../img/mastercard.png'),
-    visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png'),
-    status: 'Si'
-  },
-  {
-    id: 11,
-    photo: require('../../img/cleaner.jpg'),
-    name: 'Fabuloso',
-    description: 'Jabón limpia pisos con olor a rosas',
-    price: '100000',
-    discount: '95000',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../../img/mastercard.png'),
-    visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png'),
-    status: 'Si'
-  },
-  {
-    id: 12,
-    photo: require('../../img/cook.png'),
-    name: 'Sarten',
-    description: 'Juego de sartenes de acero inoxidable',
-    price: '100000',
-    discount: '95000',
-    offerValue: '5%OFF',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../../img/mastercard.png'),
-    visa: require('../../img/visa.png'),
-    bancolombia: require('../../img/bancolombia.png'),
-    status: 'Si'
-  }
-]
-
-const Menu = ({ navigation }) => {
-  return (
-    <View style={productStyles.menuContainer}>
-      <Pressable
-        style={productStyles.menuButton}
-        onPress={() => navigation.navigate('Category')}
-      >
-        <Image
-          source={require('../../img/back.png')}
-          style={productStyles.menuIcon}
-        />
-      </Pressable>
-      <Text style={productStyles.textProduct}>Hogar</Text>
-    </View>
-  );
-};
+const Menu = ({ navigation }) => (
+  <View style={productStyles.menuContainer}>
+    <Pressable
+      style={productStyles.menuButton}
+      onPress={() => navigation.navigate('Category')}
+    >
+      <Image
+        source={require('../../img/back.png')}
+        style={productStyles.menuIcon}
+      />
+    </Pressable>
+    <Text style={productStyles.textProduct}>Hogar</Text>
+  </View>
+);
 
 const HomeScreen = ({ navigation }) => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const querySnapshot = await firestore()
+          .collection('product')
+          .where('category', '==', 'home')
+          .get();
+
+        const productList = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        
+        setProducts(productList);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products: ", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return <ActivityIndicator size="large" color="#0000ff" />;
+  }
+
   return (
     <ScrollView>
       <Menu navigation={navigation} />
       <FlatList
-        data={product}
+        data={products}
         renderItem={({ item }) => <ProductCard product={item} navigation={navigation} />}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}

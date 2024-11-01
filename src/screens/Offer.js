@@ -1,89 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, Image, Pressable } from 'react-native';
+import firestore from '@react-native-firebase/firestore'; // Importando Firestore de @react-native-firebase
 import offerStyles from '../styles/offersStyles';
 import OfferCard from '../components/OfferCard';
-
-const product = [
-  {
-    id: 1,
-    photo: require('../img/headphones.png'),
-    name: 'Audífonos',
-    description: 'Audífonos inalámbricos grises',
-    price: '100000$',
-    discount: '95000$',
-    offerValue: '5%OFF',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../img/mastercard.png'),
-    visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
-
-  },
-  {
-    id: 2,
-    photo: require('../img/shoes.png'),
-    name: 'Tenis',
-    description: 'Tenis Jordan 4 blanco y azul',
-    price: '800000$',
-    discount: '640000$',
-    offerValue: '20%OFF',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../img/mastercard.png'),
-    visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
-  },
-  {
-    id: 3,
-    photo: require('../img/case.png'),
-    name: 'Funda',
-    description: 'Funda para Iphone 12 de naturaleza',
-    price: '130000$',
-    discount: '91000$',
-    offerValue: '30%OFF',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../img/mastercard.png'),
-    visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
-  },
-  {
-    id: 4,
-    photo: require('../img/battery.jpg'),
-    name: 'Batería',
-    description: 'Batería portátil con linterna',
-    price: '200000$',
-    discount: '130000$',
-    offerValue: '35%OFF',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../img/mastercard.png'),
-    visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
-  },
-  {
-    id: 5,
-    photo: require('../img/mattress.png'),
-    name: 'Colchón',
-    description: 'Colchón titanium de Comodisimos',
-    price: '1300000$',
-    discount: '520000$',
-    offerValue: '60%OFF',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../img/mastercard.png'),
-    visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
-  },
-  {
-    id: 6,
-    photo: require('../img/sun.png'),
-    name: 'Lentes',
-    description: 'Lentes de sol negros para ejercicio',
-    price: '100000$',
-    discount: '95000$',
-    offerValue: '5%OFF',
-    characteristics: 'Marca Sony, Grises, 7 horas de duración, trae cargador',
-    master: require('../img/mastercard.png'),
-    visa: require('../img/visa.png'),
-    bancolombia: require('../img/bancolombia.png')
-  }
-]
 
 const Menu = ({ navigation }) => {
   return (
@@ -108,19 +27,37 @@ const Menu = ({ navigation }) => {
 };
 
 const Offer = ({ navigation }) => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const snapshot = await firestore().collection('product').get(); // Cambia 'products' al nombre de tu colección
+        const productsData = snapshot.docs
+          .map(doc => ({ id: doc.id, ...doc.data() }))
+          .filter(product => product.offerValue); // Filtra productos que tienen offerValue
+
+        setProducts(productsData);
+      } catch (error) {
+        console.error('Error fetching products: ', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <View>
       <Menu navigation={navigation} />
       <FlatList
-        data={product}
+        data={products}
         renderItem={({ item }) => <OfferCard product={item} navigation={navigation} />}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id} // Asegúrate de que id es un string o lo conviertes aquí
         numColumns={2}
         columnWrapperStyle={offerStyles.row}
       />
-
     </View>
   );
-}
+};
 
 export default Offer;
